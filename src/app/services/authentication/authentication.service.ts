@@ -1,7 +1,8 @@
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { SupabaseService } from '../supabase/supabase.service';
-import { AuthChangeEvent, AuthSession, User } from '@supabase/supabase-js';
+import { AuthChangeEvent, AuthSession } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
+import { User } from '@jet/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'

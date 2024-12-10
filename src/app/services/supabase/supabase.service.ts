@@ -1,13 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import {
-  AuthChangeEvent,
-  AuthError,
-  AuthSession,
-  OAuthResponse,
-  SupabaseClient,
-  UserResponse,
-  createClient,
-} from '@supabase/supabase-js';
+import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
