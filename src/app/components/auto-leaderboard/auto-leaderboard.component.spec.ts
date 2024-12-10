@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AutosTableComponent } from './autos-table.component';
+import { AutoLeaderboardComponent } from './auto-leaderboard.component';
 
-describe('AutosTableComponent', () => {
-  let component: AutosTableComponent;
-  let fixture: ComponentFixture<AutosTableComponent>;
+describe('AutoLeaderboardComponent', () => {
+  let component: AutoLeaderboardComponent;
+  let fixture: ComponentFixture<AutoLeaderboardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AutosTableComponent]
+      imports: [AutoLeaderboardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AutosTableComponent);
+    fixture = TestBed.createComponent(AutoLeaderboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
