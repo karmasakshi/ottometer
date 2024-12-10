@@ -25,7 +25,9 @@
     ],
     "baseUrl": "./",
     "paths": {
+      "@jet/enums/*": ["src/app/enums/*"],
       "@jet/components/*": ["src/app/components/*"],
+      "@jet/interfaces/*": ["src/app/interfaces/*"],
       "@jet/services/*": ["src/app/services/*"]
     }
   },
