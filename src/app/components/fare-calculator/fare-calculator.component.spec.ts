@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FareCalculatorComponent } from './fare-calculator.component';
 
 describe('FareCalculatorComponent', () => {

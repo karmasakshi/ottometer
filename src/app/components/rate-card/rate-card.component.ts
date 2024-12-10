@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'jet-rate-card',
   standalone: true,
-  imports: [],
+  imports: [TranslocoModule],
   templateUrl: './rate-card.component.html',
   styleUrl: './rate-card.component.scss'
 })

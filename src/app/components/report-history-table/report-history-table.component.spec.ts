@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ReportHistoryTableComponent } from './report-history-table.component';
 
 describe('ReportHistoryTableComponent', () => {

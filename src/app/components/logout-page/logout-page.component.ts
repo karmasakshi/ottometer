@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'jet-logout-page',
   standalone: true,
-  imports: [],
+  imports: [TranslocoModule],
   templateUrl: './logout-page.component.html',
   styleUrl: './logout-page.component.scss'
 })

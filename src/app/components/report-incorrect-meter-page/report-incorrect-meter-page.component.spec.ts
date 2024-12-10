@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ReportIncorrectMeterPageComponent } from './report-incorrect-meter-page.component';
 
 describe('ReportIncorrectMeterPageComponent', () => {

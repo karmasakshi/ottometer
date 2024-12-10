@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AutosTableComponent } from './autos-table.component';
 
 describe('AutosTableComponent', () => {

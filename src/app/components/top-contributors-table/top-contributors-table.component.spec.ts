@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TopContributorsTableComponent } from './top-contributors-table.component';
 
 describe('TopContributorsTableComponent', () => {
