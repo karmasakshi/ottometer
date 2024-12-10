@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
+import { LoggerService } from '@jet/services/logger/logger.service';
 
 @Component({
   selector: 'jet-app',
@@ -29,11 +30,16 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  private breakpointObserver = inject(BreakpointObserver);
+  private readonly _breakpointObserver = inject(BreakpointObserver);
+  private readonly _loggerService = inject(LoggerService);
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+public isHandset$: Observable<boolean> = this._breakpointObserver.observe(Breakpoints.Handset)
+.pipe(
+  map(result => result.matches),
+  shareReplay()
+);
+
+  public constructor(){
+    this._loggerService.logComponentInitialization('AppComponent')
+  }
 }

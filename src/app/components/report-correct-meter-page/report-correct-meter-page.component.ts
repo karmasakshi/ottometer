@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -9,5 +10,9 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './report-correct-meter-page.component.scss'
 })
 export class ReportCorrectMeterPageComponent {
+  private readonly _loggerService = inject(LoggerService);
 
+  public constructor(){
+    this._loggerService.logComponentInitialization('ReportCorrectMeterPageComponent');
+  }
 }
