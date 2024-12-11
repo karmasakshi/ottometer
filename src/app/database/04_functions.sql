@@ -108,11 +108,10 @@ begin
     a.plate_district_code,
     a.plate_series_code,
     a.plate_vehicle_number,
-    count(case when r.type = 'meter_correct'::public.report_type then 1 end) as meter_correct_reports_count,
-    count(case when r.type = 'meter_incorrect'::public.report_type then 1 end) as meter_incorrect_reports_count
+    count(case when r.type = 'meter_correct' then 1 end) as meter_correct_reports_count,
+    count(case when r.type = 'meter_incorrect' then 1 end) as meter_incorrect_reports_count
   from public.reports r
   join public.autos a on r.auto_id = a.id
-  where r.type = 'meter_correct'::public.report_type 
   group by a.id
   order by meter_correct_reports_count desc
   limit 10; 
@@ -134,13 +133,12 @@ begin
     a.plate_district_code,
     a.plate_series_code,
     a.plate_vehicle_number,
-    count(case when r.type = 'meter_correct'::public.report_type then 1 end) as meter_correct_reports_count,
-    count(case when r.type = 'meter_incorrect'::public.report_type then 1 end) as meter_incorrect_reports_count
+    count(case when r.type = 'meter_correct' then 1 end) as meter_correct_reports_count,
+    count(case when r.type = 'meter_incorrect' then 1 end) as meter_incorrect_reports_count
   from public.reports r
   join public.autos a on r.auto_id = a.id
-  where r.type = 'meter_incorrect'::public.report_type 
   group by a.id
   order by meter_incorrect_reports_count desc
-  limit 10; 
+  limit 10;
 end;
 $$ language plpgsql;
