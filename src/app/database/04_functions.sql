@@ -69,3 +69,78 @@ begin
   return new;
 end;
 $$ language plpgsql;
+
+--
+
+create or replace function update_leaderboard_top_reporters()
+returns void
+security definer
+set search_path = '' as $$
+begin
+  truncate table public.leaderboard_top_reporters;
+  insert into public.leaderboard_top_reporters (reporter_avatar_url, reporter_username, meter_correct_reports_count, meter_incorrect_reports_count, total_reports_count)
+  select 
+    p.avatar_url,
+    p.username,
+    count(case when r.type = 'meter_correct'::public.report_type then 1 end) as meter_correct_reports_count,
+    count(case when r.type = 'meter_incorrect'::public.report_type then 1 end) as meter_incorrect_reports_count,
+    count(r.id) as total_reports_count
+  from public.reports r
+  join public.profiles p on r.reporter_id = p.id
+  group by p.id
+  order by total_reports_count desc
+  limit 10;
+end;
+$$ language plpgsql;
+
+--
+
+create or replace function update_leaderboard_top_fair_autos()
+returns void
+security definer
+set search_path = '' as $$
+begin
+  truncate table public.leaderboard_top_fair_autos;
+  insert into public.leaderboard_top_fair_autos (auto_id, auto_plate_state_code, auto_plate_district_code, auto_plate_series_code, auto_plate_vehicle_number, meter_correct_reports_count, meter_incorrect_reports_count)
+  select 
+    a.id,
+    a.plate_state_code,
+    a.plate_district_code,
+    a.plate_series_code,
+    a.plate_vehicle_number,
+    count(case when r.type = 'meter_correct'::public.report_type then 1 end) as meter_correct_reports_count,
+    count(case when r.type = 'meter_incorrect'::public.report_type then 1 end) as meter_incorrect_reports_count
+  from public.reports r
+  join public.autos a on r.auto_id = a.id
+  where r.type = 'meter_correct'::public.report_type 
+  group by a.id
+  order by meter_correct_reports_count desc
+  limit 10; 
+end;
+$$ language plpgsql;
+
+--
+
+create or replace function update_leaderboard_top_unfair_autos()
+returns void
+security definer
+set search_path = '' as $$
+begin
+  truncate table public.leaderboard_top_unfair_autos;
+  insert into public.leaderboard_top_unfair_autos (auto_id, auto_plate_state_code, auto_plate_district_code, auto_plate_series_code, auto_plate_vehicle_number, meter_correct_reports_count, meter_incorrect_reports_count)
+  select 
+    a.id,
+    a.plate_state_code,
+    a.plate_district_code,
+    a.plate_series_code,
+    a.plate_vehicle_number,
+    count(case when r.type = 'meter_correct'::public.report_type then 1 end) as meter_correct_reports_count,
+    count(case when r.type = 'meter_incorrect'::public.report_type then 1 end) as meter_incorrect_reports_count
+  from public.reports r
+  join public.autos a on r.auto_id = a.id
+  where r.type = 'meter_incorrect'::public.report_type 
+  group by a.id
+  order by meter_incorrect_reports_count desc
+  limit 10; 
+end;
+$$ language plpgsql;

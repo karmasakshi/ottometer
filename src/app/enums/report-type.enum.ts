@@ -1,4 +1,4 @@
 export enum ReportType {
-  CORRECT = 'correct',
-  INCORRECT = 'incorrect',
+  METER_CORRECT = 'meter_correct',
+  METER_INCORRECT = 'meter_incorrect',
 }
