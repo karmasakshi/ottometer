@@ -1,4 +1,4 @@
--- Profiles Table
+-- public.profiles
 
 create table
   public.profiles (
@@ -28,7 +28,7 @@ create table
 
 alter table public.profiles enable row level security;
 
--- Autos Table
+-- public.autos
 
 create table
   public.autos (
@@ -54,14 +54,12 @@ create table
 
 alter table public.autos enable row level security;
 
--- Report Type Enum
+-- public.report_type
 
 create type report_type as enum (
   'meter_correct',
   'meter_incorrect'
 );
-
--- Reports Table
 
 create table
   public.reports (
@@ -97,7 +95,7 @@ create table
 
 alter table public.reports enable row level security;
 
--- Top Reports Profiles Leaderboard Materialized View
+-- public.leaderboard_profiles_top_reports
 
 create materialized view public.leaderboard_profiles_top_reports as
   select
@@ -114,7 +112,7 @@ create materialized view public.leaderboard_profiles_top_reports as
     count(*) filter (where r.type = 'meter_incorrect') + count(*) filter (where r.type = 'meter_correct') desc
   limit 10;
 
--- Top Meter Correct Reports Autos Leaderboard Materialized View
+-- public.leaderboard_autos_top_meter_correct_reports
 
 create materialized view public.leaderboard_autos_top_meter_correct_reports as
   select
@@ -136,7 +134,7 @@ create materialized view public.leaderboard_autos_top_meter_correct_reports as
     reports_count desc
   limit 10;
 
--- Top Meter Incorrect Reports Autos Leaderboard Materialized View
+-- public.leaderboard_autos_top_meter_incorrect_reports
 
 create materialized view public.leaderboard_autos_top_meter_incorrect_reports as
   select

@@ -1,13 +1,13 @@
--- Profiles Table
+-- public.profiles
 
 create index idx_profiles_user_id ON public.profiles (user_id);
 create index idx_profiles_username ON public.profiles (username);
 
--- Autos Table
+-- public.autos
 
 create index idx_autos_plate_code on public.autos (plate_state_code, plate_district_code, plate_series_code, plate_vehicle_number);
 
--- Reports Table
+-- public.reports
 
 create index idx_reports_auto_id on public.reports (auto_id);
 create index idx_reports_reporter_id on public.reports (reporter_id);
