@@ -67,3 +67,33 @@ to authenticated
 using (
   auth.uid() = reporter_id
 );
+
+-- public.leaderboard_top_reporters
+
+create policy "Enable read access for all users"
+on public.leaderboard_top_reporters
+for select
+to public
+using (
+  true
+);
+
+-- public.leaderboard_top_fair_autos
+
+create policy "Enable read access for all users"
+on public.leaderboard_top_fair_autos
+for select
+to public
+using (
+  true
+);
+
+-- public.leaderboard_top_unfair_autos
+
+create policy "Enable read access for all users"
+on public.leaderboard_top_unfair_autos
+for select
+to public
+using (
+  true
+);

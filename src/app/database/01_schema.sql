@@ -94,63 +94,68 @@ create table
 
 alter table public.reports enable row level security;
 
--- public.leaderboard_profiles_top_reports
+-- public.leaderboard_top_reporters
 
-create materialized view public.leaderboard_profiles_top_reports as
-  select
-    p.username,
-    count(*) filter (where r.type = 'meter_incorrect') as meter_incorrect_reports_count,
-    count(*) filter (where r.type = 'meter_correct') as meter_correct_reports_count
-  from
-    public.reports r
-  join
-    public.profiles p on r.reporter_id = p.id
-  group by
-    p.username
-  order by
-    count(*) filter (where r.type = 'meter_incorrect') + count(*) filter (where r.type = 'meter_correct') desc
-  limit 10;
+create table
+  public.leaderboard_top_reporters (
+    id uuid not null default gen_random_uuid (),
+    reporter_avatar_url text not null,
+    reporter_username text not null,
+    meter_correct_reports_count integer not null default 0,
+    meter_incorrect_reports_count integer not null default 0,
+    total_reports_count integer not null,
+    created_at timestamp with time zone not null default now(),
+    updated_at timestamp with time zone not null default now(),
+    constraint leaderboard_top_reporters_pkey primary key (id),
+    constraint leaderboard_top_reporters_reporter_username_key unique (reporter_username),
+    constraint leaderboard_top_reporters_reporter_username_fkey foreign key (reporter_username) references profiles (username),
+    constraint leaderboard_top_reporters_meter_correct_reports_count_check check ((meter_correct_reports_count >= 0)),
+    constraint leaderboard_top_reporters_meter_incorrect_reports_count_check check ((meter_incorrect_reports_count >= 0)),
+    constraint leaderboard_top_reporters_total_reports_count_check check ((total_reports_count >= 0))
+  ) tablespace pg_default;
 
--- public.leaderboard_autos_top_meter_correct_reports
+alter table public.leaderboard_top_reporters enable row level security;
 
-create materialized view public.leaderboard_autos_top_meter_correct_reports as
-  select
-    a.id,
-    a.plate_state_code,
-    a.plate_district_code,
-    a.plate_series_code,
-    a.plate_vehicle_number,
-    count(r.id) as reports_count
-  from
-    public.reports r
-  join
-    public.autos a on r.auto_id = a.id
-  where
-    r.type = 'meter_correct'
-  group by
-    a.id, a.plate_state_code, a.plate_district_code, a.plate_series_code, a.plate_vehicle_number
-  order by
-    reports_count desc
-  limit 10;
+-- public.leaderboard_top_fair_autos
 
--- public.leaderboard_autos_top_meter_incorrect_reports
+create table
+  public.leaderboard_top_fair_autos (
+    id uuid not null default gen_random_uuid (),
+    auto_id uuid not null,
+    auto_plate_state_code text not null,
+    auto_plate_district_code text not null,
+    auto_plate_series_code text not null,
+    auto_plate_vehicle_number text not null,
+    meter_correct_reports_count integer not null default 0,
+    meter_incorrect_reports_count integer not null default 0,
+    created_at timestamp with time zone not null default now(),
+    updated_at timestamp with time zone not null default now(),
+    constraint leaderboard_top_fair_autos_pkey primary key (id),
+    constraint leaderboard_top_fair_autos_auto_id_fkey foreign key (auto_id) references autos (id),
+    constraint leaderboard_top_fair_autos_meter_correct_reports_count_check check ((meter_correct_reports_count >= 0)),
+    constraint leaderboard_top_fair_autos_meter_incorrect_reports_count_check check ((meter_incorrect_reports_count >= 0))
+  ) tablespace pg_default;
 
-create materialized view public.leaderboard_autos_top_meter_incorrect_reports as
-  select
-    a.id,
-    a.plate_state_code,
-    a.plate_district_code,
-    a.plate_series_code,
-    a.plate_vehicle_number,
-    count(r.id) as reports_count
-  from
-    public.reports r
-  join
-    public.autos a on r.auto_id = a.id
-  where
-    r.type = 'meter_incorrect'
-  group by
-    a.id, a.plate_state_code, a.plate_district_code, a.plate_series_code, a.plate_vehicle_number
-  order by
-    reports_count desc
-  limit 10;
+alter table public.leaderboard_top_fair_autos enable row level security;
+
+-- public.leaderboard_top_unfair_autos
+
+create table
+  public.leaderboard_top_unfair_autos (
+    id uuid not null default gen_random_uuid (),
+    auto_id uuid not null,
+    auto_plate_state_code text not null,
+    auto_plate_district_code text not null,
+    auto_plate_series_code text not null,
+    auto_plate_vehicle_number text not null,
+    meter_correct_reports_count integer not null default 0,
+    meter_incorrect_reports_count integer not null default 0,
+    created_at timestamp with time zone not null default now(),
+    updated_at timestamp with time zone not null default now(),
+    constraint leaderboard_top_unfair_autos_pkey primary key (id),
+    constraint leaderboard_top_unfair_autos_auto_id_fkey foreign key (auto_id) references autos (id),
+    constraint leaderboard_top_unfair_autos_meter_correct_reports_count_check check ((meter_correct_reports_count >= 0)),
+    constraint leaderboard_top_unfair_autos_meter_incorrect_reports_count_chec check ((meter_incorrect_reports_count >= 0))
+  ) tablespace pg_default;
+
+  alter table public.leaderboard_top_unfair_autos enable row level security;

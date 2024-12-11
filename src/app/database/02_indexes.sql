@@ -12,4 +12,3 @@ create index idx_reports_auto_id on public.reports (auto_id);
 create index idx_reports_reporter_id on public.reports (reporter_id);
 create index idx_reports_reporter_id_type on public.reports (reporter_id, type);
 create index idx_reports_type on public.reports (type);
-create index idx_reports_created_at on public.reports (created_at);
