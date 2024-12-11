@@ -8,7 +8,7 @@ using (
   true
 );
 
-create policy "Enable insert for users based on user_id"
+create policy "Enable insert for users based on their own profile"
 on public.profiles
 for insert
 to authenticated
@@ -16,7 +16,7 @@ with check (
   auth.uid() = user_id
 );
 
-create policy "Enable update for users based on user_id"
+create policy "Enable update for users based on their own profile"
 on public.profiles
 for update
 to authenticated
@@ -44,7 +44,7 @@ with check (
 
 -- Reports
 
-create policy "Enable users to view their own data only"
+create policy "Enable users to view their own reports"
 on public.reports
 for select
 to authenticated
@@ -52,7 +52,7 @@ using (
   auth.uid() = reporter_id
 );
 
-create policy "Enable insert for users based on user_id"
+create policy "Enable insert for users based on their own reports"
 on public.reports
 for insert
 to authenticated
@@ -60,7 +60,7 @@ with check (
   auth.uid() = reporter_id
 );
 
-create policy "Enable delete for users based on user_id"
+create policy "Enable delete for users based on their own reports"
 on public.reports
 for delete
 to authenticated
