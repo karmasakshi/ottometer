@@ -107,11 +107,7 @@ create table
     created_at timestamp with time zone not null default now(),
     updated_at timestamp with time zone not null default now(),
     constraint leaderboard_top_reporters_pkey primary key (id),
-    constraint leaderboard_top_reporters_reporter_username_key unique (reporter_username),
-    constraint leaderboard_top_reporters_reporter_username_fkey foreign key (reporter_username) references profiles (username),
-    constraint leaderboard_top_reporters_meter_correct_reports_count_check check ((meter_correct_reports_count >= 0)),
-    constraint leaderboard_top_reporters_meter_incorrect_reports_count_check check ((meter_incorrect_reports_count >= 0)),
-    constraint leaderboard_top_reporters_total_reports_count_check check ((total_reports_count >= 0))
+    constraint leaderboard_top_reporters_reporter_username_fkey foreign key (reporter_username) references profiles (username)
   ) tablespace pg_default;
 
 alter table public.leaderboard_top_reporters enable row level security;
@@ -131,9 +127,7 @@ create table
     created_at timestamp with time zone not null default now(),
     updated_at timestamp with time zone not null default now(),
     constraint leaderboard_top_fair_autos_pkey primary key (id),
-    constraint leaderboard_top_fair_autos_auto_id_fkey foreign key (auto_id) references autos (id),
-    constraint leaderboard_top_fair_autos_meter_correct_reports_count_check check ((meter_correct_reports_count >= 0)),
-    constraint leaderboard_top_fair_autos_meter_incorrect_reports_count_check check ((meter_incorrect_reports_count >= 0))
+    constraint leaderboard_top_fair_autos_auto_id_fkey foreign key (auto_id) references autos (id)
   ) tablespace pg_default;
 
 alter table public.leaderboard_top_fair_autos enable row level security;
@@ -153,9 +147,7 @@ create table
     created_at timestamp with time zone not null default now(),
     updated_at timestamp with time zone not null default now(),
     constraint leaderboard_top_unfair_autos_pkey primary key (id),
-    constraint leaderboard_top_unfair_autos_auto_id_fkey foreign key (auto_id) references autos (id),
-    constraint leaderboard_top_unfair_autos_meter_correct_reports_count_check check ((meter_correct_reports_count >= 0)),
-    constraint leaderboard_top_unfair_autos_meter_incorrect_reports_count_chec check ((meter_incorrect_reports_count >= 0))
+    constraint leaderboard_top_unfair_autos_auto_id_fkey foreign key (auto_id) references autos (id)
   ) tablespace pg_default;
 
-  alter table public.leaderboard_top_unfair_autos enable row level security;
+alter table public.leaderboard_top_unfair_autos enable row level security;
