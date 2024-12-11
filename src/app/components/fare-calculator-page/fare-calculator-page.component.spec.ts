@@ -7,9 +7,8 @@ describe('FareCalculatorPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FareCalculatorPageComponent]
-    })
-    .compileComponents();
+      imports: [FareCalculatorPageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FareCalculatorPageComponent);
     component = fixture.componentInstance;

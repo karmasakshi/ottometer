@@ -7,12 +7,12 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './not-found-page.component.html',
-  styleUrl: './not-found-page.component.scss'
+  styleUrl: './not-found-page.component.scss',
 })
 export class NotFoundPageComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
-    this._loggerService.logComponentInitialization('NotFoundPageComponent')
+  public constructor() {
+    this._loggerService.logComponentInitialization('NotFoundPageComponent');
   }
 }

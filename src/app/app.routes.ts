@@ -14,27 +14,27 @@ import { NotFoundPageComponent } from '@jet/components/not-found-page/not-found-
 import { ReportHistoryPageComponent } from '@jet/components/report-history-page/report-history-page.component';
 
 export const routes: Routes = [
-    { path: '', component: HomePageComponent },
-    { path: 'fare-calculator', component: FareCalculatorPageComponent },
-    { path: 'login', component: LoginPageComponent },
-    { path: 'logout', component: LogoutPageComponent },
-    { 
-      path: 'profile',
-      children: [
-        { path: '', component: ProfilePageComponent },
-        { path: 'report-history', component: ReportHistoryPageComponent },
-      ]
-    },
-    { path: 'register', component: RegisterPageComponent },
-    { 
-      path: 'report',
-      children: [
-        { path: '', component: ReportPageComponent },
-        { path: 'correct-meter', component: ReportCorrectMeterPageComponent },
-        { path: 'incorrect-meter', component: ReportIncorrectMeterPageComponent }
-      ]
-    },
-    { path: 'reset-password', component: ResetPasswordPageComponent },
-    { path: 'search', component: SearchPageComponent },
-    { path: '**', component: NotFoundPageComponent }
+  { path: '', component: HomePageComponent },
+  { path: 'fare-calculator', component: FareCalculatorPageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'logout', component: LogoutPageComponent },
+  {
+    path: 'profile',
+    children: [
+      { path: '', component: ProfilePageComponent },
+      { path: 'report-history', component: ReportHistoryPageComponent },
+    ],
+  },
+  { path: 'register', component: RegisterPageComponent },
+  {
+    path: 'report',
+    children: [
+      { path: '', component: ReportPageComponent },
+      { path: 'correct-meter', component: ReportCorrectMeterPageComponent },
+      { path: 'incorrect-meter', component: ReportIncorrectMeterPageComponent },
+    ],
+  },
+  { path: 'reset-password', component: ResetPasswordPageComponent },
+  { path: 'search', component: SearchPageComponent },
+  { path: '**', component: NotFoundPageComponent },
 ];

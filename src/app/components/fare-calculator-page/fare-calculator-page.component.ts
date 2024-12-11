@@ -7,12 +7,14 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './fare-calculator-page.component.html',
-  styleUrl: './fare-calculator-page.component.scss'
+  styleUrl: './fare-calculator-page.component.scss',
 })
 export class FareCalculatorPageComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
-    this._loggerService.logComponentInitialization('FareCalculatorPageComponent')
+  public constructor() {
+    this._loggerService.logComponentInitialization(
+      'FareCalculatorPageComponent',
+    );
   }
 }

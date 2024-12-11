@@ -7,12 +7,14 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './report-correct-meter-page.component.html',
-  styleUrl: './report-correct-meter-page.component.scss'
+  styleUrl: './report-correct-meter-page.component.scss',
 })
 export class ReportCorrectMeterPageComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
-    this._loggerService.logComponentInitialization('ReportCorrectMeterPageComponent');
+  public constructor() {
+    this._loggerService.logComponentInitialization(
+      'ReportCorrectMeterPageComponent',
+    );
   }
 }

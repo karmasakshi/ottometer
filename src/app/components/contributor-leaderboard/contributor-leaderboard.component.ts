@@ -7,12 +7,14 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './contributor-leaderboard.component.html',
-  styleUrl: './contributor-leaderboard.component.scss'
+  styleUrl: './contributor-leaderboard.component.scss',
 })
 export class ContributorLeaderboardComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
-    this._loggerService.logComponentInitialization('ContributorLeaderboardComponent')
+  public constructor() {
+    this._loggerService.logComponentInitialization(
+      'ContributorLeaderboardComponent',
+    );
   }
 }

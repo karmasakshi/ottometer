@@ -3,20 +3,20 @@ import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SupabaseService {
   private readonly _loggerService = inject(LoggerService);
 
   private readonly _supabaseClient: SupabaseClient;
 
-  public constructor() { 
+  public constructor() {
     this._supabaseClient = createClient(
       import.meta.env.NG_APP_SUPABASE_URL ?? '',
       import.meta.env.NG_APP_SUPABASE_KEY ?? '',
     );
 
-    this._loggerService.logServiceInitialization('SupabaseService')
+    this._loggerService.logServiceInitialization('SupabaseService');
   }
 
   public get supabaseClient(): SupabaseClient {

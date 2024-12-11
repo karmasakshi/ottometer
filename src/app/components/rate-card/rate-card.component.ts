@@ -7,12 +7,12 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './rate-card.component.html',
-  styleUrl: './rate-card.component.scss'
+  styleUrl: './rate-card.component.scss',
 })
 export class RateCardComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
-    this._loggerService.logComponentInitialization('RateCardComponent')
+  public constructor() {
+    this._loggerService.logComponentInitialization('RateCardComponent');
   }
 }

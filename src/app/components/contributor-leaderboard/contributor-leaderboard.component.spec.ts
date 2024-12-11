@@ -7,9 +7,8 @@ describe('ContributorLeaderboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContributorLeaderboardComponent]
-    })
-    .compileComponents();
+      imports: [ContributorLeaderboardComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ContributorLeaderboardComponent);
     component = fixture.componentInstance;

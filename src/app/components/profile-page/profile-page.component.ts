@@ -7,12 +7,12 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './profile-page.component.html',
-  styleUrl: './profile-page.component.scss'
+  styleUrl: './profile-page.component.scss',
 })
 export class ProfilePageComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
-    this._loggerService.logComponentInitialization('ProfilePageComponent')
+  public constructor() {
+    this._loggerService.logComponentInitialization('ProfilePageComponent');
   }
 }

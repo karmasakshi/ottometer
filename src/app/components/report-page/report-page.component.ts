@@ -7,12 +7,12 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './report-page.component.html',
-  styleUrl: './report-page.component.scss'
+  styleUrl: './report-page.component.scss',
 })
 export class ReportPageComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
-    this._loggerService.logComponentInitialization('ReportPageComponent')
+  public constructor() {
+    this._loggerService.logComponentInitialization('ReportPageComponent');
   }
 }

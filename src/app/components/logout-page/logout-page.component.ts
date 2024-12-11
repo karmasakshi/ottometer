@@ -7,12 +7,12 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './logout-page.component.html',
-  styleUrl: './logout-page.component.scss'
+  styleUrl: './logout-page.component.scss',
 })
 export class LogoutPageComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
+  public constructor() {
     this._loggerService.logComponentInitialization('LogoutPageComponent');
   }
 }

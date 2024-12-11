@@ -5,7 +5,7 @@ import { SupabaseService } from '../supabase/supabase.service';
 import { Auto } from '@jet/interfaces/auto.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AutoService {
   private readonly _loggerService = inject(LoggerService);
@@ -16,10 +16,12 @@ export class AutoService {
   public constructor() {
     this._supabaseClient = this._supabaseService.supabaseClient;
 
-    this._loggerService.logServiceInitialization('AutoService')
-   }
+    this._loggerService.logServiceInitialization('AutoService');
+  }
 
-   public getAuto(plateNumber: Auto['plateNumber']): PromiseLike<unknown>{
-    return this._supabaseClient.rpc('search_autos', { plate_query: plateNumber });
-   }
+  public getAuto(plateNumber: Auto['plateNumber']): PromiseLike<unknown> {
+    return this._supabaseClient.rpc('search_autos', {
+      plate_query: plateNumber,
+    });
+  }
 }

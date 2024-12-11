@@ -6,12 +6,12 @@ import { LoggerService } from '@jet/services/logger/logger.service';
   standalone: true,
   imports: [],
   templateUrl: './page.component.html',
-  styleUrl: './page.component.scss'
+  styleUrl: './page.component.scss',
 })
 export class PageComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
+  public constructor() {
     this._loggerService.logComponentInitialization('PageComponent');
   }
 }

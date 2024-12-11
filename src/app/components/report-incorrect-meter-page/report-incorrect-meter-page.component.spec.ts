@@ -7,9 +7,8 @@ describe('ReportIncorrectMeterPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReportIncorrectMeterPageComponent]
-    })
-    .compileComponents();
+      imports: [ReportIncorrectMeterPageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ReportIncorrectMeterPageComponent);
     component = fixture.componentInstance;

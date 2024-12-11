@@ -7,9 +7,8 @@ describe('LogoutPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LogoutPageComponent]
-    })
-    .compileComponents();
+      imports: [LogoutPageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LogoutPageComponent);
     component = fixture.componentInstance;

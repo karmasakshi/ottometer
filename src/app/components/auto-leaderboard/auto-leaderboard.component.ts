@@ -7,12 +7,12 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './auto-leaderboard.component.html',
-  styleUrl: './auto-leaderboard.component.scss'
+  styleUrl: './auto-leaderboard.component.scss',
 })
 export class AutoLeaderboardComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
-    this._loggerService.logComponentInitialization('AutoLeaderboardComponent')
+  public constructor() {
+    this._loggerService.logComponentInitialization('AutoLeaderboardComponent');
   }
 }

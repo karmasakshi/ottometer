@@ -7,12 +7,14 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './reset-password-page.component.html',
-  styleUrl: './reset-password-page.component.scss'
+  styleUrl: './reset-password-page.component.scss',
 })
 export class ResetPasswordPageComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
-    this._loggerService.logComponentInitialization('ResetPasswordPageComponent');
+  public constructor() {
+    this._loggerService.logComponentInitialization(
+      'ResetPasswordPageComponent',
+    );
   }
 }

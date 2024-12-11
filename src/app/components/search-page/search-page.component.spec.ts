@@ -7,9 +7,8 @@ describe('SearchPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchPageComponent]
-    })
-    .compileComponents();
+      imports: [SearchPageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SearchPageComponent);
     component = fixture.componentInstance;

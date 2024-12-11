@@ -1,11 +1,25 @@
-import { inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import {
+  inject,
+  Injectable,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { SupabaseService } from '../supabase/supabase.service';
-import { AuthChangeEvent, AuthError, AuthResponse, AuthSession, AuthTokenResponsePassword, SupabaseClient, UserResponse } from '@supabase/supabase-js';
+import {
+  AuthChangeEvent,
+  AuthError,
+  AuthResponse,
+  AuthSession,
+  AuthTokenResponsePassword,
+  SupabaseClient,
+  UserResponse,
+} from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 import { User } from '@jet/interfaces/user.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
   private readonly _loggerService = inject(LoggerService);
@@ -16,7 +30,7 @@ export class AuthenticationService {
 
   public constructor() {
     this._supabaseClient = this._supabaseService.supabaseClient;
-    
+
     this._user = signal(null);
 
     this._supabaseClient.auth.onAuthStateChange(
@@ -25,7 +39,7 @@ export class AuthenticationService {
       },
     );
 
-    this._loggerService.logServiceInitialization('AuthenticationService')
+    this._loggerService.logServiceInitialization('AuthenticationService');
   }
 
   public get user(): Signal<User | null> {
@@ -36,8 +50,11 @@ export class AuthenticationService {
     return this._supabaseClient.auth.getUser();
   }
 
-  public login(email: string, password: string): Promise<AuthTokenResponsePassword> {
-    return this._supabaseClient.auth.signInWithPassword({email, password});
+  public login(
+    email: string,
+    password: string,
+  ): Promise<AuthTokenResponsePassword> {
+    return this._supabaseClient.auth.signInWithPassword({ email, password });
   }
 
   public logout(): Promise<{ error: AuthError | null }> {
@@ -45,6 +62,6 @@ export class AuthenticationService {
   }
 
   public register(email: string, password: string): Promise<AuthResponse> {
-    return this._supabaseClient.auth.signUp({email, password});
+    return this._supabaseClient.auth.signUp({ email, password });
   }
 }

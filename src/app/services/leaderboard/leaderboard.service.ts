@@ -4,7 +4,7 @@ import { SupabaseService } from '../supabase/supabase.service';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LeaderboardService {
   private readonly _loggerService = inject(LoggerService);
@@ -15,14 +15,14 @@ export class LeaderboardService {
   public constructor() {
     this._supabaseClient = this._supabaseService.supabaseClient;
 
-    this._loggerService.logServiceInitialization('LeaderboardService')
-   }
+    this._loggerService.logServiceInitialization('LeaderboardService');
+  }
 
-   public getAutoLeaderboardCorrect():PromiseLike<unknown>{
-    return this._supabaseClient.rpc('autos_correct')
-   }
+  public getAutoLeaderboardCorrect(): PromiseLike<unknown> {
+    return this._supabaseClient.rpc('autos_correct');
+  }
 
-   public getAutoLeaderboardIncorrect():PromiseLike<unknown>{
-    return this._supabaseClient.rpc('autos_incorrect')
-   }
+  public getAutoLeaderboardIncorrect(): PromiseLike<unknown> {
+    return this._supabaseClient.rpc('autos_incorrect');
+  }
 }

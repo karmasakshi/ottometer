@@ -7,9 +7,8 @@ describe('AutoLeaderboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AutoLeaderboardComponent]
-    })
-    .compileComponents();
+      imports: [AutoLeaderboardComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AutoLeaderboardComponent);
     component = fixture.componentInstance;

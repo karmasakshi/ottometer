@@ -7,12 +7,12 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
   private readonly _loggerService = inject(LoggerService);
 
-  public constructor(){
-this._loggerService.logComponentInitialization('FooterComponent')
+  public constructor() {
+    this._loggerService.logComponentInitialization('FooterComponent');
   }
 }

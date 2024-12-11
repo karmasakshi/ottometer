@@ -5,7 +5,7 @@ import { SupabaseClient } from '@supabase/supabase-js';
 import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProfileService {
   private readonly _authenticationService = inject(AuthenticationService);
@@ -17,20 +17,20 @@ export class ProfileService {
   public constructor() {
     this._supabaseClient = this._supabaseService.supabaseClient;
 
-    this._loggerService.logServiceInitialization('ProfileService')
-   }
+    this._loggerService.logServiceInitialization('ProfileService');
+  }
 
-   public updateAvatarUrl(avatarUrl: string): PromiseLike<unknown> {
+  public updateAvatarUrl(avatarUrl: string): PromiseLike<unknown> {
     return this._supabaseClient
-    .from('users')
-    .update({ avatarUrl })
-    .eq('id', this._authenticationService.user());
-   }
+      .from('users')
+      .update({ avatarUrl })
+      .eq('id', this._authenticationService.user());
+  }
 
-   public updateUsername(username: string): PromiseLike<unknown> {
+  public updateUsername(username: string): PromiseLike<unknown> {
     return this._supabaseClient
-    .from('users')
-    .update({ username })
-    .eq('id', this._authenticationService.user());
-   }
+      .from('users')
+      .update({ username })
+      .eq('id', this._authenticationService.user());
+  }
 }

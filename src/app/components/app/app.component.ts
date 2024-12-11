@@ -24,7 +24,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
     MatListModule,
     MatIconModule,
     AsyncPipe,
-    TranslocoModule
+    TranslocoModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -33,13 +33,14 @@ export class AppComponent {
   private readonly _breakpointObserver = inject(BreakpointObserver);
   private readonly _loggerService = inject(LoggerService);
 
-public isHandset$: Observable<boolean> = this._breakpointObserver.observe(Breakpoints.Handset)
-.pipe(
-  map(result => result.matches),
-  shareReplay()
-);
+  public isHandset$: Observable<boolean> = this._breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      map((result) => result.matches),
+      shareReplay(),
+    );
 
-  public constructor(){
-    this._loggerService.logComponentInitialization('AppComponent')
+  public constructor() {
+    this._loggerService.logComponentInitialization('AppComponent');
   }
 }

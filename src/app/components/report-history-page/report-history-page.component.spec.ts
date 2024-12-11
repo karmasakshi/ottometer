@@ -7,9 +7,8 @@ describe('ReportHistoryPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReportHistoryPageComponent]
-    })
-    .compileComponents();
+      imports: [ReportHistoryPageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ReportHistoryPageComponent);
     component = fixture.componentInstance;
