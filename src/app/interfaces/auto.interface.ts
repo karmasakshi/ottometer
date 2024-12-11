@@ -1,6 +1,6 @@
 export interface Auto {
     id: string;
-    plate: string;
+    plateNumber: string;
     createdAt: string;
     updatedAt: string;
 }
