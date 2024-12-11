@@ -2,15 +2,14 @@
 
 create table
   public.profiles (
-    id uuid not null default gen_random_uuid (),
+    id uuid not null,
     avatar_url text not null default 'https://avatar.iran.liara.run/public'::text,
-    user_id uuid null,
     username text not null,
     created_at timestamp with time zone not null default now(),
     updated_at timestamp with time zone not null default now(),
     constraint profiles_pkey primary key (id),
     constraint profiles_username_key unique (username),
-    constraint profiles_user_id_fkey foreign key (user_id) references auth.users (id),
+    constraint profiles_id_fkey foreign key (id) references auth.users (id),
     constraint profiles_avatar_url_check check (
       (
         (length(avatar_url) >= 3)
@@ -105,7 +104,7 @@ create materialized view public.leaderboard_profiles_top_reports as
   from
     public.reports r
   join
-    public.profiles p on r.reporter_id = p.user_id
+    public.profiles p on r.reporter_id = p.id
   group by
     p.username
   order by

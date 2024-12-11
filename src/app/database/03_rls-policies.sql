@@ -13,7 +13,7 @@ on public.profiles
 for insert
 to authenticated
 with check (
-  auth.uid() = user_id
+  auth.uid() = id
 );
 
 create policy "Enable update for users based on their own profile"
@@ -21,7 +21,7 @@ on public.profiles
 for update
 to authenticated
 with check (
-  auth.uid() = user_id
+  auth.uid() = id
 );
 
 -- public.autos
