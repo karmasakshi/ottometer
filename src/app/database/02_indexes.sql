@@ -1,6 +1,5 @@
 -- public.profiles
 
-create index idx_profiles_id ON public.profiles (id);
 create index idx_profiles_username ON public.profiles (username);
 
 -- public.autos

@@ -3,7 +3,7 @@
 create table
   public.profiles (
     id uuid not null,
-    avatar_url text not null default 'https://avatar.iran.liara.run/public'::text,
+    avatar_url text not null,
     username text not null,
     created_at timestamp with time zone not null default now(),
     updated_at timestamp with time zone not null default now(),
