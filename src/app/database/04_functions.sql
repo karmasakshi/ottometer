@@ -4,9 +4,9 @@ security definer
 set search_path = '' as $$
 begin
   if (select count(*) 
-      from reports 
-      where reporter_id = new.reporter_id 
-        and created_at::date = current_date) >= 5 then
+    from public.reports 
+    where reporter_id = new.reporter_id 
+      and created_at::date = current_date) >= 5 then
     raise exception 'Daily report limit (5) reached.';
   end if;
   return new;
@@ -42,17 +42,17 @@ declare
     new_auto_id uuid;
 begin
     select id into new_auto_id
-    from autos
+    from public.autos
     where plate_state_code = new.plate_state_code
       and plate_district_code = new.plate_district_code
       and plate_series_code = new.plate_series_code
       and plate_vehicle_number = new.plate_vehicle_number;
     if new_auto_id is null then
-      insert into autos (plate_state_code, plate_district_code, plate_series_code, plate_vehicle_number)
+      insert into public.autos (plate_state_code, plate_district_code, plate_series_code, plate_vehicle_number)
       values (new.plate_state_code, new.plate_district_code, new.plate_series_code, new.plate_vehicle_number)
       returning id into new_auto_id;
     end if;
-    insert into reports (auto_id, reporter_id, area_from, area_to, fare_difference_in_inr, meter_distance_in_km, meter_fare_in_inr, meter_waiting_time_in_min, is_tamper_indicator_on, time_in, time_out, type)
+    insert into public.reports (auto_id, reporter_id, area_from, area_to, fare_difference_in_inr, meter_distance_in_km, meter_fare_in_inr, meter_waiting_time_in_min, is_tamper_indicator_on, time_in, time_out, type)
     values (new_auto_id, new.reporter_id, new.area_from, new.area_to, new.fare_difference_in_inr, new.meter_distance_in_km, new.meter_fare_in_inr, new.meter_waiting_time_in_min, new.is_tamper_indicator_on, new.time_in, new.time_out, new.type);
     return new;
 end;
