@@ -1,5 +1,6 @@
 create or replace function check_daily_report_limit()
 returns trigger
+security definer
 set search_path = '' as $$
 begin
   if (select count(*) 
@@ -16,6 +17,7 @@ $$ language plpgsql;
 
 create or replace function insert_profile()
 returns trigger
+security definer
 set search_path = '' as $$
 declare
   generated_username text;
@@ -34,6 +36,7 @@ $$ language plpgsql;
 
 create or replace function update_updated_at()
 returns trigger
+security definer
 set search_path = '' as $$
 begin
   new.updated_at = now();
