@@ -53,7 +53,7 @@ create table
 
 alter table public.autos enable row level security;
 
--- public.report_type
+-- public.reports
 
 create type report_type as enum (
   'meter_correct',
