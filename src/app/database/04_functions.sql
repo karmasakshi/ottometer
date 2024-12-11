@@ -14,20 +14,6 @@ $$ language plpgsql;
 
 --
 
-create or replace function insert_auto()
-returns trigger
-set search_path = '' as $$
-begin
-  insert into autos (plate_state_code, plate_district_code, plate_series_code, plate_vehicle_number)
-  values (new.plate_state_code, new.plate_district_code, new.plate_series_code, new.plate_vehicle_number)
-  on conflict (plate_state_code, plate_district_code, plate_series_code, plate_vehicle_number) 
-  do nothing;
-  return new;
-end;
-$$ language plpgsql;
-
---
-
 create or replace function insert_profile()
 returns trigger
 set search_path = '' as $$
