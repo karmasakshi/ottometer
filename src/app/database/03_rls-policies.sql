@@ -1,4 +1,4 @@
--- Profiles
+-- Profiles Table
 
 create policy "Enable read access for all users"
 on public.profiles
@@ -24,7 +24,7 @@ with check (
   auth.uid() = user_id
 );
 
--- Autos
+-- Autos Table
 
 create policy "Enable read access for all users"
 on public.autos
@@ -42,7 +42,7 @@ with check (
   true
 );
 
--- Reports
+-- Reports Table
 
 create policy "Enable users to view their own reports"
 on public.reports

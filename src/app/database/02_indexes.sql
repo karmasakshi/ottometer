@@ -1,4 +1,4 @@
--- Profile Table
+-- Profiles Table
 
 create index idx_profiles_user_id ON public.profiles (user_id);
 create index idx_profiles_username ON public.profiles (username);
