@@ -20,24 +20,37 @@ export class ReportService {
   }
 
   public deleteReport(id: Report['id']): PromiseLike<unknown> {
-    return this._supabaseClient.from('reports').delete().eq('id', id);
+    return this._supabaseClient
+      .from('reports')
+      .delete()
+      .eq('id', id);
   }
 
   public insertReport(report: Report): PromiseLike<unknown> {
-    return this._supabaseClient.rpc('insert_report', { report });
+    return this._supabaseClient
+      .from('reports')
+      .insert([report]);
   }
 
   public selectReport(id: Report['id']): PromiseLike<unknown> {
-    return this._supabaseClient.from('reports').select('*').eq('id', id);
+    return this._supabaseClient
+      .from('reports')
+      .select('*')
+      .eq('id', id)
+      .single();
   }
 
   public selectReports(
-    pageNumber: number,
-    pageSize: number,
+    pageNumber: number = 1,
+    pageSize: number = 10,
+    autoId?: Report['auto_id'],
+    type?: Report['type'],
   ): PromiseLike<unknown> {
-    return this._supabaseClient.rpc('fetch_user_reports', {
-      pageNumber,
-      pageSize,
+    return this._supabaseClient.rpc('select_reports', {
+      x_page_number: pageNumber,
+      x_page_size: pageSize,
+      x_auto_id: autoId,
+      x_type: type
     });
   }
 }

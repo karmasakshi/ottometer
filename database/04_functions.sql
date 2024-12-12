@@ -141,3 +141,65 @@ begin
   limit 10;
 end;
 $$ language plpgsql;
+
+--
+
+create or replace function public.select_reports(
+  x_page_number int default 1,
+  x_page_size int default 10,
+  x_auto_id uuid default null,
+  x_type public.report_type default null
+)
+returns table (
+  id uuid,
+  auto_id uuid,
+  auto_plate_state_code text,
+  auto_plate_district_code text,
+  auto_plate_series_code text,
+  auto_plate_vehicle_number text,
+  reporter_id uuid,
+  area_from text,
+  area_to text,
+  fare_difference_in_inr real,
+  meter_distance_in_km real,
+  meter_fare_in_inr real,
+  meter_waiting_time_in_min real,
+  is_tamper_indicator_on boolean,
+  time_in timestamp with time zone,
+  time_out timestamp with time zone,
+  type public.report_type,
+  created_at timestamp with time zone,
+  updated_at timestamp with time zone
+)
+security definer
+set search_path = '' as $$
+begin
+  return query
+  select
+    r.id,
+    r.auto_id,
+    r.auto_plate_state_code,
+    r.auto_plate_district_code,
+    r.auto_plate_series_code,
+    r.auto_plate_vehicle_number,
+    r.reporter_id,
+    r.area_from,
+    r.area_to,
+    r.fare_difference_in_inr,
+    r.meter_distance_in_km,
+    r.meter_fare_in_inr,
+    r.meter_waiting_time_in_min,
+    r.is_tamper_indicator_on,
+    r.time_in,
+    r.time_out,
+    r.type,
+    r.created_at,
+    r.updated_at
+  from public.reports r
+  where
+    (x_type is null or r.type = x_type)
+    and (x_auto_id is null or r.auto_id = x_auto_id)
+  order by r.created_at desc
+  limit x_page_size offset (x_page_number - 1) * x_page_size;
+end;
+$$ language plpgsql;
