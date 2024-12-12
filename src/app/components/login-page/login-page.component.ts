@@ -55,8 +55,8 @@ private readonly _router = inject(Router);
   }
 
   public ngOnInit(): void {
-    this._authenticationService.getUser().then((user)=>{
-      if(user){this._router.navigateByUrl('/')}
+    this._authenticationService.getUser().then(({data, error})=>{
+      if(data.user){this._router.navigateByUrl('/')}
     })
   }
 
