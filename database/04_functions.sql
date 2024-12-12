@@ -151,6 +151,7 @@ create or replace function public.select_reports(
   x_type public.report_type default null
 )
 returns table (
+  total_count int,
   id uuid,
   auto_id uuid,
   auto_plate_state_code text,
@@ -176,6 +177,7 @@ set search_path = '' as $$
 begin
   return query
   select
+    total_count.total_count,
     r.id,
     r.auto_id,
     r.auto_plate_state_code,
@@ -195,12 +197,23 @@ begin
     r.type,
     r.created_at,
     r.updated_at
+from (
+  select count(*) as total_count
+  from public.reports r
+  where
+    r.reporter_id = auth.uid()
+    and (x_type is null or r.type = x_type)
+    and (x_auto_id is null or r.auto_id = x_auto_id)
+) total_count,
+lateral (
+  select *
   from public.reports r
   where
     r.reporter_id = auth.uid()
     and (x_type is null or r.type = x_type)
     and (x_auto_id is null or r.auto_id = x_auto_id)
   order by r.created_at desc
-  limit x_page_size offset (x_page_number - 1) * x_page_size;
+  limit x_page_size offset (x_page_number - 1) * x_page_size
+) r;
 end;
 $$ language plpgsql;
