@@ -1,4 +1,4 @@
-create or replace function check_daily_report_limit()
+create or replace function public.check_daily_report_limit()
 returns trigger
 security definer
 set search_path = '' as $$
@@ -15,7 +15,7 @@ $$ language plpgsql;
 
 --
 
-create or replace function insert_profile()
+create or replace function public.insert_profile()
 returns trigger
 security definer
 set search_path = '' as $$
@@ -34,33 +34,32 @@ $$ language plpgsql;
 
 --
 
-create or replace function insert_report_and_auto()
+create or replace function public.update_auto_id()
 returns trigger
 security definer
 set search_path = '' as $$
 declare
-  new_auto_id uuid;
+  auto_id uuid;
 begin
-  select id into new_auto_id
+  select id into auto_id
   from public.autos
   where plate_state_code = upper(new.auto_plate_state_code)
     and plate_district_code = new.auto_plate_district_code
     and plate_series_code = upper(new.auto_plate_series_code)
     and plate_vehicle_number = new.auto_plate_vehicle_number;
-  if new_auto_id is null then
+  if auto_id is null then
     insert into public.autos (plate_state_code, plate_district_code, plate_series_code, plate_vehicle_number)
     values (upper(new.auto_plate_state_code), new.auto_plate_district_code, upper(new.auto_plate_series_code), new.auto_plate_vehicle_number)
-    returning id into new_auto_id;
+    returning id into auto_id;
   end if;
-  insert into public.reports (auto_id, reporter_id, area_from, area_to, fare_difference_in_inr, meter_distance_in_km, meter_fare_in_inr, meter_waiting_time_in_min, is_tamper_indicator_on, time_in, time_out, type)
-  values (new_auto_id, new.reporter_id, new.area_from, new.area_to, new.fare_difference_in_inr, new.meter_distance_in_km, new.meter_fare_in_inr, new.meter_waiting_time_in_min, new.is_tamper_indicator_on, new.time_in, new.time_out, new.type);
+  new.auto_id := auto_id;
   return new;
 end;
 $$ language plpgsql;
 
 --
 
-create or replace function update_updated_at()
+create or replace function public.update_updated_at()
 returns trigger
 security definer
 set search_path = '' as $$
@@ -72,7 +71,7 @@ $$ language plpgsql;
 
 --
 
-create or replace function update_leaderboard_top_reporters()
+create or replace function public.update_leaderboard_top_reporters()
 returns void
 security definer
 set search_path = '' as $$
@@ -95,7 +94,7 @@ $$ language plpgsql;
 
 --
 
-create or replace function update_leaderboard_top_fair_autos()
+create or replace function public.update_leaderboard_top_fair_autos()
 returns void
 security definer
 set search_path = '' as $$
@@ -120,7 +119,7 @@ $$ language plpgsql;
 
 --
 
-create or replace function update_leaderboard_top_unfair_autos()
+create or replace function public.update_leaderboard_top_unfair_autos()
 returns void
 security definer
 set search_path = '' as $$

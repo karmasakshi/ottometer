@@ -26,10 +26,10 @@ before insert on public.reports
 for each row
 execute function check_daily_report_limit();
 
-create or replace trigger insert_report_and_auto
+create or replace trigger update_auto_id
 before insert on public.reports
 for each row
-execute function insert_report_and_auto();
+execute function public.update_auto_id();
 
 create or replace trigger update_updated_at
 before update on public.reports
