@@ -24,9 +24,9 @@ export class LogoutPageComponent implements OnInit {
     this.logout();
   }
 
-  public logout():void {
-    this._authenticationService.logout().then(()=>{
-      this._router.navigateByUrl('/')
-    })
+  public logout(): void {
+    this._authenticationService.logout().then(() => {
+      this._router.navigateByUrl('/');
+    });
   }
 }

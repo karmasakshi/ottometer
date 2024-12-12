@@ -38,14 +38,14 @@
         }
         <span>Ottometer</span>
         <div style="flex: 1"></div>
-        @if(!user()) {
-          <div style="display: inline-flex; gap: 8px;">
-            <a routerLink="/login" mat-button>{{ t('login')}}</a>
-            <a routerLink="/register" mat-button>{{ t('register')}}</a>
+        @if (!user()) {
+          <div style="display: inline-flex; gap: 8px">
+            <a routerLink="/login" mat-button>{{ t("login") }}</a>
+            <a routerLink="/register" mat-button>{{ t("register") }}</a>
           </div>
         } @else {
-          <a routerLink="/profile" mat-button>{{ t('my-profile')}}</a>
-          <a routerLink="/logout" mat-button>{{ t('logout')}}</a>
+          <a routerLink="/profile" mat-button>{{ t("my-profile") }}</a>
+          <a routerLink="/logout" mat-button>{{ t("logout") }}</a>
         }
       </mat-toolbar>
       <!-- Add Content Here -->

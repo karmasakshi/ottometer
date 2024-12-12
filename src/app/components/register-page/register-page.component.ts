@@ -9,7 +9,12 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 import { NgStyle } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -25,7 +30,8 @@ import { Router, RouterLink } from '@angular/router';
     MatInputModule,
     MatFormFieldModule,
     MatProgressBarModule,
-    TranslocoModule],
+    TranslocoModule,
+  ],
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.scss',
 })
@@ -45,25 +51,28 @@ export class RegisterPageComponent {
   public constructor() {
     this.registerFormGroup = this._formBuilder.group({
       email: '',
-      password: ''
-     });
+      password: '',
+    });
 
     this.isRegisterPending = false;
 
     this._loggerService.logComponentInitialization('RegisterPageComponent');
   }
 
-  public register(email: string, password: string):void {
+  public register(email: string, password: string): void {
     this.isRegisterPending = true;
-    this._authenticationService.register(email, password)
-    .then(({data, error}):void=>{
-      if(error){console.log(error)} else{
-      console.log(data);
-      this._router.navigateByUrl('/');
-      }
-    })
-    .finally(()=>{
-      this.isRegisterPending = false;
-    })
+    this._authenticationService
+      .register(email, password)
+      .then(({ data, error }): void => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(data);
+          this._router.navigateByUrl('/');
+        }
+      })
+      .finally(() => {
+        this.isRegisterPending = false;
+      });
   }
 }

@@ -9,7 +9,12 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 import { NgStyle } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -25,14 +30,14 @@ import { Router, RouterLink } from '@angular/router';
     MatInputModule,
     MatFormFieldModule,
     MatProgressBarModule,
-    TranslocoModule]
-    ,
+    TranslocoModule,
+  ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent implements OnInit {
   private readonly _formBuilder = inject(FormBuilder);
-private readonly _router = inject(Router);
+  private readonly _router = inject(Router);
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
 
@@ -44,10 +49,9 @@ private readonly _router = inject(Router);
   public isLoginPending: boolean;
 
   public constructor() {
-
     this.loginFormGroup = this._formBuilder.group({
-     email: '',
-     password: ''
+      email: '',
+      password: '',
     });
     this.isLoginPending = false;
 
@@ -55,22 +59,27 @@ private readonly _router = inject(Router);
   }
 
   public ngOnInit(): void {
-    this._authenticationService.getUser().then(({data, error})=>{
-      if(data.user){this._router.navigateByUrl('/')}
-    })
+    this._authenticationService.getUser().then(({ data, error }) => {
+      if (data.user) {
+        this._router.navigateByUrl('/');
+      }
+    });
   }
 
   public login(email: string, password: string) {
     this.isLoginPending = true;
-    this._authenticationService.login(email, password)
-    .then(({data, error}):void=>{
-      if(error){console.log(error)}else{
-        console.log(data);
-        this._router.navigateByUrl('/')
-      }
-    })
-    .finally(()=>{
-      this.isLoginPending = false;
-    })
+    this._authenticationService
+      .login(email, password)
+      .then(({ data, error }): void => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(data);
+          this._router.navigateByUrl('/');
+        }
+      })
+      .finally(() => {
+        this.isLoginPending = false;
+      });
   }
 }

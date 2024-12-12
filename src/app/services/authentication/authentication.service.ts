@@ -65,7 +65,7 @@ export class AuthenticationService {
     return this._supabaseClient.auth.signUp({ email, password });
   }
 
-  public resetPassword(email: string){
-    return this._supabaseClient.auth.resetPasswordForEmail(email)
+  public resetPassword(email: string) {
+    return this._supabaseClient.auth.resetPasswordForEmail(email);
   }
 }

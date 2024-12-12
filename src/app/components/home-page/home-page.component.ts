@@ -22,7 +22,7 @@ import { PageComponent } from '../page/page.component';
     NgStyle,
     TranslocoModule,
     MatTableModule,
-    PageComponent
+    PageComponent,
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
@@ -34,9 +34,9 @@ export class HomePageComponent implements OnInit {
   public isGetTopFairAutosPending: boolean;
   public isGetTopReportersPending: boolean;
   public isGetTopUnfairAutosPending: boolean;
-  public topFairAutos: Record<string, unknown>[]
-  public topReporters: Record<string, unknown>[]
-  public topUnfairAutos: Record<string, unknown>[]
+  public topFairAutos: Record<string, unknown>[];
+  public topReporters: Record<string, unknown>[];
+  public topUnfairAutos: Record<string, unknown>[];
 
   public constructor() {
     this.isGetTopFairAutosPending = false;
@@ -46,9 +46,9 @@ export class HomePageComponent implements OnInit {
     this.isGetTopUnfairAutosPending = false;
 
     this.topFairAutos = [];
-    
+
     this.topReporters = [];
-    
+
     this.topUnfairAutos = [];
 
     this._loggerService.logComponentInitialization('HomePageComponent');
@@ -60,39 +60,38 @@ export class HomePageComponent implements OnInit {
     this.getTopUnfairAutos();
   }
 
-  public getTopFairAutos():void {
+  public getTopFairAutos(): void {
     this.isGetTopFairAutosPending = true;
 
-    this._leaderboardsService.getLeaderboardTopFairAutos()
-    .then((response)=>{
+    this._leaderboardsService.getLeaderboardTopFairAutos().then((response) => {
       this.isGetTopFairAutosPending = false;
 
       // @ts-ignoretsgnore
       this.topFairAutos = response.data;
-    })
+    });
   }
 
-  public getTopReporters():void {
+  public getTopReporters(): void {
     this.isGetTopReportersPending = true;
 
-    this._leaderboardsService.getLeaderboardTopReporters()
-    .then((response)=>{
+    this._leaderboardsService.getLeaderboardTopReporters().then((response) => {
       this.isGetTopReportersPending = false;
 
       // @ts-ignore
       this.topReporters = response.data;
-    })
+    });
   }
 
-  public getTopUnfairAutos():void {
+  public getTopUnfairAutos(): void {
     this.isGetTopUnfairAutosPending = true;
 
-    this._leaderboardsService.getLeaderboardTopUnfairAutos()
-    .then((response)=>{
-      this.isGetTopUnfairAutosPending = false;
+    this._leaderboardsService
+      .getLeaderboardTopUnfairAutos()
+      .then((response) => {
+        this.isGetTopUnfairAutosPending = false;
 
-      // @ts-ignore
-      this.topUnfairAutos = response.data;
-    })
+        // @ts-ignore
+        this.topUnfairAutos = response.data;
+      });
   }
 }

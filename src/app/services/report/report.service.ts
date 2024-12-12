@@ -20,16 +20,11 @@ export class ReportService {
   }
 
   public deleteReport(id: Report['id']): PromiseLike<unknown> {
-    return this._supabaseClient
-      .from('reports')
-      .delete()
-      .eq('id', id);
+    return this._supabaseClient.from('reports').delete().eq('id', id);
   }
 
   public insertReport(report: Report): PromiseLike<unknown> {
-    return this._supabaseClient
-      .from('reports')
-      .insert([report]);
+    return this._supabaseClient.from('reports').insert([report]);
   }
 
   public getReport(id: Report['id']): PromiseLike<unknown> {
@@ -50,7 +45,7 @@ export class ReportService {
       x_page_number: pageNumber,
       x_page_size: pageSize,
       x_auto_id: autoId,
-      x_type: type
+      x_type: type,
     });
   }
 }

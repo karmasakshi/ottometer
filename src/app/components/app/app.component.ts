@@ -36,7 +36,7 @@ export class AppComponent {
   private readonly _breakpointObserver = inject(BreakpointObserver);
   private readonly _loggerService = inject(LoggerService);
 
-  public readonly user: Signal<User |null>
+  public readonly user: Signal<User | null>;
 
   public isHandset$: Observable<boolean> = this._breakpointObserver
     .observe(Breakpoints.Handset)
@@ -47,7 +47,7 @@ export class AppComponent {
 
   public constructor() {
     this.user = this._authenticationService.user;
-    
+
     this._loggerService.logComponentInitialization('AppComponent');
   }
 }

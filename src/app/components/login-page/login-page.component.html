@@ -1,47 +1,60 @@
 <ng-container *transloco="let t; prefix: 'jet-login-page'">
- <jet-page>
+  <jet-page>
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{t('login')}}</mat-card-title>
-        <mat-card-subtitle>{{t('register-below')}}</mat-card-subtitle>
+        <mat-card-title>{{ t("login") }}</mat-card-title>
+        <mat-card-subtitle>{{ t("register-below") }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <br />
         <form
           id="login-form"
           [formGroup]="loginFormGroup"
-          (ngSubmit)="login(loginFormGroup.controls.email.value ?? '', loginFormGroup.controls.password.value ?? '')"
+          (ngSubmit)="
+            login(
+              loginFormGroup.controls.email.value ?? '',
+              loginFormGroup.controls.password.value ?? ''
+            )
+          "
         >
-      
-        <mat-form-field appearance="outline">
-          <mat-label>{{ t('email') }}</mat-label>
-          <input
-            formControlName="email"
-            matInput
-            required
-            type="email"
-          />
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="outline">
-          <mat-label>{{ t('password') }}</mat-label>
-          <input
-            formControlName="password"
-            matInput
-            required
-            type="password"
-          />
-        </mat-form-field>
-      </form>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t("email") }}</mat-label>
+            <input formControlName="email" matInput required type="email" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t("password") }}</mat-label>
+            <input
+              formControlName="password"
+              matInput
+              required
+              type="password"
+            />
+          </mat-form-field>
+        </form>
       </mat-card-content>
       <mat-card-actions style="gap: 8px">
-        <button [disabled]="loginFormGroup.invalid || isLoginPending" mat-flat-button type="submit" form="login-form">{{ t('login') }}</button>
-        <a mat-stroked-button color="primary" routerLink="/register">{{t('register')}}</a>
-        <a mat-stroked-button color="primary" routerLink="/reset-password">{{t('reset-password')}}</a>
+        <button
+          [disabled]="loginFormGroup.invalid || isLoginPending"
+          mat-flat-button
+          type="submit"
+          form="login-form"
+        >
+          {{ t("login") }}
+        </button>
+        <a mat-stroked-button color="primary" routerLink="/register">{{
+          t("register")
+        }}</a>
+        <a mat-stroked-button color="primary" routerLink="/reset-password">{{
+          t("reset-password")
+        }}</a>
       </mat-card-actions>
       <mat-card-footer>
-        <mat-progress-bar mode="indeterminate" [ngStyle]="{ visibility: isLoginPending ? 'visible' : 'hidden' }"></mat-progress-bar>
+        <mat-progress-bar
+          mode="indeterminate"
+          [ngStyle]="{ visibility: isLoginPending ? 'visible' : 'hidden' }"
+        ></mat-progress-bar>
       </mat-card-footer>
     </mat-card>
- </jet-page>
+  </jet-page>
 </ng-container>
