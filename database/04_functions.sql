@@ -171,7 +171,7 @@ returns table (
   created_at timestamp with time zone,
   updated_at timestamp with time zone
 )
-security definer
+security invoker
 set search_path = '' as $$
 begin
   return query
@@ -197,7 +197,8 @@ begin
     r.updated_at
   from public.reports r
   where
-    (x_type is null or r.type = x_type)
+    r.reporter_id = auth.uid()
+    and (x_type is null or r.type = x_type)
     and (x_auto_id is null or r.auto_id = x_auto_id)
   order by r.created_at desc
   limit x_page_size offset (x_page_number - 1) * x_page_size;

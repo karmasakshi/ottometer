@@ -5,7 +5,7 @@ on public.profiles
 for select
 to authenticated
 using (
-  auth.uid() = user_id
+  user_id = auth.uid()
 );
 
 create policy "Enable update for authenticated users for their own profile"
@@ -13,7 +13,7 @@ on public.profiles
 for update
 to authenticated
 with check (
-  auth.uid() = id
+  id = auth.uid()
 );
 
 -- public.autos
@@ -33,7 +33,7 @@ on public.reports
 for select
 to authenticated
 using (
-  auth.uid() = reporter_id
+  reporter_id = auth.uid()
 );
 
 create policy "Enable insert for authenticated users for their own reports"
@@ -41,7 +41,7 @@ on public.reports
 for insert
 to authenticated
 with check (
-  auth.uid() = reporter_id
+  reporter_id = auth.uid()
 );
 
 create policy "Enable delete for authenticated users for their own reports"
@@ -49,7 +49,7 @@ on public.reports
 for delete
 to authenticated
 using (
-  auth.uid() = reporter_id
+  reporter_id = auth.uid()
 );
 
 -- public.leaderboard_top_reporters
