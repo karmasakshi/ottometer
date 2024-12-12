@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { LeaderboardService } from '@jet/services/leaderboard/leaderboard.service';
+import { LeaderboardsService } from '@jet/services/leaderboards/leaderboards.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -11,7 +11,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent implements OnInit {
-  private readonly _leaderboardService = inject(LeaderboardService);
+  private readonly _leaderboardsService = inject(LeaderboardsService);
   private readonly _loggerService = inject(LoggerService);
 
   public topFairAutos: Record<string, unknown>[]
@@ -35,7 +35,7 @@ export class HomePageComponent implements OnInit {
   }
 
   public getTopFairAutos():void {
-    this._leaderboardService.selectLeaderboardTopFairAutos()
+    this._leaderboardsService.selectLeaderboardTopFairAutos()
     .then((response)=>{
       // @ts-ignoretsgnore
       this.topFairAutos = response.data;
@@ -43,7 +43,7 @@ export class HomePageComponent implements OnInit {
   }
 
   public getTopReporters():void {
-    this._leaderboardService.selectLeaderboardTopReporters()
+    this._leaderboardsService.selectLeaderboardTopReporters()
     .then((response)=>{
       // @ts-ignore
       this.topReporters = response.data;
@@ -52,7 +52,7 @@ export class HomePageComponent implements OnInit {
 
 
   public getTopUnfairAutos():void {
-    this._leaderboardService.selectLeaderboardTopUnfairAutos()
+    this._leaderboardsService.selectLeaderboardTopUnfairAutos()
     .then((response)=>{
       // @ts-ignore
       this.topUnfairAutos = response.data;

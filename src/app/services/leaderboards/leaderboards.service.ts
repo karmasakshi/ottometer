@@ -6,7 +6,7 @@ import { SupabaseClient } from '@supabase/supabase-js';
 @Injectable({
   providedIn: 'root',
 })
-export class LeaderboardService {
+export class LeaderboardsService {
   private readonly _loggerService = inject(LoggerService);
   private readonly _supabaseService = inject(SupabaseService);
 
@@ -15,7 +15,7 @@ export class LeaderboardService {
   public constructor() {
     this._supabaseClient = this._supabaseService.supabaseClient;
 
-    this._loggerService.logServiceInitialization('LeaderboardService');
+    this._loggerService.logServiceInitialization('LeaderboardsService');
   }
 
   public selectLeaderboardTopReporters(): PromiseLike<unknown> {
