@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -11,6 +11,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { LoggerService } from '@jet/services/logger/logger.service';
+import { User } from '@jet/interfaces/user.interface';
+import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 
 @Component({
   selector: 'jet-app',
@@ -30,8 +32,11 @@ import { LoggerService } from '@jet/services/logger/logger.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _breakpointObserver = inject(BreakpointObserver);
   private readonly _loggerService = inject(LoggerService);
+
+  public readonly user: Signal<User |null>
 
   public isHandset$: Observable<boolean> = this._breakpointObserver
     .observe(Breakpoints.Handset)
@@ -41,6 +46,8 @@ export class AppComponent {
     );
 
   public constructor() {
+    this.user = this._authenticationService.user;
+    
     this._loggerService.logComponentInitialization('AppComponent');
   }
 }

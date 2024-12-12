@@ -12,11 +12,8 @@
       <mat-nav-list>
         <a mat-list-item routerLink="/">Home</a>
         <a mat-list-item routerLink="/fare-calculator">Fare Calculator</a>
-        <a mat-list-item routerLink="/login">Login</a>
-        <a mat-list-item routerLink="/logout">Logout</a>
         <a mat-list-item routerLink="/profile">Profile</a>
         <a mat-list-item routerLink="/profile/report-history">Report History</a>
-        <a mat-list-item routerLink="/register">Register</a>
         <a mat-list-item routerLink="/report">Report</a>
         <a mat-list-item routerLink="/report/correct-meter"
           >Report Correct Meter</a
@@ -24,7 +21,6 @@
         <a mat-list-item routerLink="/report/incorrect-meter"
           >Report Incorrect Meter</a
         >
-        <a mat-list-item routerLink="/reset-password">Reset Password</a>
         <a mat-list-item routerLink="/search">Search</a>
       </mat-nav-list>
     </mat-sidenav>
@@ -40,7 +36,17 @@
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
         }
-        <span>jet</span>
+        <span>Ottometer</span>
+        <div style="flex: 1"></div>
+        @if(!user()) {
+          <div style="display: inline-flex; gap: 8px;">
+            <a routerLink="/login" mat-button>{{ t('login')}}</a>
+            <a routerLink="/register" mat-button>{{ t('register')}}</a>
+          </div>
+        } @else {
+          <a routerLink="/profile" mat-button>{{ t('my-profile')}}</a>
+          <a routerLink="/logout" mat-button>{{ t('logout')}}</a>
+        }
       </mat-toolbar>
       <!-- Add Content Here -->
       <router-outlet />

@@ -64,4 +64,8 @@ export class AuthenticationService {
   public register(email: string, password: string): Promise<AuthResponse> {
     return this._supabaseClient.auth.signUp({ email, password });
   }
+
+  public resetPassword(email: string){
+    return this._supabaseClient.auth.resetPasswordForEmail(email)
+  }
 }
