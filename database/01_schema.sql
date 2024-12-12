@@ -8,7 +8,6 @@ create table
     created_at timestamp with time zone not null default now(),
     updated_at timestamp with time zone not null default now(),
     constraint profiles_pkey primary key (id),
-    constraint profiles_username_key unique (username),
     constraint profiles_id_fkey foreign key (id) references auth.users (id),
     constraint profiles_avatar_url_check check (
       (
@@ -22,7 +21,8 @@ create table
         (length(username) >= 3)
         and (length(username) <= 30)
       )
-    )
+    ),
+    constraint profiles_username_key unique (username)
   ) tablespace pg_default;
 
 alter table public.profiles enable row level security;
@@ -39,16 +39,16 @@ create table
     created_at timestamp with time zone not null default now(),
     updated_at timestamp with time zone not null default now(),
     constraint autos_pkey primary key (id),
+    constraint autos_plate_district_code_check check ((plate_district_code ~* '^\d{2}$'::text)),
+    constraint autos_plate_series_code_check check ((plate_series_code ~* '^[A-Z]{1,2}$'::text)),
+    constraint autos_plate_state_code_check check ((plate_state_code ~* '^[A-Z]{2}$'::text)),
+    constraint autos_plate_vehicle_number_check check ((plate_vehicle_number ~* '^\d{4}$'::text)),
     constraint autos_plate_code unique (
       plate_state_code,
       plate_district_code,
       plate_series_code,
       plate_vehicle_number
-    ),
-    constraint autos_plate_district_code_check check ((plate_district_code ~* '^\d{2}$'::text)),
-    constraint autos_plate_series_code_check check ((plate_series_code ~* '^[A-Z]{1,2}$'::text)),
-    constraint autos_plate_state_code_check check ((plate_state_code ~* '^[A-Z]{2}$'::text)),
-    constraint autos_plate_vehicle_number_check check ((plate_vehicle_number ~* '^\d{4}$'::text))
+    )
   ) tablespace pg_default;
 
 alter table public.autos enable row level security;
