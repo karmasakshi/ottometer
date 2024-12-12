@@ -63,7 +63,7 @@ create type report_type as enum (
 create table
   public.reports (
     id uuid not null default gen_random_uuid (),
-    auto_id uuid null,
+    auto_id uuid not null,
     auto_plate_state_code text not null,
     auto_plate_district_code text not null,
     auto_plate_series_code text not null,
@@ -89,7 +89,7 @@ create table
     constraint reports_area_from_check check ((length(area_from) <= 300)),
     constraint reports_fare_difference_in_inr_check check ((fare_difference_in_inr >= (0)::double precision)),
     constraint reports_meter_distance_in_km_check check ((meter_distance_in_km >= (0)::double precision)),
-    constraint reports_meter_fare_in_inr_check check ((meter_fare_in_inr >= (0)::double precision)),
+    constraint reports_meter_fare_in_inr_check check ((meter_fare_in_inr >= (23)::double precision)),
     constraint reports_meter_waiting_time_in_min_check check (
       (
         meter_waiting_time_in_min >= (0)::double precision
