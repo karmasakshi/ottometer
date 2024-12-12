@@ -3,6 +3,7 @@ import { LoggerService } from '../logger/logger.service';
 import { SupabaseService } from '../supabase/supabase.service';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { Profile } from '@jet/interfaces/profile.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,17 +21,14 @@ export class ProfileService {
     this._loggerService.logServiceInitialization('ProfileService');
   }
 
-  public updateAvatarUrl(avatarUrl: string): PromiseLike<unknown> {
-    return this._supabaseClient
-      .from('users')
-      .update({ avatarUrl })
-      .eq('id', this._authenticationService.user());
+  public selectProfile(): PromiseLike<unknown> {
+    return this._supabaseClient.from('profiles').select('*');
   }
 
-  public updateUsername(username: string): PromiseLike<unknown> {
+  public updateProfile(profile: Profile): PromiseLike<unknown> {
     return this._supabaseClient
       .from('users')
-      .update({ username })
+      .update(profile)
       .eq('id', this._authenticationService.user());
   }
 }

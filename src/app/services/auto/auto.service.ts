@@ -19,7 +19,7 @@ export class AutoService {
     this._loggerService.logServiceInitialization('AutoService');
   }
 
-  public getAuto(plateNumber: Auto['plateNumber']): PromiseLike<unknown> {
+  public selectAuto(plateNumber: Auto['plateNumber']): PromiseLike<unknown> {
     return this._supabaseClient.rpc('search_autos', {
       plate_query: plateNumber,
     });

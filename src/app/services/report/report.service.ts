@@ -23,11 +23,15 @@ export class ReportService {
     return this._supabaseClient.from('reports').delete().eq('id', id);
   }
 
-  public getReport(id: Report['id']): PromiseLike<unknown> {
+  public insertReport(report: Report): PromiseLike<unknown> {
+    return this._supabaseClient.rpc('insert_report', { report });
+  }
+
+  public selectReport(id: Report['id']): PromiseLike<unknown> {
     return this._supabaseClient.from('reports').select('*').eq('id', id);
   }
 
-  public getReports(
+  public selectReports(
     pageNumber: number,
     pageSize: number,
   ): PromiseLike<unknown> {
@@ -35,9 +39,5 @@ export class ReportService {
       pageNumber,
       pageSize,
     });
-  }
-
-  public submitReport(report: Report): PromiseLike<unknown> {
-    return this._supabaseClient.rpc('insert_report', { report });
   }
 }

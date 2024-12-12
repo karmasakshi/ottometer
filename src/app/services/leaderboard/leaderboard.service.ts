@@ -18,11 +18,15 @@ export class LeaderboardService {
     this._loggerService.logServiceInitialization('LeaderboardService');
   }
 
-  public getAutoLeaderboardCorrect(): PromiseLike<unknown> {
+  public selectLeaderboardTopReporters(): PromiseLike<unknown> {
+    return this._supabaseClient.rpc('profiles');
+  }
+
+  public selectLeaderboardTopFairAutos(): PromiseLike<unknown> {
     return this._supabaseClient.rpc('autos_correct');
   }
 
-  public getAutoLeaderboardIncorrect(): PromiseLike<unknown> {
+  public selectLeaderboardTopUnfairAutos(): PromiseLike<unknown> {
     return this._supabaseClient.rpc('autos_incorrect');
   }
 }
