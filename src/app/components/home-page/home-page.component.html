@@ -1,3 +1,13 @@
 <ng-container *transloco="let t; prefix: 'jet-home-page'">
-  <p>home-page works!</p>
+  <div style="background-color: rgba(0, 0, 0, 0.5); position: relative;">
+    <img ngSrc="./hero.webp" fill [alt]="t('hero')" style="object-fit: cover; object-position: center bottom; z-index: -1">
+    <div style="color: white; text-align: center; padding: 128px 0;">
+      <h1 style="font-size: 48px; line-height: 64px; font-weight: 300;">{{ t('hero-title') }}</h1>
+    <h2 style="font-size: 32px; line-height: 32px; font-weight: 300;">{{ t('hero-subtitle') }}</h2>
+    <div style="margin-top: 64px; display: flex; gap: 8px; justify-content: center;">
+      <a mat-flat-button routerLink="/report/incorrect-meter" color="warn">{{ t('report-incorrect-meter') }}</a>
+      <a mat-flat-button routerLink="/report/correct-meter" color="primary">{{ t('report-correct-meter') }}</a>
+    </div>
+    </div>
+  </div>
 </ng-container>

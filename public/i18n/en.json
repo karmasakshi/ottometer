@@ -1,1 +1,9 @@
-{}
+{
+    "jet-home-page": {
+        "hero": "Hero",
+        "hero-title": "Let's make auto rides fun again",
+        "hero-subtitle": "Join the community of commuters by reporting incorrect or correct meters.",
+        "report-incorrect-meter": "Report an Incorrect Meter",
+        "report-correct-meter": "Report a Correct Meter"
+    }
+}

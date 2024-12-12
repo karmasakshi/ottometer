@@ -1,4 +1,7 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 import { LeaderboardsService } from '@jet/services/leaderboards/leaderboards.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -6,7 +9,12 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'jet-home-page',
   standalone: true,
-  imports: [TranslocoModule],
+  imports: [
+    NgOptimizedImage,
+    RouterLink,
+    MatButtonModule,
+    TranslocoModule
+  ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
