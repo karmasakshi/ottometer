@@ -1,11 +1,52 @@
 {
+  "jet-app": {
+    "login": "Login",
+    "logout": "Logout",
+    "my-profile": "My Profile",
+    "register": "Register"
+  },
   "jet-home-page": {
+    "auto-correct-count": "Meter Correct Reports",
+    "auto-incorrect-count": "Meter Incorrect Reports",
+    "auto-plate": "Plate",
     "hero": "Hero",
-    "hero-title": "Let's make auto rides fun again",
     "hero-subtitle": "Join the community of commuters by reporting incorrect or correct meters.",
-    "report-incorrect-meter": "Report an Incorrect Meter",
+    "hero-title": "Let's make auto rides fun again",
     "report-correct-meter": "Report a Correct Meter",
-    "top-autos-incorrect-meters": "Most Reported Autos with Incorrect Meters",
-    "updated-daily": "Updated Daily"
+    "report-incorrect-meter": "Report an Incorrect Meter",
+    "top-autos-correct-meters": "Top Autos with Correct Meters",
+    "top-autos-incorrect-meters": "Top Autos with Incorrect Meters",
+    "top-reporters": "Top Reporters",
+    "updated-daily": "Updated Daily",
+    "user-correct-count": "Correct Meter Reports",
+    "user-incorrect-count": "Incorrect Meter Reports",
+    "user-total-count": "Total Reports"
+  },
+  "jet-login-page": {
+    "email": "Email",
+    "login": "Login",
+    "password": "Password",
+    "register": "Register",
+    "login-below": "Enter your email and password to login",
+    "reset-password": "Reset Password"
+  },
+  "jet-logout-page": {
+    "logging-you-out": "Logging you out..."
+  },
+  "jet-register-page": {
+    "email": "Email",
+    "register-below": "Enter your email and password to register",
+    "login": "Login",
+    "password": "Password",
+    "register": "Register",
+    "reset-password": "Reset Password"
+  },
+  "jet-reset-password-page": {
+    "email": "Email",
+    "login": "Login",
+    "register": "Register",
+    "reset-password": "Reset Password",
+    "send-email": "Send Email",
+    "reset-password-below": "Enter your email to receive password reset instructions"
   }
 }

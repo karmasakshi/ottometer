@@ -1,1 +1,52 @@
-{}
+{
+  "jet-app": {
+    "login": "Missing value for 'jet-app.login'",
+    "logout": "Missing value for 'jet-app.logout'",
+    "my-profile": "Missing value for 'jet-app.my-profile'",
+    "register": "Missing value for 'jet-app.register'"
+  },
+  "jet-home-page": {
+    "auto-correct-count": "Missing value for 'jet-home-page.auto-correct-count'",
+    "auto-incorrect-count": "Missing value for 'jet-home-page.auto-incorrect-count'",
+    "auto-plate": "Missing value for 'jet-home-page.auto-plate'",
+    "hero": "Missing value for 'jet-home-page.hero'",
+    "hero-subtitle": "Missing value for 'jet-home-page.hero-subtitle'",
+    "hero-title": "Missing value for 'jet-home-page.hero-title'",
+    "report-correct-meter": "Missing value for 'jet-home-page.report-correct-meter'",
+    "report-incorrect-meter": "Missing value for 'jet-home-page.report-incorrect-meter'",
+    "top-autos-correct-meters": "Missing value for 'jet-home-page.top-autos-correct-meters'",
+    "top-autos-incorrect-meters": "Missing value for 'jet-home-page.top-autos-incorrect-meters'",
+    "top-reporters": "Missing value for 'jet-home-page.top-reporters'",
+    "updated-daily": "Missing value for 'jet-home-page.updated-daily'",
+    "user-correct-count": "Missing value for 'jet-home-page.user-correct-count'",
+    "user-incorrect-count": "Missing value for 'jet-home-page.user-incorrect-count'",
+    "user-total-count": "Missing value for 'jet-home-page.user-total-count'"
+  },
+  "jet-login-page": {
+    "email": "Missing value for 'jet-login-page.email'",
+    "login": "Missing value for 'jet-login-page.login'",
+    "password": "Missing value for 'jet-login-page.password'",
+    "register": "Missing value for 'jet-login-page.register'",
+    "register-below": "Missing value for 'jet-login-page.register-below'",
+    "reset-password": "Missing value for 'jet-login-page.reset-password'"
+  },
+  "jet-logout-page": {
+    "logging-you-out": "Missing value for 'jet-logout-page.logging-you-out'"
+  },
+  "jet-register-page": {
+    "email": "Missing value for 'jet-register-page.email'",
+    "lofin-below": "Missing value for 'jet-register-page.lofin-below'",
+    "login": "Missing value for 'jet-register-page.login'",
+    "password": "Missing value for 'jet-register-page.password'",
+    "register": "Missing value for 'jet-register-page.register'",
+    "reset-password": "Missing value for 'jet-register-page.reset-password'"
+  },
+  "jet-reset-password-page": {
+    "email": "Missing value for 'jet-reset-password-page.email'",
+    "login": "Missing value for 'jet-reset-password-page.login'",
+    "register": "Missing value for 'jet-reset-password-page.register'",
+    "reset-password": "Missing value for 'jet-reset-password-page.reset-password'",
+    "send-email": "Missing value for 'jet-reset-password-page.send-email'",
+    "youll-receive-an-email": "Missing value for 'jet-reset-password-page.youll-receive-an-email'"
+  }
+}
