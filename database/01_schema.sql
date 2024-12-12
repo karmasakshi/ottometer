@@ -39,9 +39,9 @@ create table
     created_at timestamp with time zone not null default now(),
     updated_at timestamp with time zone not null default now(),
     constraint autos_pkey primary key (id),
+    constraint autos_plate_state_code_check check ((plate_state_code ~* '^[A-Z]{2}$'::text)),
     constraint autos_plate_district_code_check check ((plate_district_code ~* '^\d{2}$'::text)),
     constraint autos_plate_series_code_check check ((plate_series_code ~* '^[A-Z]{1,2}$'::text)),
-    constraint autos_plate_state_code_check check ((plate_state_code ~* '^[A-Z]{2}$'::text)),
     constraint autos_plate_vehicle_number_check check ((plate_vehicle_number ~* '^\d{4}$'::text)),
     constraint autos_plate_code unique (
       plate_state_code,
