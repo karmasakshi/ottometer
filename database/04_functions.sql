@@ -7,7 +7,7 @@ begin
     from public.reports 
     where reporter_id = new.reporter_id 
       and created_at::date = current_date) >= 5 then
-    raise exception 'Daily report limit (5) reached.';
+    raise exception 'Daily report limit (5) exhausted.';
   end if;
   return new;
 end;
@@ -39,23 +39,23 @@ returns trigger
 security definer
 set search_path = '' as $$
 declare
-    new_auto_id uuid;
+  new_auto_id uuid;
 begin
-    select id into new_auto_id
-    from public.autos
-    where plate_state_code = upper(new.auto_plate_state_code)
-      and plate_district_code = new.auto_plate_district_code
-      and plate_series_code = upper(new.auto_plate_series_code)
-      and plate_vehicle_number = new.auto_plate_vehicle_number;
-    if new_auto_id is null then
-      insert into public.autos (plate_state_code, plate_district_code, plate_series_code, plate_vehicle_number)
-      values (upper(new.auto_plate_state_code), new.auto_plate_district_code, upper(new.auto_plate_series_code), new.auto_plate_vehicle_number)
-      returning id into new_auto_id;
-    end if;
-    insert into public.reports (auto_id, reporter_id, area_from, area_to, fare_difference_in_inr, meter_distance_in_km, meter_fare_in_inr, meter_waiting_time_in_min, is_tamper_indicator_on, time_in, time_out, type)
-    values (new_auto_id, new.reporter_id, new.area_from, new.area_to, new.fare_difference_in_inr, new.meter_distance_in_km, new.meter_fare_in_inr, new.meter_waiting_time_in_min, new.is_tamper_indicator_on, new.time_in, new.time_out, new.type);
-    return new;
-  end;
+  select id into new_auto_id
+  from public.autos
+  where plate_state_code = upper(new.auto_plate_state_code)
+    and plate_district_code = new.auto_plate_district_code
+    and plate_series_code = upper(new.auto_plate_series_code)
+    and plate_vehicle_number = new.auto_plate_vehicle_number;
+  if new_auto_id is null then
+    insert into public.autos (plate_state_code, plate_district_code, plate_series_code, plate_vehicle_number)
+    values (upper(new.auto_plate_state_code), new.auto_plate_district_code, upper(new.auto_plate_series_code), new.auto_plate_vehicle_number)
+    returning id into new_auto_id;
+  end if;
+  insert into public.reports (auto_id, reporter_id, area_from, area_to, fare_difference_in_inr, meter_distance_in_km, meter_fare_in_inr, meter_waiting_time_in_min, is_tamper_indicator_on, time_in, time_out, type)
+  values (new_auto_id, new.reporter_id, new.area_from, new.area_to, new.fare_difference_in_inr, new.meter_distance_in_km, new.meter_fare_in_inr, new.meter_waiting_time_in_min, new.is_tamper_indicator_on, new.time_in, new.time_out, new.type);
+  return new;
+end;
 $$ language plpgsql;
 
 --
@@ -82,8 +82,8 @@ begin
   select 
     p.avatar_url,
     p.username,
-    count(case when r.type = 'meter_correct'::public.report_type then 1 end) as meter_correct_reports_count,
-    count(case when r.type = 'meter_incorrect'::public.report_type then 1 end) as meter_incorrect_reports_count,
+    count(case when r.type = 'meter_correct' then 1 end) as meter_correct_reports_count,
+    count(case when r.type = 'meter_incorrect' then 1 end) as meter_incorrect_reports_count,
     count(r.id) as total_reports_count
   from public.reports r
   join public.profiles p on r.reporter_id = p.id
