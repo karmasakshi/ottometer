@@ -1,5 +1,6 @@
 -- public.profiles
 
+create index idx_profiles_id on public.profiles (id);
 create unique index idx_profiles_username on public.profiles (username);
 
 -- public.autos
@@ -8,8 +9,8 @@ create unique index idx_autos_plate_code on public.autos (plate_state_code, plat
 
 -- public.reports
 
-create index idx_reports_auto_plate_code on public.reports (auto_plate_state_code, auto_plate_district_code, auto_plate_series_code, auto_plate_vehicle_number);
-create index idx_reports_auto_plate_code_type on public.reports (auto_plate_state_code, auto_plate_district_code, auto_plate_series_code, auto_plate_vehicle_number, type);
+create index idx_reports_auto_id on public.reports (auto_id);
+create index idx_reports_auto_id_type on public.reports (auto_id, type);
 create index idx_reports_reporter_id on public.reports (reporter_id);
 create index idx_reports_reporter_id_type on public.reports (reporter_id, type);
 create index idx_reports_type on public.reports (type);
