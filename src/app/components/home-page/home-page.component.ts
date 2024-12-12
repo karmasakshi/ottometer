@@ -35,7 +35,7 @@ export class HomePageComponent implements OnInit {
   }
 
   public getTopFairAutos():void {
-    this._leaderboardsService.selectLeaderboardTopFairAutos()
+    this._leaderboardsService.getLeaderboardTopFairAutos()
     .then((response)=>{
       // @ts-ignoretsgnore
       this.topFairAutos = response.data;
@@ -43,7 +43,7 @@ export class HomePageComponent implements OnInit {
   }
 
   public getTopReporters():void {
-    this._leaderboardsService.selectLeaderboardTopReporters()
+    this._leaderboardsService.getLeaderboardTopReporters()
     .then((response)=>{
       // @ts-ignore
       this.topReporters = response.data;
@@ -52,7 +52,7 @@ export class HomePageComponent implements OnInit {
 
 
   public getTopUnfairAutos():void {
-    this._leaderboardsService.selectLeaderboardTopUnfairAutos()
+    this._leaderboardsService.getLeaderboardTopUnfairAutos()
     .then((response)=>{
       // @ts-ignore
       this.topUnfairAutos = response.data;

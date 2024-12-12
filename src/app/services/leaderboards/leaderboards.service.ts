@@ -18,21 +18,21 @@ export class LeaderboardsService {
     this._loggerService.logServiceInitialization('LeaderboardsService');
   }
 
-  public selectLeaderboardTopReporters(): PromiseLike<unknown> {
+  public getLeaderboardTopReporters(): PromiseLike<unknown> {
     return this._supabaseClient
       .from('leaderboard_top_reporters')
       .select('*')
       .order('total_reports_count', { ascending: false });
   }
 
-  public selectLeaderboardTopFairAutos(): PromiseLike<unknown> {
+  public getLeaderboardTopFairAutos(): PromiseLike<unknown> {
     return this._supabaseClient
       .from('leaderboard_top_fair_autos')
       .select('*')
       .order('meter_correct_reports_count', { ascending: false });
   }
 
-  public selectLeaderboardTopUnfairAutos(): PromiseLike<unknown> {
+  public getLeaderboardTopUnfairAutos(): PromiseLike<unknown> {
     return this._supabaseClient
       .from('leaderboard_top_unfair_autos')
       .select('*')

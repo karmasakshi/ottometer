@@ -32,7 +32,7 @@ export class ReportService {
       .insert([report]);
   }
 
-  public selectReport(id: Report['id']): PromiseLike<unknown> {
+  public getReport(id: Report['id']): PromiseLike<unknown> {
     return this._supabaseClient
       .from('reports')
       .select('*')
@@ -40,7 +40,7 @@ export class ReportService {
       .single();
   }
 
-  public selectReports(
+  public getReports(
     pageNumber: number = 1,
     pageSize: number = 10,
     autoId?: Report['auto_id'],

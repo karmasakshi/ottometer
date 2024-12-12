@@ -21,10 +21,13 @@ export class ReportHistoryPageComponent implements OnInit {
   }
 
   public ngOnInit():void {
-    this.selectReports();
+    this.getReports();
   }
 
-  public selectReports():void {
-    this._reportService.selectReports();
+  public getReports():void {
+    this._reportService.getReports()
+    .then((response):void=>{
+      console.log(response);
+    })
   }
 }

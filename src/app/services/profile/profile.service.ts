@@ -21,7 +21,7 @@ export class ProfileService {
     this._loggerService.logServiceInitialization('ProfileService');
   }
 
-  public selectProfile(): PromiseLike<unknown> {
+  public getProfile(): PromiseLike<unknown> {
     return this._supabaseClient.from('profiles').select('*');
   }
 
