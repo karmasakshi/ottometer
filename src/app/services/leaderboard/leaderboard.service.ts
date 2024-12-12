@@ -19,14 +19,23 @@ export class LeaderboardService {
   }
 
   public selectLeaderboardTopReporters(): PromiseLike<unknown> {
-    return this._supabaseClient.rpc('profiles');
+    return this._supabaseClient
+      .from('leaderboard_top_reporters')
+      .select('*')
+      .order('total_reports_count', { ascending: false });
   }
 
   public selectLeaderboardTopFairAutos(): PromiseLike<unknown> {
-    return this._supabaseClient.rpc('autos_correct');
+    return this._supabaseClient
+      .from('leaderboard_top_fair_autos')
+      .select('*')
+      .order('meter_correct_reports_count', { ascending: false });
   }
 
   public selectLeaderboardTopUnfairAutos(): PromiseLike<unknown> {
-    return this._supabaseClient.rpc('autos_incorrect');
+    return this._supabaseClient
+      .from('leaderboard_top_unfair_autos')
+      .select('*')
+      .order('meter_incorrect_reports_count', { ascending: false });
   }
 }
