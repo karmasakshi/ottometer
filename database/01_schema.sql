@@ -64,6 +64,10 @@ create table
   public.reports (
     id uuid not null default gen_random_uuid (),
     auto_id uuid not null,
+    auto_plate_state_code text not null,
+    auto_plate_district_code text not null,
+    auto_plate_series_code text not null,
+    auto_plate_vehicle_number text not null,
     reporter_id uuid not null,
     area_from text null,
     area_to text null,
@@ -79,17 +83,21 @@ create table
     updated_at timestamp with time zone not null default now(),
     constraint reports_pkey primary key (id),
     constraint reports_auto_id_fkey foreign key (auto_id) references autos (id),
+    constraint reports_auto_plate_state_code_check check ((auto_plate_state_code ~* '^[A-Z]{2}$'::text)),
+    constraint reports_auto_plate_district_code_check check ((auto_plate_district_code ~* '^\d{2}$'::text)),
+    constraint reports_auto_plate_series_code_check check ((auto_plate_series_code ~* '^[A-Z]{1,2}$'::text)),
+    constraint reports_auto_plate_vehicle_number_check check ((auto_plate_vehicle_number ~* '^\d{4}$'::text)),
     constraint reports_reporter_id_fkey foreign key (reporter_id) references auth.users (id),
     constraint reports_area_from_check check ((length(area_from) <= 300)),
+    constraint reports_area_to_check check ((length(area_to) <= 300)),
+    constraint reports_fare_difference_in_inr_check check ((fare_difference_in_inr >= (0)::double precision)),
+    constraint reports_meter_distance_in_km_check check ((meter_distance_in_km >= (0)::double precision)),
     constraint reports_meter_fare_in_inr_check check ((meter_fare_in_inr >= (0)::double precision)),
     constraint reports_meter_waiting_time_in_min_check check (
       (
         meter_waiting_time_in_min >= (0)::double precision
       )
-    ),
-    constraint reports_meter_distance_in_km_check check ((meter_distance_in_km >= (0)::double precision)),
-    constraint reports_area_to_check check ((length(area_to) <= 300)),
-    constraint reports_fare_difference_in_inr_check check ((fare_difference_in_inr >= (0)::double precision))
+    )
   ) tablespace pg_default;
 
 alter table public.reports enable row level security;
