@@ -151,7 +151,7 @@ create or replace function public.select_reports(
   x_type public.report_type default null
 )
 returns table (
-  total_count int,
+  total_count bigint,
   id uuid,
   auto_id uuid,
   auto_plate_state_code text,
