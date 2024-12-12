@@ -16,38 +16,6 @@
 
 <mat-card>
   <mat-card-header>
-    <mat-card-title>{{ t('top-autos-incorrect-meters') }}</mat-card-title>
-    <mat-card-subtitle>{{ t('updated-daily') }}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <table mat-table [dataSource]="topUnfairAutos">
-      <ng-container matColumnDef="plate">
-        <th mat-header-cell *matHeaderCellDef>{{  t('auto-plate')}}</th>
-        <td mat-cell *matCellDef="let auto">{{ auto.auto_plate_state_code }}-{{auto.auto_plate_district_code}}-{{auto.auto_plate_series_code}}-{{auto.auto_plate_vehicle_number}}</td>
-      </ng-container>  
-
-      <ng-container matColumnDef="upvotes_count">
-        <th mat-header-cell *matHeaderCellDef>{{  t('auto-correct-count')}}</th>
-        <td mat-cell *matCellDef="let auto">{{ auto.meter_correct_reports_count }}</td>
-      </ng-container>  
-
-      <ng-container matColumnDef="downvotes_count">
-        <th mat-header-cell *matHeaderCellDef>{{  t('auto-incorrect-count')}}</th>
-        <td mat-cell *matCellDef="let auto">{{ auto.meter_incorrect_reports_count }}</td>
-      </ng-container>  
-      <tr mat-header-row *matHeaderRowDef="['plate','upvotes_count','downvotes_count']"></tr>
-<tr mat-row *matRowDef="let myRowData; columns: ['plate','upvotes_count','downvotes_count']"></tr>    
-    </table>    
-  </mat-card-content>
-  <mat-card-footer>
-    <mat-progress-bar mode="indeterminate" [ngStyle]="{ visibility: isGetTopUnfairAutosPending ? 'visible' : 'hidden' }"></mat-progress-bar>
-  </mat-card-footer>
-</mat-card>
-
-<br />
-
-<mat-card>
-  <mat-card-header>
     <mat-card-title>{{ t('top-reporters') }}</mat-card-title>
     <mat-card-subtitle>{{ t('updated-daily') }}</mat-card-subtitle>
   </mat-card-header>
@@ -78,6 +46,39 @@
       </ng-container> 
       <tr mat-header-row *matHeaderRowDef="['name','upvotes_count','downvotes_count', 'total_count']"></tr>
 <tr mat-row *matRowDef="let myRowData; columns: ['name','upvotes_count','downvotes_count', 'total_count']"></tr>    
+    </table>    
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-progress-bar mode="indeterminate" [ngStyle]="{ visibility: isGetTopUnfairAutosPending ? 'visible' : 'hidden' }"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>
+
+<br />
+
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ t('top-autos-incorrect-meters') }}</mat-card-title>
+    <mat-card-subtitle>{{ t('updated-daily') }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="topUnfairAutos">
+      <ng-container matColumnDef="plate">
+        <th mat-header-cell *matHeaderCellDef>{{  t('auto-plate')}}</th>
+        <td mat-cell *matCellDef="let auto">{{ auto.auto_plate_state_code }}-{{auto.auto_plate_district_code}}-{{auto.auto_plate_series_code}}-{{auto.auto_plate_vehicle_number}}</td>
+      </ng-container>  
+
+      <ng-container matColumnDef="upvotes_count">
+        <th mat-header-cell *matHeaderCellDef>{{  t('auto-correct-count')}}</th>
+        <td mat-cell *matCellDef="let auto">{{ auto.meter_correct_reports_count }}</td>
+      </ng-container>  
+
+      <ng-container matColumnDef="downvotes_count">
+        <th mat-header-cell *matHeaderCellDef>{{  t('auto-incorrect-count')}}</th>
+        <td mat-cell *matCellDef="let auto">{{ auto.meter_incorrect_reports_count }}</td>
+      </ng-container>  
+      <tr mat-header-row *matHeaderRowDef="['plate','upvotes_count','downvotes_count']"></tr>
+<tr mat-row *matRowDef="let myRowData; columns: ['plate','upvotes_count','downvotes_count']"></tr>    
     </table>    
   </mat-card-content>
   <mat-card-footer>
