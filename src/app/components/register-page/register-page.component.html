@@ -1,3 +1,48 @@
 <ng-container *transloco="let t; prefix: 'jet-register-page'">
-  <p>register-page works!</p>
-</ng-container>
+  <jet-page>
+     <mat-card>
+       <mat-card-header>
+         <mat-card-title>{{t('register')}}</mat-card-title>
+         <mat-card-subtitle>{{t('lofin-below')}}</mat-card-subtitle>
+       </mat-card-header>
+       <mat-card-content>
+         <br />
+         <form
+           id="register-form"
+           [formGroup]="registerFormGroup"
+           (ngSubmit)="register(registerFormGroup.controls.email.value ?? '', registerFormGroup.controls.password.value ?? '')"
+         >
+       
+         <mat-form-field appearance="outline">
+           <mat-label>{{ t('email') }}</mat-label>
+           <input
+             formControlName="email"
+             matInput
+             required
+             type="email"
+           />
+         </mat-form-field>
+         <br />
+         <mat-form-field appearance="outline">
+           <mat-label>{{ t('password') }}</mat-label>
+           <input
+             formControlName="password"
+             matInput
+             required
+             type="password"
+           />
+         </mat-form-field>
+       </form>
+       </mat-card-content>
+       <mat-card-actions style="gap: 8px">
+         <button [disabled]="registerFormGroup.invalid || isRegisterPending" mat-flat-button type="submit" form="register-form">{{ t('register') }}</button>
+         <a mat-stroked-button color="primary" routerLink="/login">{{t('login')}}</a>
+         <a mat-stroked-button color="primary" routerLink="/reset-password">{{t('reset-password')}}</a>
+       </mat-card-actions>
+       <mat-card-footer>
+         <mat-progress-bar mode="indeterminate" [ngStyle]="{ visibility: isRegisterPending ? 'visible' : 'hidden' }"></mat-progress-bar>
+       </mat-card-footer>
+     </mat-card>
+  </jet-page>
+ </ng-container>
+ 

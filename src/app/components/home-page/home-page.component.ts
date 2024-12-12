@@ -69,8 +69,6 @@ export class HomePageComponent implements OnInit {
 
       // @ts-ignoretsgnore
       this.topFairAutos = response.data;
-
-      console.log(this.topFairAutos)
     })
   }
 
@@ -83,8 +81,6 @@ export class HomePageComponent implements OnInit {
 
       // @ts-ignore
       this.topReporters = response.data;
-
-      console.log(this.topReporters);
     })
   }
 
@@ -97,8 +93,6 @@ export class HomePageComponent implements OnInit {
 
       // @ts-ignore
       this.topUnfairAutos = response.data;
-
-      console.log(this.topReporters);
     })
   }
 }

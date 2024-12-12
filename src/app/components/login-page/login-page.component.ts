@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,7 +30,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit {
   private readonly _formBuilder = inject(FormBuilder);
 private readonly _router = inject(Router);
   private readonly _authenticationService = inject(AuthenticationService);
@@ -54,11 +54,18 @@ private readonly _router = inject(Router);
     this._loggerService.logComponentInitialization('LoginPageComponent');
   }
 
+  public ngOnInit(): void {
+    this._authenticationService.getUser().then((user)=>{
+      if(user){this._router.navigateByUrl('/')}
+    })
+  }
+
   public login(email: string, password: string) {
     this.isLoginPending = true;
     this._authenticationService.login(email, password)
     .then(({data, error}):void=>{
       if(error){console.log(error)}else{
+        console.log(data);
         this._router.navigateByUrl('/')
       }
     })
