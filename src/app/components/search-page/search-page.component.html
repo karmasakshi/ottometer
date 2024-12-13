@@ -80,6 +80,27 @@
                 </td>
               </ng-container>
 
+              <ng-container matColumnDef="negreport">
+                <th mat-header-cell *matHeaderCellDef>Meter Incorrect Reports</th>
+                <td mat-cell *matCellDef="let result">
+                  {{ result.meter_incorrect_reports_count }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="posreport">
+                <th mat-header-cell *matHeaderCellDef>Meter Correct Reports</th>
+                <td mat-cell *matCellDef="let result">
+                  {{ result.meter_correct_reports_count }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="totreport">
+                <th mat-header-cell *matHeaderCellDef>Total Reports</th>
+                <td mat-cell *matCellDef="let result">
+                  {{ result.total_reports_count }}
+                </td>
+              </ng-container>
+
               <ng-container matColumnDef="firstReport">
                 <th mat-header-cell *matHeaderCellDef>First Report</th>
                 <td mat-cell *matCellDef="let result">

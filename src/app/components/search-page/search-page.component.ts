@@ -61,7 +61,7 @@ export class SearchPageComponent {
     vehicle_number: FormControl<string | null>;
   }>;
   searchResults: Auto[] = [];
-  displayedColumns: string[] = ['plateNumber', 'firstReport', 'lastReport'];
+  displayedColumns: string[] = ['plateNumber', 'negreport','posreport','totreport','firstReport', 'lastReport'];
   isLoading: boolean = false;
   hasSearched = false;
 
@@ -82,16 +82,15 @@ export class SearchPageComponent {
     this.autoservice
       .getAuto({
         state_code:
-          this.plateForm.controls.state_code.value?.toUpperCase() ?? '',
+          this.plateForm.controls.state_code.value ?? '',
         district_code: this.plateForm.controls.district_code.value ?? '',
         series_code:
-          this.plateForm.controls.series_code.value?.toUpperCase() ?? '',
+          this.plateForm.controls.series_code.value ?? '',
         vehicle_number: this.plateForm.controls.vehicle_number.value ?? '',
       })
       .then((response) => {
         // @ts-ignore
-        const auto: Auto = response.data;
-        if(auto) {this.searchResults.push(auto)};
+        this.searchResults = response.data;
         this.isLoading = false;
         this.hasSearched = true;
       });

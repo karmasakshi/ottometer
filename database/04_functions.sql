@@ -246,9 +246,9 @@ returns table (
     plate_vehicle_number text,
     created_at timestamptz,
     updated_at timestamptz,
-    meter_correct_reports_count int,
-    meter_incorrect_reports_count int,
-    total_reports_count int
+    meter_correct_reports_count bigint,
+    meter_incorrect_reports_count bigint,
+    total_reports_count bigint
 )
 security definer
 set search_path = '' as $$
