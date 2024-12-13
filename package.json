@@ -11,6 +11,11 @@
     "i18n:find": "transloco-keys-manager find"
   },
   "private": true,
+  "overrides": {
+    "@supabase/supabase-js": {
+      "@supabase/auth-js": "2.61.0"
+    }
+  },
   "dependencies": {
     "@angular/animations": "^18.2.0",
     "@angular/cdk": "^17.3.10",

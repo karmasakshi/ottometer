@@ -1,3 +1,90 @@
 <ng-container *transloco="let t; prefix: 'jet-fare-calculator-page'">
-  <p>fare-calculator-page works!</p>
+  <jet-page>
+    <mat-card class="calculator-card">
+      <mat-card-header>
+        <mat-card-title>Fare Calculator</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form #calculatorForm="ngForm" (ngSubmit)="calculateFare()" novalidate>
+          <div class="form-field">
+            <mat-form-field appearance="fill">
+              <mat-label>Distance (KM)</mat-label>
+              <input
+                matInput
+                type="number"
+                step="0.1"
+                min="0"
+                [(ngModel)]="distance"
+                name="distance"
+                #distanceField="ngModel"
+                required>
+              <mat-error *ngIf="distanceField.invalid && (distanceField.dirty || distanceField.touched)">
+                Distance is required and must be greater than 0
+              </mat-error>
+            </mat-form-field>
+          </div>
+    
+          <div class="form-field">
+            <mat-checkbox
+              [(ngModel)]="isNightFare"
+              name="isNightFare">
+              Night Fare (12:00 AM - 5:00 AM)
+            </mat-checkbox>
+          </div>
+    
+          <div class="form-field">
+            <mat-checkbox
+              [(ngModel)]="hasLuggage"
+              name="hasLuggage">
+              Large Luggage (>60x40 cm)
+            </mat-checkbox>
+          </div>
+    
+          <div class="form-field">
+            <mat-checkbox
+              [(ngModel)]="hasWaitingTime"
+              name="hasWaitingTime">
+              Add Waiting Time
+            </mat-checkbox>
+          </div>
+    
+          <div class="form-field" *ngIf="hasWaitingTime">
+            <mat-form-field appearance="fill">
+              <mat-label>Waiting Time (minutes)</mat-label>
+              <input
+                matInput
+                type="number"
+                min="0"
+                [(ngModel)]="waitingTimeMinutes"
+                name="waitingTimeMinutes"
+                required>
+              <mat-hint>Waiting time charge: ₹1.53 per minute</mat-hint>
+            </mat-form-field>
+          </div>
+    
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!calculatorForm.form.valid || !calculatorForm.form.dirty">
+            Calculate Fare
+          </button>
+        </form>
+    
+        <div class="fare-result" *ngIf="calculatedFare !== null">
+          <h3>Calculated Fare</h3>
+          <p class="fare-amount">₹ {{calculatedFare}}</p>
+          <div class="fare-breakdown">
+            <small *ngIf="hasLuggage">Includes ₹6 luggage charge</small>
+            <small *ngIf="isNightFare">Includes 25% night fare</small>
+            <small *ngIf="hasWaitingTime && waitingTimeMinutes > 0">
+              Includes ₹{{getWaitingCharge()}} waiting charge
+            </small>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <br />
+    <jet-rate-card></jet-rate-card>
+  </jet-page>
 </ng-container>
