@@ -1,30 +1,28 @@
 -- public.profiles
 
-create policy "Enable select for authenticated users for their own profile"
-on public.profiles
-for select
+create policy "Enable users to view their own data only"
+on "public"."profiles"
+as PERMISSIVE
+for SELECT
 to authenticated
-using (
-  user_id = auth.uid()
-);
+using ((select auth.uid()) = id);
 
-create policy "Enable update for authenticated users for their own profile"
-on public.profiles
-for update
-to authenticated
-with check (
-  id = auth.uid()
-);
+create policy "Enable update for users based on id"
+on "public"."profiles"
+as PERMISSIVE
+for UPDATE
+to public
+using ((select auth.uid()) = id)
+with check ((select auth.uid()) = id);
 
 -- public.autos
 
-create policy "Enable select for all users"
-on public.autos
-for select
+create policy "Enable read access for all users"
+on "public"."autos"
+as PERMISSIVE
+for SELECT
 to public
-using (
-  true
-);
+using (true);
 
 -- public.reports
 
