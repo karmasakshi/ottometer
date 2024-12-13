@@ -22,13 +22,22 @@ export class ProfileService {
   }
 
   public getProfile(): PromiseLike<unknown> {
-    return this._supabaseClient.from('profiles').select('*');
+    return this._supabaseClient.from('profiles').select('*')
+    .eq('id', this._authenticationService.user()?.id)
+    .single();
   }
 
-  public updateProfile(profile: Profile): PromiseLike<unknown> {
+  public updateProfile(partialProfile: Partial<Profile>): PromiseLike<unknown> {
     return this._supabaseClient
-      .from('users')
-      .update(profile)
-      .eq('id', this._authenticationService.user());
+      .from('profiles')
+      .upsert(partialProfile);
+  }
+
+  downLoadImage(path: string) {
+    return this._supabaseClient.storage.from('avatars').download(path)
+  }
+
+  uploadAvatar(filePath: string, file: File) {
+    return this._supabaseClient.storage.from('avatars').upload(filePath, file)
   }
 }
