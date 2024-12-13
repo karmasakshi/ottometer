@@ -13,6 +13,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { User } from '@jet/interfaces/user.interface';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'jet-app',
@@ -26,6 +27,7 @@ import { AuthenticationService } from '@jet/services/authentication/authenticati
     MatListModule,
     MatIconModule,
     AsyncPipe,
+    MatDividerModule,
     TranslocoModule,
   ],
   templateUrl: './app.component.html',
