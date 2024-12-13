@@ -217,3 +217,55 @@ lateral (
 ) r;
 end;
 $$ language plpgsql;
+
+
+--
+
+create or replace function select_auto_with_report_counts(
+    x_plate_state_code text,
+    x_plate_district_code text,
+    x_plate_series_code text,
+    x_plate_vehicle_number text
+)
+returns table (
+    id uuid,
+    plate_state_code text,
+    plate_district_code text,
+    plate_series_code text,
+    plate_vehicle_number text,
+    created_at timestamptz,
+    updated_at timestamptz,
+    meter_correct_reports_count int,
+    meter_incorrect_reports_count int,
+    total_reports_count int
+)
+security definer
+set search_path = '' as $$
+begin
+    return query
+    select 
+        a.id,
+        a.plate_state_code,
+        a.plate_district_code,
+        a.plate_series_code,
+        a.plate_vehicle_number,
+        a.created_at,
+        a.updated_at,
+        count(case when r.type = 'meter_correct' then 1 end) as meter_correct_reports_count,
+        count(case when r.type = 'meter_incorrect' then 1 end) as meter_incorrect_reports_count,
+        count(*) as total_reports_count
+    from 
+        public.autos a
+    left join 
+        public.reports r 
+    on 
+        a.id = r.auto_id
+    where 
+        a.plate_state_code = x_plate_state_code
+        and a.plate_district_code = x_plate_district_code
+        and a.plate_series_code = x_plate_series_code
+        and a.plate_vehicle_number = x_plate_vehicle_number
+    group by 
+        a.id, a.plate_state_code, a.plate_district_code, a.plate_series_code, a.plate_vehicle_number, a.created_at, a.updated_at;
+end;
+$$ language plpgsql;
