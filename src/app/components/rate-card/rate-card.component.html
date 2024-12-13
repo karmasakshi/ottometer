@@ -1,14 +1,15 @@
 <ng-container *transloco="let t; prefix: 'jet-rate-card'">
   <jet-page>
-
     <div class="rate-card-container">
       <div class="header-section">
         <h2>Rate Card</h2>
-        <a href="https://transport.maharashtra.gov.in/Site/Upload/GR/Auto%20English%201.pdf" 
-           target="_blank" 
-           class="official-doc-link"
-           mat-button 
-           color="primary">
+        <a
+          href="https://transport.maharashtra.gov.in/Site/Upload/GR/Auto%20English%201.pdf"
+          target="_blank"
+          class="official-doc-link"
+          mat-button
+          color="primary"
+        >
           <mat-icon>description</mat-icon>
           Official Document
         </a>
@@ -19,31 +20,34 @@
           <mat-slide-toggle
             [checked]="isNightFare"
             (change)="isNightFare = !isNightFare"
-            color="primary">
+            color="primary"
+          >
             Night Fare (12 AM - 5 AM IST)
-          </mat-slide-toggle> 
+          </mat-slide-toggle>
         </div>
       </div>
-      
+
       <mat-card>
         <mat-card-content>
           <table mat-table [dataSource]="rates" class="rate-table">
             <ng-container matColumnDef="distance">
               <th mat-header-cell *matHeaderCellDef>Digital Meter (KM)</th>
-              <td mat-cell *matCellDef="let rate">{{rate.distance | number:'1.2-2'}}</td>
+              <td mat-cell *matCellDef="let rate">
+                {{ rate.distance | number: "1.2-2" }}
+              </td>
             </ng-container>
 
             <ng-container matColumnDef="fare">
               <th mat-header-cell *matHeaderCellDef>
-                {{isNightFare ? 'Night Fare' : 'Regular Fare'}}
+                {{ isNightFare ? "Night Fare" : "Regular Fare" }}
               </th>
               <td mat-cell *matCellDef="let rate">
-                Rs. {{isNightFare ? rate.midnightFare : rate.regularFare}}
+                Rs. {{ isNightFare ? rate.midnightFare : rate.regularFare }}
               </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
         </mat-card-content>
       </mat-card>
@@ -53,12 +57,11 @@
           <h3>Important Notes:</h3>
           <mat-list>
             <mat-list-item *ngFor="let note of notes">
-              • {{note.text}}
+              • {{ note.text }}
             </mat-list-item>
           </mat-list>
         </mat-card-content>
       </mat-card>
     </div>
-
   </jet-page>
 </ng-container>

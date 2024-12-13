@@ -1,45 +1,45 @@
 .rate-card-container {
-    padding: 20px;
-  }
-  .header-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  .official-doc-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .fare-controls {
-    margin-bottom: 20px;
-  }
-  .fare-toggle {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background: #f5f5f5;
-    padding: 12px;
-    border-radius: 8px;
-  }
-  .current-time {
-    color: #666;
-    font-size: 0.9em;
-    font-weight: 500;
-  }
-  .rate-table {
-    width: 100%;
-  }
-  th.mat-header-cell,
-  td.mat-cell {
-    padding: 12px;
-    text-align: center;
-  }
-  .notes-card {
-    margin-top: 20px;
-  }
-  .mat-mdc-list-item {
-    height: auto !important;
-    margin-bottom: 8px;
-  }
+  padding: 20px;
+}
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.official-doc-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.fare-controls {
+  margin-bottom: 20px;
+}
+.fare-toggle {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #f5f5f5;
+  padding: 12px;
+  border-radius: 8px;
+}
+.current-time {
+  color: #666;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.rate-table {
+  width: 100%;
+}
+th.mat-header-cell,
+td.mat-cell {
+  padding: 12px;
+  text-align: center;
+}
+.notes-card {
+  margin-top: 20px;
+}
+.mat-mdc-list-item {
+  height: auto !important;
+  margin-bottom: 8px;
+}

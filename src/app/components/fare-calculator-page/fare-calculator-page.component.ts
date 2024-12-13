@@ -1,21 +1,28 @@
 import { Component, Inject, inject } from '@angular/core';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
-import { PageComponent } from "../page/page.component";
+import { PageComponent } from '../page/page.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { FareCalculatorService } from '@jet/services/fare-calculator/fare-calculator.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { RateCardComponent } from "../rate-card/rate-card.component";
+import { RateCardComponent } from '../rate-card/rate-card.component';
 
 @Component({
   selector: 'jet-fare-calculator-page',
   standalone: true,
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     FormsModule,
     MatCardModule,
     MatFormFieldModule,
@@ -23,7 +30,10 @@ import { RateCardComponent } from "../rate-card/rate-card.component";
     MatCheckboxModule,
     MatButtonModule,
     PageComponent,
-    TranslocoModule, RateCardComponent, RateCardComponent],
+    TranslocoModule,
+    RateCardComponent,
+    RateCardComponent,
+  ],
   templateUrl: './fare-calculator-page.component.html',
   styleUrl: './fare-calculator-page.component.scss',
 })
@@ -49,7 +59,7 @@ export class FareCalculatorPageComponent {
         this.distance,
         this.isNightFare,
         this.hasLuggage,
-        this.hasWaitingTime ? this.waitingTimeMinutes : 0
+        this.hasWaitingTime ? this.waitingTimeMinutes : 0,
       );
     }
   }

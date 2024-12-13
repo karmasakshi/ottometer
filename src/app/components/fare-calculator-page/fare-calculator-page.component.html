@@ -17,37 +17,37 @@
                 [(ngModel)]="distance"
                 name="distance"
                 #distanceField="ngModel"
-                required>
-              <mat-error *ngIf="distanceField.invalid && (distanceField.dirty || distanceField.touched)">
+                required
+              />
+              <mat-error
+                *ngIf="
+                  distanceField.invalid &&
+                  (distanceField.dirty || distanceField.touched)
+                "
+              >
                 Distance is required and must be greater than 0
               </mat-error>
             </mat-form-field>
           </div>
-    
+
           <div class="form-field">
-            <mat-checkbox
-              [(ngModel)]="isNightFare"
-              name="isNightFare">
+            <mat-checkbox [(ngModel)]="isNightFare" name="isNightFare">
               Night Fare (12:00 AM - 5:00 AM)
             </mat-checkbox>
           </div>
-    
+
           <div class="form-field">
-            <mat-checkbox
-              [(ngModel)]="hasLuggage"
-              name="hasLuggage">
+            <mat-checkbox [(ngModel)]="hasLuggage" name="hasLuggage">
               Large Luggage (>60x40 cm)
             </mat-checkbox>
           </div>
-    
+
           <div class="form-field">
-            <mat-checkbox
-              [(ngModel)]="hasWaitingTime"
-              name="hasWaitingTime">
+            <mat-checkbox [(ngModel)]="hasWaitingTime" name="hasWaitingTime">
               Add Waiting Time
             </mat-checkbox>
           </div>
-    
+
           <div class="form-field" *ngIf="hasWaitingTime">
             <mat-form-field appearance="fill">
               <mat-label>Waiting Time (minutes)</mat-label>
@@ -57,28 +57,32 @@
                 min="0"
                 [(ngModel)]="waitingTimeMinutes"
                 name="waitingTimeMinutes"
-                required>
+                required
+              />
               <mat-hint>Waiting time charge: ₹1.53 per minute</mat-hint>
             </mat-form-field>
           </div>
-    
+
           <button
             mat-raised-button
             color="primary"
             type="submit"
-            [disabled]="!calculatorForm.form.valid || !calculatorForm.form.dirty">
+            [disabled]="
+              !calculatorForm.form.valid || !calculatorForm.form.dirty
+            "
+          >
             Calculate Fare
           </button>
         </form>
-    
+
         <div class="fare-result" *ngIf="calculatedFare !== null">
           <h3>Calculated Fare</h3>
-          <p class="fare-amount">₹ {{calculatedFare}}</p>
+          <p class="fare-amount">₹ {{ calculatedFare }}</p>
           <div class="fare-breakdown">
             <small *ngIf="hasLuggage">Includes ₹6 luggage charge</small>
             <small *ngIf="isNightFare">Includes 25% night fare</small>
             <small *ngIf="hasWaitingTime && waitingTimeMinutes > 0">
-              Includes ₹{{getWaitingCharge()}} waiting charge
+              Includes ₹{{ getWaitingCharge() }} waiting charge
             </small>
           </div>
         </div>

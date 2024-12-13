@@ -7,35 +7,62 @@
         </mat-card-header>
         <mat-card-content>
           <form [formGroup]="plateForm" (ngSubmit)="onSearch()">
-          
             <mat-form-field appearance="outline">
               <mat-label>{{ t("state-code") }}</mat-label>
-              <input formControlName="state_code" matInput required type="text" />
+              <input
+                formControlName="state_code"
+                matInput
+                required
+                type="text"
+              />
             </mat-form-field>
             <br />
             <mat-form-field appearance="outline">
               <mat-label>{{ t("district-code") }}</mat-label>
-              <input formControlName="district_code" matInput required type="text" />
+              <input
+                formControlName="district_code"
+                matInput
+                required
+                type="text"
+              />
             </mat-form-field>
             <br />
             <mat-form-field appearance="outline">
               <mat-label>{{ t("series-code") }}</mat-label>
-              <input formControlName="series_code" matInput required type="text" />
+              <input
+                formControlName="series_code"
+                matInput
+                required
+                type="text"
+              />
             </mat-form-field>
             <br />
             <mat-form-field appearance="outline">
               <mat-label>{{ t("vehicle-number") }}</mat-label>
-              <input formControlName="vehicle_number" matInput required type="text" />
+              <input
+                formControlName="vehicle_number"
+                matInput
+                required
+                type="text"
+              />
             </mat-form-field>
-            
-            <button mat-raised-button 
-                    color="primary" 
-                    type="submit"
-                    [disabled]="isLoading || plateForm.invalid">
-              {{t('search-auto')}}
+
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="isLoading || plateForm.invalid"
+            >
+              {{ t("search-auto") }}
             </button>
           </form>
         </mat-card-content>
+        <mat-card-footer>
+          <mat-progress-bar
+            mode="indeterminate"
+            [ngStyle]="{ visibility: isLoading ? 'visible' : 'hidden' }"
+          ></mat-progress-bar>
+        </mat-card-footer>
       </mat-card>
 
       <mat-card *ngIf="searchResults.length > 0" class="results-card">
@@ -44,21 +71,31 @@
             <table mat-table [dataSource]="searchResults" class="results-table">
               <ng-container matColumnDef="plateNumber">
                 <th mat-header-cell *matHeaderCellDef>Plate Number</th>
-                <td mat-cell *matCellDef="let result">{{result.plate_state_code}}-{{result.plate_district_code}}-{{result.plate_series_code}}-{{result.plate_vehicle_number}}</td>
+                <td mat-cell *matCellDef="let result">
+                  {{ result.plate_state_code }}-{{
+                    result.plate_district_code
+                  }}-{{ result.plate_series_code }}-{{
+                    result.plate_vehicle_number
+                  }}
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="firstReport">
                 <th mat-header-cell *matHeaderCellDef>First Report</th>
-                <td mat-cell *matCellDef="let result">{{result.created_at |date}}</td>
+                <td mat-cell *matCellDef="let result">
+                  {{ result.created_at | date }}
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="lastReport">
                 <th mat-header-cell *matHeaderCellDef>Last Report</th>
-                <td mat-cell *matCellDef="let result">{{result.updated_at |date}}</td>
+                <td mat-cell *matCellDef="let result">
+                  {{ result.updated_at | date }}
+                </td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
           </div>
         </mat-card-content>
@@ -69,15 +106,19 @@
           <div class="no-results-content">
             <div class="report-cta">
               <div class="report-buttons">
-                <a mat-raised-button 
-                   color="primary" 
-                   [routerLink]="['/report', 'correct']">
+                <a
+                  mat-raised-button
+                  color="primary"
+                  [routerLink]="['/report', 'correct']"
+                >
                   <mat-icon>check_circle</mat-icon>
                   Report Correct Meter
                 </a>
-                <a mat-raised-button 
-                   color="warn" 
-                   [routerLink]="['/report', 'incorrect']">
+                <a
+                  mat-raised-button
+                  color="warn"
+                  [routerLink]="['/report', 'incorrect']"
+                >
                   <mat-icon>warning</mat-icon>
                   Report Incorrect Meter
                 </a>
@@ -87,5 +128,5 @@
         </mat-card-content>
       </mat-card>
     </div>
-    </jet-page>
+  </jet-page>
 </ng-container>

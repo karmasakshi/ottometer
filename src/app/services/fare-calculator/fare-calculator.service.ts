@@ -21,19 +21,19 @@ export class FareCalculatorService {
     distance: number,
     isNightFare: boolean,
     hasLuggage: boolean,
-    waitingMinutes: number = 0
+    waitingMinutes: number = 0,
   ): number {
     let fare: number;
-    
+
     if (distance <= 1.5) {
       fare = this.MINIMUM_FARE;
     } else {
-      fare = this.MINIMUM_FARE + ((distance - 1.5) * this.PER_KM_RATE);
+      fare = this.MINIMUM_FARE + (distance - 1.5) * this.PER_KM_RATE;
     }
 
     // Add waiting time charge
     if (waitingMinutes > 0) {
-      fare += (waitingMinutes * this.WAITING_RATE_PER_MINUTE);
+      fare += waitingMinutes * this.WAITING_RATE_PER_MINUTE;
     }
 
     // Round to nearest rupee (0.5 and above rounds up, below 0.5 rounds down)
