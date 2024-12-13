@@ -175,6 +175,18 @@ returns table (
 security invoker
 set search_path = '' as $$
 begin
+  if x_page_number <= 0 or x_page_number > 10000 then
+    raise exception 'Invalid x_page_number: %. Must be between 1 and 10000.', x_page_number;
+  end if;
+  if x_page_size <= 0 or x_page_size > 1000 then
+    raise exception 'Invalid x_page_size: %. Must be between 1 and 1000.', x_page_size;
+  end if;
+  if x_auto_id is not null and not (x_auto_id::text ~ '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$') then
+    raise exception 'Invalid x_auto_id: %. Must be a valid UUID.', x_auto_id;
+  end if;
+  if x_type is not null and not exists (select 1 from pg_enum where enumtypid = 'public.report_type'::regtype and enumlabel = x_type::text) then
+    raise exception 'Invalid x_type: %. Must be a valid report type.', x_type;
+  end if;
   return query
   select
     total_count.total_count,
@@ -218,7 +230,7 @@ lateral (
 end;
 $$ language plpgsql;
 
--- RPC functions
+--
 
 create or replace function select_auto_with_reports_count(
     x_plate_state_code text,
