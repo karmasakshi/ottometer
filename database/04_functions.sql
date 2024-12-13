@@ -240,27 +240,22 @@ returns table (
 )
 security definer
 set search_path = '' as $$
-declare
-    trimmed_plate_state_code text;
-    trimmed_plate_district_code text;
-    trimmed_plate_series_code text;
-    trimmed_plate_vehicle_number text;
 begin
-    trimmed_plate_state_code := trim(x_plate_state_code);
-    trimmed_plate_district_code := trim(x_plate_district_code);
-    trimmed_plate_series_code := trim(x_plate_series_code);
-    trimmed_plate_vehicle_number := trim(x_plate_vehicle_number);
-    if length(trimmed_plate_state_code) != 2 or not (trimmed_plate_state_code ~ '^[a-z]{2}$') then
-        raise exception 'invalid plate_state_code: %. must be 2 uppercase letters.', trimmed_plate_state_code;
+    x_plate_state_code := upper(trim(x_plate_state_code));
+    x_plate_district_code := trim(x_plate_district_code);
+    x_plate_series_code := upper(trim(x_plate_series_code));
+    x_plate_vehicle_number := trim(x_plate_vehicle_number);
+    if length(x_plate_state_code) != 2 or not (x_plate_state_code ~ '^[A-Z]{2}$') then
+        raise exception 'invalid plate_state_code: %. must be 2 uppercase letters.', x_plate_state_code;
     end if;
-    if length(trimmed_plate_district_code) != 2 or not (trimmed_plate_district_code ~ '^\d{2}$') then
-        raise exception 'invalid plate_district_code: %. must be 2 digits.', trimmed_plate_district_code;
+    if length(x_plate_district_code) != 2 or not (x_plate_district_code ~ '^\d{2}$') then
+        raise exception 'invalid plate_district_code: %. must be 2 digits.', x_plate_district_code;
     end if;
-    if length(trimmed_plate_series_code) > 2 or not (trimmed_plate_series_code ~ '^[a-z]{1,2}$') then
-        raise exception 'invalid plate_series_code: %. must be 1 or 2 uppercase letters.', trimmed_plate_series_code;
+    if length(x_plate_series_code) > 2 or not (x_plate_series_code ~ '^[A-Z]{1,2}$') then
+        raise exception 'invalid plate_series_code: %. must be 1 or 2 uppercase letters.', x_plate_series_code;
     end if;
-    if length(trimmed_plate_vehicle_number) != 4 or not (trimmed_plate_vehicle_number ~ '^\d{4}$') then
-        raise exception 'invalid plate_vehicle_number: %. must be 4 digits.', trimmed_plate_vehicle_number;
+    if length(x_plate_vehicle_number) != 4 or not (x_plate_vehicle_number ~ '^\d{4}$') then
+        raise exception 'invalid plate_vehicle_number: %. must be 4 digits.', x_plate_vehicle_number;
     end if;
     return query
     select 
@@ -281,10 +276,10 @@ begin
     on 
         a.id = r.auto_id
     where 
-        a.plate_state_code = upper(trimmed_plate_state_code)
-        and a.plate_district_code = trimmed_plate_district_code
-        and a.plate_series_code = upper(trimmed_plate_series_code)
-        and a.plate_vehicle_number = trimmed_plate_vehicle_number
+        a.plate_state_code = x_plate_state_code
+        and a.plate_district_code = x_plate_district_code
+        and a.plate_series_code = x_plate_series_code
+        and a.plate_vehicle_number = x_plate_vehicle_number
     group by 
         a.id, a.plate_state_code, a.plate_district_code, a.plate_series_code, a.plate_vehicle_number, a.created_at, a.updated_at;
 end;
