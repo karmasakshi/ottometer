@@ -147,11 +147,23 @@
                 [value]="report.fare_difference_in_inr"
                 disabled
               />
-              <mat-hint *ngIf="report.fare_difference_in_inr !== null && report.fare_difference_in_inr  > 0">
-                The meter shows {{ report.fare_difference_in_inr }}₹ more than expected
+              <mat-hint
+                *ngIf="
+                  report.fare_difference_in_inr !== null &&
+                  report.fare_difference_in_inr > 0
+                "
+              >
+                The meter shows {{ report.fare_difference_in_inr }}₹ more than
+                expected
               </mat-hint>
-              <mat-hint *ngIf="report.fare_difference_in_inr !== null && report.fare_difference_in_inr < 0">
-                The meter shows {{ report.fare_difference_in_inr }}₹ less than expected
+              <mat-hint
+                *ngIf="
+                  report.fare_difference_in_inr !== null &&
+                  report.fare_difference_in_inr < 0
+                "
+              >
+                The meter shows {{ report.fare_difference_in_inr }}₹ less than
+                expected
               </mat-hint>
               <mat-hint *ngIf="report.fare_difference_in_inr === 0">
                 The meter shows the expected fare

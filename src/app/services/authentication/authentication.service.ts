@@ -54,14 +54,11 @@ export class AuthenticationService {
   }
 
   public loginWithGoogle(): Promise<OAuthResponse> {
-    const returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
-      'returnUrl'
-    );
+    const returnUrl =
+      this._activatedRoute.snapshot.queryParamMap.get('returnUrl');
     let redirectTo = `${window.location.protocol}//${window.location.host}/login`;
     if (returnUrl !== null) {
-      redirectTo +=
-        '?' +
-        new URLSearchParams({ returnUrl }).toString();
+      redirectTo += '?' + new URLSearchParams({ returnUrl }).toString();
     }
     return this._supabaseClient.auth.signInWithOAuth({
       options: { redirectTo },

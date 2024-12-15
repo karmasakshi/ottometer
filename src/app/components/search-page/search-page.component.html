@@ -31,10 +31,14 @@
                   placeholder="01"
                   maxlength="2"
                 />
-                <mat-error *ngIf="plateForm.controls.district_code.errors?.['required']">
+                <mat-error
+                  *ngIf="plateForm.controls.district_code.errors?.['required']"
+                >
                   District code is required
                 </mat-error>
-                <mat-error *ngIf="plateForm.controls.district_code.errors?.['pattern']">
+                <mat-error
+                  *ngIf="plateForm.controls.district_code.errors?.['pattern']"
+                >
                   Must be 2 digits
                 </mat-error>
               </mat-form-field>
@@ -49,10 +53,14 @@
                   placeholder="AB"
                   maxlength="2"
                 />
-                <mat-error *ngIf="plateForm.controls.series_code.errors?.['required']">
+                <mat-error
+                  *ngIf="plateForm.controls.series_code.errors?.['required']"
+                >
                   Series code is required
                 </mat-error>
-                <mat-error *ngIf="plateForm.controls.series_code.errors?.['pattern']">
+                <mat-error
+                  *ngIf="plateForm.controls.series_code.errors?.['pattern']"
+                >
                   Must be 2 letters
                 </mat-error>
               </mat-form-field>
@@ -67,10 +75,14 @@
                   placeholder="1234"
                   maxlength="4"
                 />
-                <mat-error *ngIf="plateForm.controls.vehicle_number.errors?.['required']">
+                <mat-error
+                  *ngIf="plateForm.controls.vehicle_number.errors?.['required']"
+                >
                   Vehicle number is required
                 </mat-error>
-                <mat-error *ngIf="plateForm.controls.vehicle_number.errors?.['pattern']">
+                <mat-error
+                  *ngIf="plateForm.controls.vehicle_number.errors?.['pattern']"
+                >
                   Must be 4 digits
                 </mat-error>
               </mat-form-field>
@@ -153,7 +165,10 @@
         </mat-card-content>
       </mat-card>
 
-      <mat-card *ngIf="hasSearched && searchResults.length === 0" class="no-results-card">
+      <mat-card
+        *ngIf="hasSearched && searchResults.length === 0"
+        class="no-results-card"
+      >
         <mat-card-content>
           <div class="no-results-content">
             <div class="no-results-message">

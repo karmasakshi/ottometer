@@ -77,9 +77,18 @@ export class SearchPageComponent {
     this.plate = this.plateService.plate;
     this.plateForm = this._formBuilder.group({
       state_code: { value: 'MH', disabled: true },
-      district_code: ['', [Validators.required, Validators.pattern('[0-9]{2}')]],
-      series_code: ['', [Validators.required, Validators.pattern('[A-Za-z]{2}')]],
-      vehicle_number: ['', [Validators.required, Validators.pattern('[0-9]{4}')]],
+      district_code: [
+        '',
+        [Validators.required, Validators.pattern('[0-9]{2}')],
+      ],
+      series_code: [
+        '',
+        [Validators.required, Validators.pattern('[A-Za-z]{2}')],
+      ],
+      vehicle_number: [
+        '',
+        [Validators.required, Validators.pattern('[0-9]{4}')],
+      ],
     });
 
     this._loggerService.logComponentInitialization('SearchPageComponent');
@@ -95,12 +104,12 @@ export class SearchPageComponent {
         vehicle_number: this.plateForm.controls.vehicle_number.value ?? '',
       })
       // @ts-ignore
-      .then(({data, error}) => {
-        if(error){
+      .then(({ data, error }) => {
+        if (error) {
           console.error('Error during auto search:', error);
-        this.isLoading = false;
-        this.hasSearched = true;
-        this.searchResults = [];
+          this.isLoading = false;
+          this.hasSearched = true;
+          this.searchResults = [];
         }
         // @ts-ignore
         this.searchResults = data;
@@ -108,9 +117,8 @@ export class SearchPageComponent {
         this.hasSearched = true;
         console.log('Search completed successfully:', {
           resultsCount: this.searchResults.length,
-          results: this.searchResults
+          results: this.searchResults,
         });
-      })
-
+      });
   }
 }

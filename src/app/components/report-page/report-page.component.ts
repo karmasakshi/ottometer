@@ -77,20 +77,25 @@ export class ReportPageComponent {
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
-      this.reportService.insertReport(this.report)
-      // @ts-ignore
-      .then(({data, error}) => {
-        if(error){
-          this.snackBar.open('Error submitting report. Please try again.', 'Close', {
-            duration: 3000,
-          });
-        }else {
-        console.log(data);
-        this.snackBar.open('Report submitted successfully!', 'Close', {
-          duration: 3000,
+      this.reportService
+        .insertReport(this.report)
+        // @ts-ignore
+        .then(({ data, error }) => {
+          if (error) {
+            this.snackBar.open(
+              'Error submitting report. Please try again.',
+              'Close',
+              {
+                duration: 3000,
+              },
+            );
+          } else {
+            console.log(data);
+            this.snackBar.open('Report submitted successfully!', 'Close', {
+              duration: 3000,
+            });
+          }
         });
-      }
-      })
     }
   }
 
@@ -100,7 +105,7 @@ export class ReportPageComponent {
         this.report.meter_distance_in_km,
         false, // isNightFare
         false, // hasLuggage
-        this.report.meter_waiting_time_in_min ?? 0
+        this.report.meter_waiting_time_in_min ?? 0,
       );
 
       this.report.fare_difference_in_inr =
@@ -111,7 +116,7 @@ export class ReportPageComponent {
         waitingTime: this.report.meter_waiting_time_in_min,
         meterFare: this.report.meter_fare_in_inr,
         expectedFare: expectedFare,
-        difference: this.report.fare_difference_in_inr
+        difference: this.report.fare_difference_in_inr,
       });
     }
   }

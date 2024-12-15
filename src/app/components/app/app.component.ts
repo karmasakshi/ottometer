@@ -14,7 +14,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { User } from '@jet/interfaces/user.interface';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { MatDividerModule } from '@angular/material/divider';
-import { FooterComponent } from "../footer/footer.component";
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'jet-app',
@@ -31,8 +31,8 @@ import { FooterComponent } from "../footer/footer.component";
     AsyncPipe,
     MatDividerModule,
     TranslocoModule,
-    FooterComponent
-],
+    FooterComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

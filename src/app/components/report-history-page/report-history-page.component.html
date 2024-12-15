@@ -62,8 +62,8 @@
                 <td mat-cell *matCellDef="let report">
                   {{
                     t("time", {
-                      from: (report.time_in | date:'shortTime') ?? "-",
-                      to: (report.time_out | date:'shortTime') ?? "-",
+                      from: (report.time_in | date: "shortTime") ?? "-",
+                      to: (report.time_out | date: "shortTime") ?? "-",
                     })
                   }}
                 </td>
