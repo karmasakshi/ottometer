@@ -37,6 +37,7 @@
                 <mat-label>State</mat-label>
                 <input
                   matInput
+                  disabled
                   type="text"
                   name="auto_plate_state_code"
                   [(ngModel)]="report.auto_plate_state_code"
@@ -116,36 +117,45 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Fare Difference (INR)</mat-label>
-              <input
-                matInput
-                type="number"
-                name="fare_difference_in_inr"
-                [(ngModel)]="report.fare_difference_in_inr"
-                min="0"
-              />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Meter Distance (KM)</mat-label>
+              <mat-label>Distance (km)</mat-label>
               <input
                 matInput
                 type="number"
                 name="meter_distance_in_km"
                 [(ngModel)]="report.meter_distance_in_km"
-                min="0"
+                (ngModelChange)="calculateFareDifference()"
+                required
               />
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Meter Fare (INR)</mat-label>
+              <mat-label>Meter Fare (₹)</mat-label>
               <input
                 matInput
                 type="number"
                 name="meter_fare_in_inr"
                 [(ngModel)]="report.meter_fare_in_inr"
-                min="0"
+                (ngModelChange)="calculateFareDifference()"
+                required
               />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Fare Difference (₹)</mat-label>
+              <input
+                matInput
+                [value]="report.fare_difference_in_inr"
+                disabled
+              />
+              <mat-hint *ngIf="report.fare_difference_in_inr !== null && report.fare_difference_in_inr  > 0">
+                The meter shows {{ report.fare_difference_in_inr }}₹ more than expected
+              </mat-hint>
+              <mat-hint *ngIf="report.fare_difference_in_inr !== null && report.fare_difference_in_inr < 0">
+                The meter shows {{ report.fare_difference_in_inr }}₹ less than expected
+              </mat-hint>
+              <mat-hint *ngIf="report.fare_difference_in_inr === 0">
+                The meter shows the expected fare
+              </mat-hint>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
