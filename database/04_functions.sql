@@ -158,11 +158,13 @@ $$;
 create or replace function public.select_reports(
   x_page_number int default 1,
   x_page_size int default 10,
-  x_auto_id uuid default null,
-  x_type public.report_type default null
+  x_type public.report_type default null,
+  x_auto_id uuid default null
 )
 returns table (
   total_count bigint,
+  meter_correct_count bigint,
+  meter_incorrect_count bigint,
   id uuid,
   auto_id uuid,
   auto_plate_state_code text,
@@ -203,6 +205,8 @@ $$
     return query
     select
       total_count.total_count,
+      total_count.meter_correct_count,
+      total_count.meter_incorrect_count,
       r.id,
       r.auto_id,
       r.auto_plate_state_code,
@@ -223,7 +227,10 @@ $$
       r.created_at,
       r.updated_at
     from (
-      select count(*) as total_count
+      select
+        count(*) as total_count,
+        count(case when r.type = 'meter_correct' then 1 end) as meter_correct_count,
+        count(case when r.type = 'meter_incorrect' then 1 end) as meter_incorrect_count
       from public.reports r
       where
         r.reporter_id = auth.uid()

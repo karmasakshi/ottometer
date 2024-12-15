@@ -39,14 +39,14 @@ export class ReportService {
   public getReports(
     pageNumber: number = 1,
     pageSize: number = 10,
+    type?: Report['type'] | null,
     autoId?: Report['auto_id'],
-    type?: Report['type'],
   ): PromiseLike<unknown> {
     return this._supabaseClient.rpc('select_reports', {
       x_page_number: pageNumber,
       x_page_size: pageSize,
-      x_auto_id: autoId,
       x_type: type,
+      x_auto_id: autoId,
     });
   }
 }

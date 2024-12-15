@@ -9,11 +9,11 @@
     "auto-correct-count": "Meter Correct Reports",
     "auto-incorrect-count": "Meter Incorrect Reports",
     "auto-plate": "Plate",
+    "calculate-fare": "Calculate Fare",
     "hero": "Hero",
     "hero-subtitle": "Join the community of commuters by reporting incorrect or correct meters.",
     "hero-title": "Let's make auto rides fun again",
-    "report-correct-meter": "Report a Correct Meter",
-    "report-incorrect-meter": "Report an Incorrect Meter",
+    "report-meter": "Report Meter",
     "top-autos-correct-meters": "Top Autos with Correct Meters",
     "top-autos-incorrect-meters": "Top Autos with Incorrect Meters",
     "top-reporters": "Top Reporters",
@@ -25,9 +25,9 @@
   "jet-login-page": {
     "email": "Email",
     "login": "Login",
+    "login-below": "Enter your email and password to login",
     "password": "Password",
     "register": "Register",
-    "login-below": "Enter your email and password to login",
     "reset-password": "Reset Password"
   },
   "jet-logout-page": {
@@ -35,18 +35,43 @@
   },
   "jet-register-page": {
     "email": "Email",
-    "register-below": "Enter your email and password to register",
     "login": "Login",
     "password": "Password",
     "register": "Register",
+    "register-below": "Register below",
     "reset-password": "Reset Password"
+  },
+  "jet-report-history-page": {
+    "date-reported": "Date Reported",
+    "difference-inr": "Difference (INR)",
+    "distance-km": "Distance (KM)",
+    "fare-inr": "Fare (INR)",
+    "indicator": "Indicator",
+    "plate-number": "Plate Number",
+    "report-type": "Report Type",
+    "route-taken": "Route Taken",
+    "route": "{{ from }} to {{ to }}",
+    "trip-time": "Trip Time",
+    "time": "{{ from }} to {{ to }}",
+    "waiting": "Waiting Time (Min)"
+  },
+  "jet-report-page": {
+    "report-correct": "Meter Correct",
+    "report-incorrect": "Meter Incorrect"
   },
   "jet-reset-password-page": {
     "email": "Email",
     "login": "Login",
     "register": "Register",
     "reset-password": "Reset Password",
-    "send-email": "Send Email",
-    "reset-password-below": "Enter your email to receive password reset instructions"
+    "reset-password-below": "Enter your email to receive password reset instructions",
+    "send-email": "Send Email"
+  },
+  "jet-search-page": {
+    "district-code": "Plate District Code",
+    "search-auto": "Search Auto by Plate",
+    "series-code": "Plate Series Code",
+    "state-code": "Plate State Code",
+    "vehicle-number": "Plate Vehicle Number"
   }
 }

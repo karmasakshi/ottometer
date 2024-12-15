@@ -1,3 +1,99 @@
 <ng-container *transloco="let t; prefix: 'jet-report-history-page'">
-  <p>report-history-page works!</p>
+  <jet-page>
+    <div class="history-container">
+      <h2>My Reports</h2>
+      
+      <mat-card>
+        <mat-card-content>
+
+          <mat-button-toggle-group
+          [value]="selected"
+          (change)="onFilterChange($event.value)"
+          class="filter-group">
+          <mat-button-toggle [value]="null">
+            All ({{counts.total}})
+          </mat-button-toggle>
+          <mat-button-toggle value="meter_correct">
+            Correct ({{counts.correct}})
+          </mat-button-toggle>
+          <mat-button-toggle value="meter_incorrect">
+            Incorrect ({{counts.incorrect}})
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+
+          <div class="table-container">
+            <table mat-table [dataSource]="reports" class="history-table">
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>{{t('date-reported')}}</th>
+                <td mat-cell *matCellDef="let report">{{report.created_at | date}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="plateNumber">
+                <th mat-header-cell *matHeaderCellDef>{{t('plate-number')}}</th>
+                <td mat-cell *matCellDef="let report">{{report.auto_plate_state_code}}-{{report.auto_plate_district_code}}-{{report.auto_plate_series_code}}-{{report.auto_plate_vehicle_number}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="route">
+                <th mat-header-cell *matHeaderCellDef>{{t('route-taken')}}</th>
+                <td mat-cell *matCellDef="let report">{{ t('route',{from: report.area_from ?? '-', to: report.area_to ?? '-'})}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="time">
+                <th mat-header-cell *matHeaderCellDef>{{t('trip-time')}}</th>
+                <td mat-cell *matCellDef="let report">{{ t('time',{from: report.time_in ?? '-', to: report.time_out ?? '-'})}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef>{{t('report-type')}}</th>
+                <td mat-cell *matCellDef="let report">
+                  <mat-chip [color]="report.type === 'meter_correct' ? 'primary' : 'warn'" selected>
+                    {{report.type === 'meter_correct' ? 'Correct' : 'Incorrect'}}
+                  </mat-chip>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="distance">
+                <th mat-header-cell *matHeaderCellDef>{{t('distance-km')}}</th>
+                <td mat-cell *matCellDef="let report">{{report.meter_distance_in_km}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="fare">
+                <th mat-header-cell *matHeaderCellDef>{{t('fare-inr')}}</th>
+                <td mat-cell *matCellDef="let report">₹{{report.meter_fare_in_inr}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="difference">
+                <th mat-header-cell *matHeaderCellDef>{{t('difference-inr')}}</th>
+                <td mat-cell *matCellDef="let report">₹{{report.fare_difference_in_inr}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="indicator">
+                <th mat-header-cell *matHeaderCellDef>{{t('indicator')}}</th>
+                <td mat-cell *matCellDef="let report">₹{{report.is_tamper_indicator_on}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="waiting">
+                <th mat-header-cell *matHeaderCellDef>{{t('waiting')}}</th>
+                <td mat-cell *matCellDef="let report">{{ report.meter_waiting_time_in_min}}</td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+
+          <mat-paginator
+            [length]="totalReports"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[5, 10, 25, 50]"
+            (page)="onPageChange($event)"
+            aria-label="Select page">
+          </mat-paginator>
+        </mat-card-content>
+        <mat-card-footer>
+          <mat-progress-bar mode="indeterminate" [ngStyle]="{visibility: this.loading ? 'visible':'hidden'}"></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </jet-page>
 </ng-container>
