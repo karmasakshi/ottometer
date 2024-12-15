@@ -12,11 +12,13 @@ import {
   AuthResponse,
   AuthSession,
   AuthTokenResponsePassword,
+  OAuthResponse,
   SupabaseClient,
   UserResponse,
 } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 import { User } from '@jet/interfaces/user.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +26,7 @@ import { User } from '@jet/interfaces/user.interface';
 export class AuthenticationService {
   private readonly _loggerService = inject(LoggerService);
   private readonly _supabaseService = inject(SupabaseService);
+  private readonly _activatedRoute = inject(ActivatedRoute);
 
   private readonly _supabaseClient: SupabaseClient;
   private readonly _user: WritableSignal<User | null>;
@@ -48,6 +51,22 @@ export class AuthenticationService {
 
   public getUser(): Promise<UserResponse> {
     return this._supabaseClient.auth.getUser();
+  }
+
+  public loginWithGoogle(): Promise<OAuthResponse> {
+    const returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
+      'returnUrl'
+    );
+    let redirectTo = `${window.location.protocol}//${window.location.host}/login`;
+    if (returnUrl !== null) {
+      redirectTo +=
+        '?' +
+        new URLSearchParams({ returnUrl }).toString();
+    }
+    return this._supabaseClient.auth.signInWithOAuth({
+      options: { redirectTo },
+      provider: 'google',
+    });
   }
 
   public login(

@@ -70,6 +70,12 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
+  public loginWithGoogle():void {
+this._authenticationService.loginWithGoogle().then((data)=>{
+  console.log(data);
+})
+  }
+
   public login(email: string, password: string) {
     this.isLoginPending = true;
     this._authenticationService
