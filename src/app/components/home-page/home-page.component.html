@@ -55,15 +55,17 @@
       <mat-card-content>
         <table mat-table [dataSource]="topReporters">
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>{{ t("auto-plate") }}</th>
+            <th mat-header-cell *matHeaderCellDef>{{ t("username") }}</th>
             <td mat-cell *matCellDef="let user">
+             <div style="display: flex; align-items: center; gap: 8px;">
               <img
-                [ngSrc]="user.reporter_avatar_url"
-                [alt]="user.reporter_username"
-                height="32"
-                width="32"
-              />
-              <span>{{ user.reporter_username }}</span>
+              [ngSrc]="user.reporter_avatar_url"
+              [alt]="user.reporter_username"
+              height="32"
+              width="32"
+            />
+            <span>{{ user.reporter_username }}</span>
+             </div>
             </td>
           </ng-container>
 

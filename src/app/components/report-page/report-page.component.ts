@@ -16,6 +16,7 @@ import { NewReport } from '@jet/interfaces/new-report.interface';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'jet-report-page',
@@ -23,6 +24,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     MatCheckboxModule,
     MatCardModule,
+    MatRadioModule,
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,

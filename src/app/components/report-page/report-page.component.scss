@@ -25,3 +25,14 @@ mat-card-actions {
 mat-checkbox {
   margin-bottom: 16px;
 }
+
+.plate-fields-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  mat-form-field {
+    flex: 1;
+    min-width: 80px;
+  }
+}

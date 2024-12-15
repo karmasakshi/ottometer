@@ -6,6 +6,7 @@
     "register": "Register"
   },
   "jet-home-page": {
+    "username": "Username",
     "auto-correct-count": "Meter Correct Reports",
     "auto-incorrect-count": "Meter Incorrect Reports",
     "auto-plate": "Plate",
