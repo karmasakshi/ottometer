@@ -12,6 +12,8 @@ import { TranslocoModule } from '@jsverse/transloco';
 export class FooterComponent {
   private readonly _loggerService = inject(LoggerService);
 
+    currentYear: number = new Date().getFullYear();
+
   public constructor() {
     this._loggerService.logComponentInitialization('FooterComponent');
   }

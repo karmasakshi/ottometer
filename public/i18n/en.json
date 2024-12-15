@@ -74,5 +74,8 @@
     "series-code": "Plate Series Code",
     "state-code": "Plate State Code",
     "vehicle-number": "Plate Vehicle Number"
-  }
+  },
+    "jet-footer": {
+      "copyright": "Ottometer. All rights reserved."
+    }
 }

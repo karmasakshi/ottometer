@@ -14,6 +14,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { User } from '@jet/interfaces/user.interface';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { MatDividerModule } from '@angular/material/divider';
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'jet-app',
@@ -22,6 +23,7 @@ import { MatDividerModule } from '@angular/material/divider';
     RouterLink,
     RouterOutlet,
     MatToolbarModule,
+    FooterComponent,
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
@@ -29,7 +31,8 @@ import { MatDividerModule } from '@angular/material/divider';
     AsyncPipe,
     MatDividerModule,
     TranslocoModule,
-  ],
+    FooterComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
