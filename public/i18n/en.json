@@ -2,11 +2,12 @@
   "jet-app": {
     "login": "Login",
     "logout": "Logout",
-    "my-profile": "My Profile",
     "register": "Register"
   },
+  "jet-footer": {
+    "copyright": "Ottometer. All rights reserved."
+  },
   "jet-home-page": {
-    "username": "Username",
     "auto-correct-count": "Meter Correct Reports",
     "auto-incorrect-count": "Meter Incorrect Reports",
     "auto-plate": "Plate",
@@ -21,12 +22,14 @@
     "updated-daily": "Updated Daily",
     "user-correct-count": "Correct Meter Reports",
     "user-incorrect-count": "Incorrect Meter Reports",
-    "user-total-count": "Total Reports"
+    "user-total-count": "Total Reports",
+    "username": "Username"
   },
   "jet-login-page": {
     "email": "Email",
     "login": "Login",
     "login-below": "Enter your email and password to login",
+    "login-with-google": "Login with Google",
     "password": "Password",
     "register": "Register",
     "reset-password": "Reset Password"
@@ -50,10 +53,10 @@
     "indicator": "Indicator",
     "plate-number": "Plate Number",
     "report-type": "Report Type",
-    "route-taken": "Route Taken",
     "route": "{{ from }} to {{ to }}",
-    "trip-time": "Trip Time",
+    "route-taken": "Route Taken",
     "time": "{{ from }} to {{ to }}",
+    "trip-time": "Trip Time",
     "waiting": "Waiting Time (Min)"
   },
   "jet-report-page": {
@@ -74,8 +77,5 @@
     "series-code": "Plate Series Code",
     "state-code": "Plate State Code",
     "vehicle-number": "Plate Vehicle Number"
-  },
-    "jet-footer": {
-      "copyright": "Ottometer. All rights reserved."
-    }
+  }
 }
