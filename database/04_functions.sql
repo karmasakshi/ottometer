@@ -85,7 +85,7 @@ $$
   begin
     truncate table public.leaderboard_top_reporters;
     insert into public.leaderboard_top_reporters (reporter_avatar_url, reporter_username, meter_correct_reports_count, meter_incorrect_reports_count, total_reports_count)
-    select 
+    select
       p.avatar_url,
       p.username,
       count(case when r.type = 'meter_correct' then 1 end) as meter_correct_reports_count,
@@ -110,7 +110,7 @@ $$
   begin
     truncate table public.leaderboard_top_fair_autos;
     insert into public.leaderboard_top_fair_autos (auto_id, auto_plate_state_code, auto_plate_district_code, auto_plate_series_code, auto_plate_vehicle_number, meter_correct_reports_count, meter_incorrect_reports_count)
-    select 
+    select
       a.id,
       a.plate_state_code,
       a.plate_district_code,
@@ -122,7 +122,7 @@ $$
     join public.autos a on r.auto_id = a.id
     group by a.id
     order by meter_correct_reports_count desc
-    limit 10; 
+    limit 10;
   end;
 $$;
 
@@ -137,7 +137,7 @@ $$
   begin
     truncate table public.leaderboard_top_unfair_autos;
     insert into public.leaderboard_top_unfair_autos (auto_id, auto_plate_state_code, auto_plate_district_code, auto_plate_series_code, auto_plate_vehicle_number, meter_correct_reports_count, meter_incorrect_reports_count)
-    select 
+    select
       a.id,
       a.plate_state_code,
       a.plate_district_code,
@@ -292,7 +292,7 @@ $$
         raise exception 'invalid plate_vehicle_number: %. must be 4 digits.', x_plate_vehicle_number;
     end if;
     return query
-    select 
+    select
         a.id,
         a.plate_state_code,
         a.plate_district_code,
@@ -303,18 +303,18 @@ $$
         count(case when r.type = 'meter_correct' then 1 end) as meter_correct_reports_count,
         count(case when r.type = 'meter_incorrect' then 1 end) as meter_incorrect_reports_count,
         count(*) as total_reports_count
-    from 
+    from
         public.autos a
-    left join 
-        public.reports r 
-    on 
+    left join
+        public.reports r
+    on
         a.id = r.auto_id
-    where 
+    where
         a.plate_state_code = x_plate_state_code
         and a.plate_district_code = x_plate_district_code
         and a.plate_series_code = x_plate_series_code
         and a.plate_vehicle_number = x_plate_vehicle_number
-    group by 
+    group by
         a.id, a.plate_state_code, a.plate_district_code, a.plate_series_code, a.plate_vehicle_number, a.created_at, a.updated_at;
   end;
 $$;
