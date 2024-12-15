@@ -10,22 +10,20 @@ import { ProfilePageComponent } from '@jet/components/profile-page/profile-page.
 import { FareCalculatorPageComponent } from '@jet/components/fare-calculator-page/fare-calculator-page.component';
 import { NotFoundPageComponent } from '@jet/components/not-found-page/not-found-page.component';
 import { ReportHistoryPageComponent } from '@jet/components/report-history-page/report-history-page.component';
+import { isAuthenticatedGuard } from './guards/authenticated.guard';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent },
+  { path: 'search', component: SearchPageComponent },
   { path: 'fare-calculator', component: FareCalculatorPageComponent },
+
   { path: 'login', component: LoginPageComponent },
   { path: 'logout', component: LogoutPageComponent },
-  {
-    path: 'profile',
-    children: [
-      { path: '', component: ProfilePageComponent },
-      { path: 'report-history', component: ReportHistoryPageComponent },
-    ],
-  },
   { path: 'register', component: RegisterPageComponent },
-  { path: 'report', component: ReportPageComponent },
-  { path: 'reset-password', component: ResetPasswordPageComponent },
-  { path: 'search', component: SearchPageComponent },
+
+  { canActivate:[isAuthenticatedGuard],path: 'profile',component: ProfilePageComponent},
+  { canActivate:[isAuthenticatedGuard],path: 'report', component: ReportPageComponent },
+  { canActivate:[isAuthenticatedGuard],path: 'report-history', component: ReportHistoryPageComponent },
+  { canActivate:[isAuthenticatedGuard],path: 'reset-password', component: ResetPasswordPageComponent },
   { path: '**', component: NotFoundPageComponent },
 ];

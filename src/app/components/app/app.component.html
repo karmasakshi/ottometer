@@ -14,8 +14,9 @@
         <a mat-list-item routerLink="/search">Search</a>
         <a mat-list-item routerLink="/fare-calculator">Fare Calculator</a>
         <mat-divider></mat-divider>
-        <a mat-list-item routerLink="/profile/report-history">Report History</a>
+        <a mat-list-item routerLink="/profile">Profile</a>
         <a mat-list-item routerLink="/report">Report</a>
+        <a mat-list-item routerLink="/report-history">Report History</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -38,7 +39,6 @@
             <a routerLink="/register" mat-button>{{ t("register") }}</a>
           </div>
         } @else {
-          <a routerLink="/profile" mat-button>{{ t("my-profile") }}</a>
           <a routerLink="/logout" mat-button>{{ t("logout") }}</a>
         }
       </mat-toolbar>
