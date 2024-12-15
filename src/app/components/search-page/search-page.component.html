@@ -7,45 +7,53 @@
         </mat-card-header>
         <mat-card-content>
           <form [formGroup]="plateForm" (ngSubmit)="onSearch()">
-            <mat-form-field appearance="outline">
-              <mat-label>{{ t("state-code") }}</mat-label>
-              <input
-                formControlName="state_code"
-                matInput
-                required
-                type="text"
-              />
-            </mat-form-field>
-            <br />
-            <mat-form-field appearance="outline">
-              <mat-label>{{ t("district-code") }}</mat-label>
-              <input
-                formControlName="district_code"
-                matInput
-                required
-                type="text"
-              />
-            </mat-form-field>
-            <br />
-            <mat-form-field appearance="outline">
-              <mat-label>{{ t("series-code") }}</mat-label>
-              <input
-                formControlName="series_code"
-                matInput
-                required
-                type="text"
-              />
-            </mat-form-field>
-            <br />
-            <mat-form-field appearance="outline">
-              <mat-label>{{ t("vehicle-number") }}</mat-label>
-              <input
-                formControlName="vehicle_number"
-                matInput
-                required
-                type="text"
-              />
-            </mat-form-field>
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>{{ t("state-code") }}</mat-label>
+                <input
+                  formControlName="state_code"
+                  matInput
+                  required
+                  type="text"
+                  placeholder="MH"
+                  [disabled]="true"
+                  value="MH"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>{{ t("district-code") }}</mat-label>
+                <input
+                  formControlName="district_code"
+                  matInput
+                  required
+                  type="text"
+                  placeholder="01"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>{{ t("series-code") }}</mat-label>
+                <input
+                  formControlName="series_code"
+                  matInput
+                  required
+                  type="text"
+                  placeholder="AB"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>{{ t("vehicle-number") }}</mat-label>
+                <input
+                  formControlName="vehicle_number"
+                  matInput
+                  required
+                  type="text"
+                  placeholder="1234"
+                />
+              </mat-form-field>
+            </div>
 
             <button
               mat-raised-button
@@ -130,7 +138,7 @@
                 <a
                   mat-raised-button
                   color="primary"
-                  [routerLink]="['/report', 'correct']"
+                  routerLink="/report"
                 >
                   <mat-icon>check_circle</mat-icon>
                   Report Correct Meter
@@ -138,7 +146,7 @@
                 <a
                   mat-raised-button
                   color="warn"
-                  [routerLink]="['/report', 'incorrect']"
+                  routerLink="/report"
                 >
                   <mat-icon>warning</mat-icon>
                   Report Incorrect Meter

@@ -68,7 +68,7 @@ export class SearchPageComponent {
   public constructor() {
     this.plate = this.plateService.plate;
     this.plateForm = this._formBuilder.group({
-      state_code: this.plate()?.state_code ?? '',
+      state_code: {value: 'MH', disabled: true},
       district_code: this.plate()?.district_code ?? '',
       series_code: this.plate()?.series_code ?? '',
       vehicle_number: this.plate()?.vehicle_number ?? '',

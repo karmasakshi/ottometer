@@ -86,3 +86,13 @@ form {
     flex-direction: column;
   }
 }
+.form-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+mat-form-field {
+  flex: 1;
+  min-width: 80px;
+}
