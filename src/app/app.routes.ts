@@ -6,8 +6,6 @@ import { RegisterPageComponent } from '@jet/components/register-page/register-pa
 import { ResetPasswordPageComponent } from '@jet/components/reset-password-page/reset-password-page.component';
 import { SearchPageComponent } from '@jet/components/search-page/search-page.component';
 import { ReportPageComponent } from '@jet/components/report-page/report-page.component';
-import { ReportCorrectMeterPageComponent } from '@jet/components/report-correct-meter-page/report-correct-meter-page.component';
-import { ReportIncorrectMeterPageComponent } from '@jet/components/report-incorrect-meter-page/report-incorrect-meter-page.component';
 import { ProfilePageComponent } from '@jet/components/profile-page/profile-page.component';
 import { FareCalculatorPageComponent } from '@jet/components/fare-calculator-page/fare-calculator-page.component';
 import { NotFoundPageComponent } from '@jet/components/not-found-page/not-found-page.component';
@@ -26,14 +24,7 @@ export const routes: Routes = [
     ],
   },
   { path: 'register', component: RegisterPageComponent },
-  {
-    path: 'report',
-    children: [
-      { path: '', component: ReportPageComponent },
-      { path: 'correct-meter', component: ReportCorrectMeterPageComponent },
-      { path: 'incorrect-meter', component: ReportIncorrectMeterPageComponent },
-    ],
-  },
+  { path: 'report', component: ReportPageComponent },
   { path: 'reset-password', component: ResetPasswordPageComponent },
   { path: 'search', component: SearchPageComponent },
   { path: '**', component: NotFoundPageComponent },
