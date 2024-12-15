@@ -71,10 +71,10 @@ export class ReportHistoryPageComponent implements OnInit {
       .getReports(this.currentPage, this.pageSize, this.selectedFilter)
       .then((response): void => {
         // @ts-ignore
-        this.reports = response.data.results;
+        this.reports = response.data ?? [];
         console.log(response);
         // @ts-ignore
-        this.totalReports = response.data.total_count;
+        this.totalReports = response.data[0]?.total_count ?? 0;
         this.loading = false;
       });
   }

@@ -163,8 +163,6 @@ create or replace function public.select_reports(
 )
 returns table (
   total_count bigint,
-  meter_correct_count bigint,
-  meter_incorrect_count bigint,
   id uuid,
   auto_id uuid,
   auto_plate_state_code text,
@@ -205,17 +203,14 @@ $$
     return query
     select
       total_count.total_count,
-      total_count.meter_correct_count,
-      total_count.meter_incorrect_count,
       r.*
     from (
       select
-        count(*) as total_count,
-        count(case when r.type = 'meter_correct' then 1 end) as meter_correct_count,
-        count(case when r.type = 'meter_incorrect' then 1 end) as meter_incorrect_count
+        count(*) as total_count
       from public.reports r
       where
         r.reporter_id = auth.uid()
+        and (x_type is null or r.type = x_type)
         and (x_auto_id is null or r.auto_id = x_auto_id)
     ) total_count,
     lateral (
