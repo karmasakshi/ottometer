@@ -1,52 +1,68 @@
 <ng-container *transloco="let t; prefix: 'jet-profile-page'">
   <jet-page>
-
-    <form [formGroup]="profileFormGoup" (ngSubmit)="onSubmit()" class="profile-form">
+    <form
+      [formGroup]="profileFormGoup"
+      (ngSubmit)="onSubmit()"
+      class="profile-form"
+    >
       <div class="avatar-section">
-        <img [src]="this.profileFormGoup.controls.avatar_url.value"
-             alt="Profile avatar"
-             class="avatar-preview">
-        <input type="file"
-               #fileInput
-               style="display: none"
-               accept="image/jpeg,image/png,image/webp"
-               (change)="onFileSelected($event)">
+        <img
+          [src]="this.profileFormGoup.controls.avatar_url.value"
+          alt="Profile avatar"
+          class="avatar-preview"
+        />
+        <input
+          type="file"
+          #fileInput
+          style="display: none"
+          accept="image/jpeg,image/png,image/webp"
+          (change)="onFileSelected($event)"
+        />
         <div class="avatar-buttons">
-          <button type="button"
-                  mat-raised-button
-                  color="primary"
-                  (click)="fileInput.click()">
+          <button
+            type="button"
+            mat-raised-button
+            color="primary"
+            (click)="fileInput.click()"
+          >
             <mat-icon>photo_camera</mat-icon>
             Change Photo
           </button>
           <small class="file-limits">
-            Max size: {{AVATAR_CONFIG.MAX_SIZE_MB}}MB. Supported formats: JPEG, PNG, WebP
+            Max size: {{ AVATAR_CONFIG.MAX_SIZE_MB }}MB. Supported formats:
+            JPEG, PNG, WebP
           </small>
         </div>
       </div>
 
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
-        <input matInput
-        formControlName="username"       
-        name="username"
-               required
-               pattern="[a-zA-Z0-9_]{3,30}">
-        <mat-hint>3-30 characters, letters, numbers and underscore only</mat-hint>
-        @if(profileFormGoup.controls.username.invalid && profileFormGoup.controls.username.touched) {
-          <mat-error>
-            Please enter a valid username
-          </mat-error>
+        <input
+          matInput
+          formControlName="username"
+          name="username"
+          required
+          pattern="[a-zA-Z0-9_]{3,30}"
+        />
+        <mat-hint
+          >3-30 characters, letters, numbers and underscore only</mat-hint
+        >
+        @if (
+          profileFormGoup.controls.username.invalid &&
+          profileFormGoup.controls.username.touched
+        ) {
+          <mat-error> Please enter a valid username </mat-error>
         }
       </mat-form-field>
 
-      <button mat-raised-button
-              color="primary"
-              type="submit"
-              [disabled]="profileFormGoup.invalid || loading">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="profileFormGoup.invalid || loading"
+      >
         Save Changes
       </button>
     </form>
-
   </jet-page>
 </ng-container>

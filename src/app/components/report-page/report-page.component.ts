@@ -69,11 +69,9 @@ export class ReportPageComponent {
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
-      this.reportService
-        .insertReport(this.report)
-        .then((respose) => {
-          console.log(respose)
-        })
+      this.reportService.insertReport(this.report).then((respose) => {
+        console.log(respose);
+      });
     }
   }
 }

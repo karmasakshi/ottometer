@@ -21,9 +21,25 @@ export const routes: Routes = [
   { path: 'logout', component: LogoutPageComponent },
   { path: 'register', component: RegisterPageComponent },
 
-  { canActivate:[isAuthenticatedGuard],path: 'profile',component: ProfilePageComponent},
-  { canActivate:[isAuthenticatedGuard],path: 'report', component: ReportPageComponent },
-  { canActivate:[isAuthenticatedGuard],path: 'report-history', component: ReportHistoryPageComponent },
-  { canActivate:[isAuthenticatedGuard],path: 'reset-password', component: ResetPasswordPageComponent },
+  {
+    canActivate: [isAuthenticatedGuard],
+    path: 'profile',
+    component: ProfilePageComponent,
+  },
+  {
+    canActivate: [isAuthenticatedGuard],
+    path: 'report',
+    component: ReportPageComponent,
+  },
+  {
+    canActivate: [isAuthenticatedGuard],
+    path: 'report-history',
+    component: ReportHistoryPageComponent,
+  },
+  {
+    canActivate: [isAuthenticatedGuard],
+    path: 'reset-password',
+    component: ResetPasswordPageComponent,
+  },
   { path: '**', component: NotFoundPageComponent },
 ];

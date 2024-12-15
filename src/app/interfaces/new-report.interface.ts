@@ -1,5 +1,4 @@
-import { Report } from "./report.interface";
+import { Report } from './report.interface';
 
-export interface NewReport extends Omit<Report, 'id'|'auto_id'| 'created_at'| 'updated_at'> {
-   
-  }
+export interface NewReport
+  extends Omit<Report, 'id' | 'auto_id' | 'created_at' | 'updated_at'> {}

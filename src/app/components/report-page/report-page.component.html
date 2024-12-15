@@ -1,130 +1,199 @@
 <ng-container *transloco="let t; prefix: 'jet-report-page'">
   <jet-page>
     <div class="report-container">
-      <form #reportForm="ngForm" (ngSubmit)="onSubmit(reportForm)" class="report-form">
+      <form
+        #reportForm="ngForm"
+        (ngSubmit)="onSubmit(reportForm)"
+        class="report-form"
+      >
         <mat-card>
           <mat-card-header>
             <mat-card-title>Submit Report</mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <input type="hidden" name="reporter_id" [(ngModel)]="report.reporter_id" />
+            <input
+              type="hidden"
+              name="reporter_id"
+              [(ngModel)]="report.reporter_id"
+            />
 
-            <mat-radio-group name="type" [(ngModel)]="report.type" required class="full-width">
+            <mat-radio-group
+              name="type"
+              [(ngModel)]="report.type"
+              required
+              class="full-width"
+            >
               <mat-label>Type</mat-label>
               <mat-radio-button value="meter_incorrect">
-                {{ t('report-incorrect') }}
+                {{ t("report-incorrect") }}
               </mat-radio-button>
               <mat-radio-button value="meter_correct">
-                {{ t('report-correct') }}
+                {{ t("report-correct") }}
               </mat-radio-button>
             </mat-radio-group>
 
             <div class="plate-fields-container">
               <mat-form-field appearance="outline">
                 <mat-label>State</mat-label>
-                <input matInput type="text" name="auto_plate_state_code"
+                <input
+                  matInput
+                  type="text"
+                  name="auto_plate_state_code"
                   [(ngModel)]="report.auto_plate_state_code"
                   required
                   maxlength="2"
                   placeholder="MH"
-                  pattern="[A-Za-z]{2}" />
+                  pattern="[A-Za-z]{2}"
+                />
                 <mat-error>Valid 2-letter state code</mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="outline">
                 <mat-label>District</mat-label>
-                <input matInput type="text" name="auto_plate_district_code"
+                <input
+                  matInput
+                  type="text"
+                  name="auto_plate_district_code"
                   [(ngModel)]="report.auto_plate_district_code"
                   required
                   maxlength="2"
                   placeholder="01"
-                  pattern="[0-9]{2}" />
+                  pattern="[0-9]{2}"
+                />
                 <mat-error>Valid 2-digit code</mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="outline">
                 <mat-label>Series</mat-label>
-                <input matInput type="text" name="auto_plate_series_code"
+                <input
+                  matInput
+                  type="text"
+                  name="auto_plate_series_code"
                   [(ngModel)]="report.auto_plate_series_code"
                   maxlength="2"
                   placeholder="AB"
-                  pattern="[A-Za-z]{2}" />
+                  pattern="[A-Za-z]{2}"
+                />
                 <mat-error>1-2 letters</mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Vehicle Number</mat-label>
-                <input matInput type="text" name="auto_plate_vehicle_number"
+                <input
+                  matInput
+                  type="text"
+                  name="auto_plate_vehicle_number"
                   [(ngModel)]="report.auto_plate_vehicle_number"
                   maxlength="4"
-                  pattern="[0-9]{4}" />
-                <mat-error>Please enter a valid vehicle number (4 digits)</mat-error>
+                  pattern="[0-9]{4}"
+                />
+                <mat-error
+                  >Please enter a valid vehicle number (4 digits)</mat-error
+                >
               </mat-form-field>
             </div>
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Area From</mat-label>
-              <input matInput type="text" name="area_from"
+              <input
+                matInput
+                type="text"
+                name="area_from"
                 [(ngModel)]="report.area_from"
-                maxlength="100" />
+                maxlength="100"
+              />
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Area To</mat-label>
-              <input matInput type="text" name="area_to"
+              <input
+                matInput
+                type="text"
+                name="area_to"
                 [(ngModel)]="report.area_to"
-                maxlength="100" />
+                maxlength="100"
+              />
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Fare Difference (INR)</mat-label>
-              <input matInput type="number" name="fare_difference_in_inr"
+              <input
+                matInput
+                type="number"
+                name="fare_difference_in_inr"
                 [(ngModel)]="report.fare_difference_in_inr"
-                min="0" />
+                min="0"
+              />
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Meter Distance (KM)</mat-label>
-              <input matInput type="number" name="meter_distance_in_km"
+              <input
+                matInput
+                type="number"
+                name="meter_distance_in_km"
                 [(ngModel)]="report.meter_distance_in_km"
-                min="0" />
+                min="0"
+              />
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Meter Fare (INR)</mat-label>
-              <input matInput type="number" name="meter_fare_in_inr"
+              <input
+                matInput
+                type="number"
+                name="meter_fare_in_inr"
                 [(ngModel)]="report.meter_fare_in_inr"
-                min="0" />
+                min="0"
+              />
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Meter Waiting Time (Min)</mat-label>
-              <input matInput type="number" name="meter_waiting_time_in_min"
+              <input
+                matInput
+                type="number"
+                name="meter_waiting_time_in_min"
                 [(ngModel)]="report.meter_waiting_time_in_min"
-                min="0" />
+                min="0"
+              />
             </mat-form-field>
 
-            <mat-checkbox name="is_tamper_indicator_on"
+            <mat-checkbox
+              name="is_tamper_indicator_on"
               [(ngModel)]="report.is_tamper_indicator_on"
-              class="full-width">
+              class="full-width"
+            >
               Tamper Indicator On
             </mat-checkbox>
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Time In</mat-label>
-              <input matInput type="datetime-local" name="time_in"
-                [(ngModel)]="report.time_in" />
+              <input
+                matInput
+                type="datetime-local"
+                name="time_in"
+                [(ngModel)]="report.time_in"
+              />
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Time Out</mat-label>
-              <input matInput type="datetime-local" name="time_out"
-                [(ngModel)]="report.time_out" />
+              <input
+                matInput
+                type="datetime-local"
+                name="time_out"
+                [(ngModel)]="report.time_out"
+              />
             </mat-form-field>
-
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="primary" type="submit" [disabled]="!reportForm.valid">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!reportForm.valid"
+            >
               Submit Report
             </button>
           </mat-card-actions>

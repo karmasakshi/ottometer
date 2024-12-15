@@ -1,53 +1,52 @@
 .history-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.table-container {
+  overflow-x: auto;
+  margin: 0 -16px;
+}
+.history-table {
+  width: 100%;
+  min-width: 800px;
+}
+.mat-mdc-row:hover {
+  background: whitesmoke;
+}
+.mat-mdc-header-cell {
+  font-weight: bold;
+  white-space: nowrap;
+  padding: 0 16px;
+}
+.mat-mdc-cell {
+  padding: 0 16px;
+}
+.overcharge {
+  color: #f44336;
+  font-weight: 500;
+}
+.no-difference {
+  color: #4caf50;
+}
+@media (max-width: 600px) {
+  .history-container {
+    padding: 10px;
   }
-  .table-container {
-    overflow-x: auto;
-    margin: 0 -16px;
+}
+.filter-group {
+  margin-bottom: 16px;
+  width: 100%;
+}
+:host ::ng-deep .mat-button-toggle-group {
+  display: flex;
+}
+:host ::ng-deep .mat-button-toggle {
+  flex: 1;
+}
+@media (max-width: 600px) {
+  :host ::ng-deep .mat-button-toggle-label-content {
+    padding: 0 8px;
+    font-size: 0.9em;
   }
-  .history-table {
-    width: 100%;
-    min-width: 800px;
-  }
-  .mat-mdc-row:hover {
-    background: whitesmoke;
-  }
-  .mat-mdc-header-cell {
-    font-weight: bold;
-    white-space: nowrap;
-    padding: 0 16px;
-  }
-  .mat-mdc-cell {
-    padding: 0 16px;
-  }
-  .overcharge {
-    color: #f44336;
-    font-weight: 500;
-  }
-  .no-difference {
-    color: #4caf50;
-  }
-  @media (max-width: 600px) {
-    .history-container {
-      padding: 10px;
-    }
-  }
-  .filter-group {
-    margin-bottom: 16px;
-    width: 100%;
-  }
-  :host ::ng-deep .mat-button-toggle-group {
-    display: flex;
-  }
-  :host ::ng-deep .mat-button-toggle {
-    flex: 1;
-  }
-  @media (max-width: 600px) {
-    :host ::ng-deep .mat-button-toggle-label-content {
-      padding: 0 8px;
-      font-size: 0.9em;
-    }
-  }
-  
+}

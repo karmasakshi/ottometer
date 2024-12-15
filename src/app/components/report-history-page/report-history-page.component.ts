@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { MatButtonToggleModule, } from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { Report } from '@jet/interfaces/report.interface';
@@ -29,7 +29,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatChipsModule,
     MatIconModule,
     PageComponent,
-    TranslocoModule],
+    TranslocoModule,
+  ],
   templateUrl: './report-history-page.component.html',
   styleUrl: './report-history-page.component.scss',
 })
@@ -40,10 +41,19 @@ export class ReportHistoryPageComponent implements OnInit {
   counts: { total: number; correct: number; incorrect: number } = {
     total: 0,
     correct: 0,
-    incorrect: 0
+    incorrect: 0,
   };
   reports: Report[] = [];
-  displayedColumns = ['date', 'plateNumber', 'route','time','type', 'distance', 'fare', 'difference'];
+  displayedColumns = [
+    'date',
+    'plateNumber',
+    'route',
+    'time',
+    'type',
+    'distance',
+    'fare',
+    'difference',
+  ];
   pageSize = 10;
   currentPage = 1;
   totalReports = 0;
@@ -62,26 +72,28 @@ export class ReportHistoryPageComponent implements OnInit {
 
   public getReports(): void {
     this.loading = true;
-    this._reportService.getReports(this.currentPage, this.pageSize, this.selectedFilter).then((response): void => {
-      // @ts-ignore
-      this.reports = response.data;
-      console.log(response);
-      // @ts-ignore
-      this.totalReports = response.data.total_count;
-      this.counts = {
+    this._reportService
+      .getReports(this.currentPage, this.pageSize, this.selectedFilter)
+      .then((response): void => {
         // @ts-ignore
-        total: response.data[0]?.total_count ?? 0,
+        this.reports = response.data;
+        console.log(response);
         // @ts-ignore
-        correct: response.data[0]?.meter_correct_count ?? 0,
-        // @ts-ignore
-        incorrect: response.data[0]?.meter_incorrect_count ?? 0
-      }
-      this.loading = false;
-    });
+        this.totalReports = response.data.total_count;
+        this.counts = {
+          // @ts-ignore
+          total: response.data[0]?.total_count ?? 0,
+          // @ts-ignore
+          correct: response.data[0]?.meter_correct_count ?? 0,
+          // @ts-ignore
+          incorrect: response.data[0]?.meter_incorrect_count ?? 0,
+        };
+        this.loading = false;
+      });
   }
 
   onPageChange(event: PageEvent) {
-    this.currentPage = event.pageIndex;
+    this.currentPage = event.pageIndex + 1;
     this.pageSize = event.pageSize;
     this.getReports();
   }

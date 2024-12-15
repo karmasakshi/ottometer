@@ -29,18 +29,12 @@
             justify-content: center;
           "
         >
-          <a
-            mat-flat-button
-            routerLink="/report"
-            color="warn"
-            >{{ t("report-meter") }}</a
-          >
-          <a
-            mat-flat-button
-            routerLink="/fare-calculator"
-            color="primary"
-            >{{ t("calculate-fare") }}</a
-          >
+          <a mat-flat-button routerLink="/report" color="warn">{{
+            t("report-meter")
+          }}</a>
+          <a mat-flat-button routerLink="/fare-calculator" color="primary">{{
+            t("calculate-fare")
+          }}</a>
         </div>
       </div>
     </mat-card>
@@ -57,15 +51,15 @@
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>{{ t("username") }}</th>
             <td mat-cell *matCellDef="let user">
-             <div style="display: flex; align-items: center; gap: 8px;">
-              <img
-              [ngSrc]="user.reporter_avatar_url"
-              [alt]="user.reporter_username"
-              height="32"
-              width="32"
-            />
-            <span>{{ user.reporter_username }}</span>
-             </div>
+              <div style="display: flex; align-items: center; gap: 8px">
+                <img
+                  [ngSrc]="user.reporter_avatar_url"
+                  [alt]="user.reporter_username"
+                  height="32"
+                  width="32"
+                />
+                <span>{{ user.reporter_username }}</span>
+              </div>
             </td>
           </ng-container>
 

@@ -21,12 +21,11 @@ export class AutoService {
   }
 
   public getAuto(plate: Plate): PromiseLike<unknown> {
-    return this._supabaseClient
-      .rpc('select_auto_with_reports_count',{
-        x_plate_state_code: plate.state_code,
-        x_plate_district_code: plate.district_code,
-        x_plate_series_code: plate.series_code,
-        x_plate_vehicle_number: plate.vehicle_number,
-      });
+    return this._supabaseClient.rpc('select_auto_with_reports_count', {
+      x_plate_state_code: plate.state_code,
+      x_plate_district_code: plate.district_code,
+      x_plate_series_code: plate.series_code,
+      x_plate_vehicle_number: plate.vehicle_number,
+    });
   }
 }
