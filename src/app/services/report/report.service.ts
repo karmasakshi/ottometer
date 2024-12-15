@@ -3,6 +3,7 @@ import { LoggerService } from '../logger/logger.service';
 import { SupabaseService } from '../supabase/supabase.service';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Report } from '@jet/interfaces/report.interface';
+import { NewReport } from '@jet/interfaces/new-report.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +24,8 @@ export class ReportService {
     return this._supabaseClient.from('reports').delete().eq('id', id);
   }
 
-  public insertReport(report: Report): PromiseLike<unknown> {
-    return this._supabaseClient.from('reports').insert([report]);
+  public insertReport(newReport: NewReport): PromiseLike<unknown> {
+    return this._supabaseClient.from('reports').insert([newReport]);
   }
 
   public getReport(id: Report['id']): PromiseLike<unknown> {

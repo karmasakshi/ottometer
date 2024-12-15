@@ -1,3 +1,98 @@
 <ng-container *transloco="let t; prefix: 'jet-report-page'">
-  <p>report-page works!</p>
+  <jet-page>
+    <div class="report-container">
+      <form #reportForm="ngForm" (ngSubmit)="onSubmit(reportForm)" class="report-form">
+        <mat-card>
+          <mat-card-title>Report Details</mat-card-title>
+          <mat-card-content>
+            <mat-form-field appearance="outline">
+              <mat-label>State Code</mat-label>
+              <input matInput type="text" name="auto_plate_state_code" [(ngModel)]="report.auto_plate_state_code" required />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>District Code</mat-label>
+              <input matInput type="text" name="auto_plate_district_code" [(ngModel)]="report.auto_plate_district_code" required />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Series Code</mat-label>
+              <input matInput type="text" name="auto_plate_series_code" [(ngModel)]="report.auto_plate_series_code" />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Vehicle Number</mat-label>
+              <input matInput type="text" name="auto_plate_vehicle_number" [(ngModel)]="report.auto_plate_vehicle_number" />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Reporter ID</mat-label>
+              <input matInput type="text" name="reporter_id" [(ngModel)]="report.reporter_id" required />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Area From</mat-label>
+              <input matInput type="text" name="area_from" [(ngModel)]="report.area_from" />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Area To</mat-label>
+              <input matInput type="text" name="area_to" [(ngModel)]="report.area_to" />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Fare Difference (INR)</mat-label>
+              <input matInput type="number" name="fare_difference_in_inr" [(ngModel)]="report.fare_difference_in_inr" />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Meter Distance (KM)</mat-label>
+              <input matInput type="number" name="meter_distance_in_km" [(ngModel)]="report.meter_distance_in_km" />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Meter Fare (INR)</mat-label>
+              <input matInput type="number" name="meter_fare_in_inr" [(ngModel)]="report.meter_fare_in_inr" />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Meter Waiting Time (Min)</mat-label>
+              <input matInput type="number" name="meter_waiting_time_in_min" [(ngModel)]="report.meter_waiting_time_in_min" />
+            </mat-form-field>
+      
+            <mat-checkbox name="is_tamper_indicator_on" [(ngModel)]="report.is_tamper_indicator_on">
+              Tamper Indicator On
+            </mat-checkbox>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Time In</mat-label>
+              <input matInput type="datetime-local" name="time_in" [(ngModel)]="report.time_in" />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Time Out</mat-label>
+              <input matInput type="datetime-local" name="time_out" [(ngModel)]="report.time_out" />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline">
+              <mat-label>Type</mat-label>
+              <mat-select name="type" [(ngModel)]="report.type">
+                <mat-option value="meter_incorrect">
+                  {{ t('report-incorrect') }}
+                </mat-option>
+                <mat-option value="meter_correct">
+                  {{ t('report-correct') }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!reportForm.valid">
+              Submit Report
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+          </div>
+  </jet-page>
 </ng-container>
