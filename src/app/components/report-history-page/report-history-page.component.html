@@ -35,9 +35,9 @@
                   {{ t("plate-number") }}
                 </th>
                 <td mat-cell *matCellDef="let report">
-                  {{ report.auto_plate_state_code }}-{{
+                  {{ report.auto_plate_state_code | uppercase }}-{{
                     report.auto_plate_district_code
-                  }}-{{ report.auto_plate_series_code }}-{{
+                  }}-{{ report.auto_plate_series_code | uppercase }}-{{
                     report.auto_plate_vehicle_number
                   }}
                 </td>
@@ -62,8 +62,8 @@
                 <td mat-cell *matCellDef="let report">
                   {{
                     t("time", {
-                      from: report.time_in ?? "-",
-                      to: report.time_out ?? "-",
+                      from: (report.time_in | date:'shortTime') ?? "-",
+                      to: (report.time_out | date:'shortTime') ?? "-",
                     })
                   }}
                 </td>

@@ -29,7 +29,14 @@
                   required
                   type="text"
                   placeholder="01"
+                  maxlength="2"
                 />
+                <mat-error *ngIf="plateForm.controls.district_code.errors?.['required']">
+                  District code is required
+                </mat-error>
+                <mat-error *ngIf="plateForm.controls.district_code.errors?.['pattern']">
+                  Must be 2 digits
+                </mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="outline">
@@ -40,7 +47,14 @@
                   required
                   type="text"
                   placeholder="AB"
+                  maxlength="2"
                 />
+                <mat-error *ngIf="plateForm.controls.series_code.errors?.['required']">
+                  Series code is required
+                </mat-error>
+                <mat-error *ngIf="plateForm.controls.series_code.errors?.['pattern']">
+                  Must be 2 letters
+                </mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="outline">
@@ -51,7 +65,14 @@
                   required
                   type="text"
                   placeholder="1234"
+                  maxlength="4"
                 />
+                <mat-error *ngIf="plateForm.controls.vehicle_number.errors?.['required']">
+                  Vehicle number is required
+                </mat-error>
+                <mat-error *ngIf="plateForm.controls.vehicle_number.errors?.['pattern']">
+                  Must be 4 digits
+                </mat-error>
               </mat-form-field>
             </div>
 
@@ -132,9 +153,14 @@
         </mat-card-content>
       </mat-card>
 
-      <mat-card *ngIf="hasSearched" class="no-results-card">
+      <mat-card *ngIf="hasSearched && searchResults.length === 0" class="no-results-card">
         <mat-card-content>
           <div class="no-results-content">
+            <div class="no-results-message">
+              <mat-icon>search_off</mat-icon>
+              <p>No reports found for this auto rickshaw.</p>
+              <p>Would you like to be the first to report this auto?</p>
+            </div>
             <div class="report-cta">
               <div class="report-buttons">
                 <a mat-raised-button color="primary" routerLink="/report">

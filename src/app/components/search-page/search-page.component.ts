@@ -17,6 +17,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { PlateService } from '@jet/services/plate/plate.service';
 import { AutoService } from '@jet/services/auto/auto.service';
@@ -76,9 +77,9 @@ export class SearchPageComponent {
     this.plate = this.plateService.plate;
     this.plateForm = this._formBuilder.group({
       state_code: { value: 'MH', disabled: true },
-      district_code: this.plate()?.district_code ?? '',
-      series_code: this.plate()?.series_code ?? '',
-      vehicle_number: this.plate()?.vehicle_number ?? '',
+      district_code: ['', [Validators.required, Validators.pattern('[0-9]{2}')]],
+      series_code: ['', [Validators.required, Validators.pattern('[A-Za-z]{2}')]],
+      vehicle_number: ['', [Validators.required, Validators.pattern('[0-9]{4}')]],
     });
 
     this._loggerService.logComponentInitialization('SearchPageComponent');
@@ -93,11 +94,23 @@ export class SearchPageComponent {
         series_code: this.plateForm.controls.series_code.value ?? '',
         vehicle_number: this.plateForm.controls.vehicle_number.value ?? '',
       })
-      .then((response) => {
-        // @ts-ignore
-        this.searchResults = response.data;
+      // @ts-ignore
+      .then(({data, error}) => {
+        if(error){
+          console.error('Error during auto search:', error);
         this.isLoading = false;
         this.hasSearched = true;
-      });
+        this.searchResults = [];
+        }
+        // @ts-ignore
+        this.searchResults = data;
+        this.isLoading = false;
+        this.hasSearched = true;
+        console.log('Search completed successfully:', {
+          resultsCount: this.searchResults.length,
+          results: this.searchResults
+        });
+      })
+
   }
 }
