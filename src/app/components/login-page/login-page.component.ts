@@ -15,7 +15,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'jet-login-page',
@@ -37,6 +37,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
   private readonly _formBuilder = inject(FormBuilder);
+  private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
@@ -61,7 +62,10 @@ export class LoginPageComponent implements OnInit {
   public ngOnInit(): void {
     this._authenticationService.getUser().then(({ data, error }) => {
       if (data.user) {
-        this._router.navigateByUrl('/');
+        const returnUrl =
+          this._activatedRoute.snapshot.queryParamMap.get('returnUrl') ?? '/';
+
+        void this._router.navigateByUrl(returnUrl);
       }
     });
   }
@@ -75,7 +79,10 @@ export class LoginPageComponent implements OnInit {
           console.log(error);
         } else {
           console.log(data);
-          this._router.navigateByUrl('/');
+          const returnUrl =
+            this._activatedRoute.snapshot.queryParamMap.get('returnUrl') ?? '/';
+
+          void this._router.navigateByUrl(returnUrl);
         }
       })
       .finally(() => {

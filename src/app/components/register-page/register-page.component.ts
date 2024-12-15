@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +15,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'jet-register-page',
@@ -35,7 +35,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.scss',
 })
-export class RegisterPageComponent {
+export class RegisterPageComponent implements OnInit {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _authenticationService = inject(AuthenticationService);
@@ -57,6 +57,14 @@ export class RegisterPageComponent {
     this.isRegisterPending = false;
 
     this._loggerService.logComponentInitialization('RegisterPageComponent');
+  }
+
+  public ngOnInit(): void {
+    this._authenticationService.getUser().then(({ data, error }) => {
+      if (data.user) {
+        void this._router.navigateByUrl('/');
+      }
+    });
   }
 
   public register(email: string, password: string): void {

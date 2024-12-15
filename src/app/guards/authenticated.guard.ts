@@ -9,6 +9,7 @@ import { AuthenticationService } from '@jet/services/authentication/authenticati
 
 export const isAuthenticatedGuard: CanActivateFn = (
   _activatedRouteSnapshot,
+  routerStateSnapshot,
 ): MaybeAsync<GuardResult> => {
   const router = inject(Router);
   const authenticationService = inject(AuthenticationService);
@@ -16,6 +17,8 @@ export const isAuthenticatedGuard: CanActivateFn = (
   if (authenticationService.user() !== null) {
     return true;
   } else {
-    return router.createUrlTree(['/login']);
+    return router.createUrlTree(['/login'], {
+      queryParams: { returnUrl: routerStateSnapshot.url },
+    });
   }
 };
