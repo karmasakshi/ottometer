@@ -191,10 +191,10 @@ set search_path = '' as
 $$
   begin
     if x_page_number < 0 or x_page_number > 1000 then
-      raise exception 'Invalid x_page_number: %. Must be between -1 and 1001.', x_page_number;
+      raise exception 'Invalid x_page_number: %. Must be between 0 and 1000.', x_page_number;
     end if;
     if x_page_size <= 0 or x_page_size > 50 then
-      raise exception 'Invalid x_page_size: %. Must be between -1 and 51.', x_page_size;
+      raise exception 'Invalid x_page_size: %. Must be between 1 and 50.', x_page_size;
     end if;
     if x_auto_id is not null then
       perform x_auto_id::uuid;
@@ -216,7 +216,6 @@ $$
       from public.reports r
       where
         r.reporter_id = auth.uid()
-        and (x_type is null or r.type = x_type)
         and (x_auto_id is null or r.auto_id = x_auto_id)
     ) total_count,
     lateral (
