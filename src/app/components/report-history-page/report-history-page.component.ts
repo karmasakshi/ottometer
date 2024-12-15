@@ -55,7 +55,7 @@ export class ReportHistoryPageComponent implements OnInit {
     'difference',
   ];
   pageSize = 10;
-  currentPage = 1;
+  currentPage = 0;
   totalReports = 0;
   selectedFilter: ReportType | null = null;
   loading = false;
@@ -79,7 +79,7 @@ export class ReportHistoryPageComponent implements OnInit {
         this.reports = response.data;
         console.log(response);
         // @ts-ignore
-        this.totalReports = response.data.total_count;
+        this.totalReports = response.data[0]?.total_count;
         this.counts = {
           // @ts-ignore
           total: response.data[0]?.total_count ?? 0,
@@ -93,13 +93,13 @@ export class ReportHistoryPageComponent implements OnInit {
   }
 
   onPageChange(event: PageEvent) {
-    this.currentPage = event.pageIndex + 1;
+    this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
     this.getReports();
   }
   onFilterChange(filter: ReportType | null) {
     this.selectedFilter = filter;
-    this.currentPage = 1;
+    this.currentPage = 0;
     this.reports = [];
     this.getReports();
   }

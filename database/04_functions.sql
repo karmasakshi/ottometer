@@ -156,7 +156,7 @@ $$;
 --
 
 create or replace function public.select_reports(
-  x_page_number int default 1,
+  x_page_number int default 0,
   x_page_size int default 10,
   x_type public.report_type default null,
   x_auto_id uuid default null
@@ -190,42 +190,24 @@ security invoker
 set search_path = '' as
 $$
   begin
-    if x_page_number <= 0 or x_page_number > 10000 then
-      raise exception 'Invalid x_page_number: %. Must be between 1 and 10000.', x_page_number;
+    if x_page_number < 0 or x_page_number > 1000 then
+      raise exception 'Invalid x_page_number: %. Must be between -1 and 1001.', x_page_number;
     end if;
-    if x_page_size <= 0 or x_page_size > 1000 then
-      raise exception 'Invalid x_page_size: %. Must be between 1 and 1000.', x_page_size;
+    if x_page_size <= 0 or x_page_size > 50 then
+      raise exception 'Invalid x_page_size: %. Must be between -1 and 51.', x_page_size;
     end if;
-    if x_auto_id is not null and not (x_auto_id::text ~ '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$') then
-      raise exception 'Invalid x_auto_id: %. Must be a valid UUID.', x_auto_id;
+    if x_auto_id is not null then
+      perform x_auto_id::uuid;
     end if;
-    if x_type is not null and not exists (select 1 from pg_enum where enumtypid = 'public.report_type'::regtype and enumlabel = x_type::text) then
-      raise exception 'Invalid x_type: %. Must be a valid report type.', x_type;
+    if x_type is not null then
+      perform x_type::public.report_type;
     end if;
     return query
     select
       total_count.total_count,
       total_count.meter_correct_count,
       total_count.meter_incorrect_count,
-      r.id,
-      r.auto_id,
-      r.auto_plate_state_code,
-      r.auto_plate_district_code,
-      r.auto_plate_series_code,
-      r.auto_plate_vehicle_number,
-      r.reporter_id,
-      r.area_from,
-      r.area_to,
-      r.fare_difference_in_inr,
-      r.meter_distance_in_km,
-      r.meter_fare_in_inr,
-      r.meter_waiting_time_in_min,
-      r.is_tamper_indicator_on,
-      r.time_in,
-      r.time_out,
-      r.type,
-      r.created_at,
-      r.updated_at
+      r.*
     from (
       select
         count(*) as total_count,
@@ -245,7 +227,7 @@ $$
         and (x_type is null or r.type = x_type)
         and (x_auto_id is null or r.auto_id = x_auto_id)
       order by r.created_at desc
-      limit x_page_size offset (x_page_number - 1) * x_page_size
+      limit x_page_size offset (x_page_number * x_page_size)
     ) r;
   end;
 $$;
