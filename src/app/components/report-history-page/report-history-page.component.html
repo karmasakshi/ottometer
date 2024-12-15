@@ -2,12 +2,12 @@
   <jet-page>
     <div class="history-container">
       <h2>My Reports</h2>
-      
+
       <mat-card>
         <mat-card-content>
 
           <mat-button-toggle-group
-          [value]="selected"
+          [value]="selectedFilter"
           (change)="onFilterChange($event.value)"
           class="filter-group">
           <mat-button-toggle [value]="null">

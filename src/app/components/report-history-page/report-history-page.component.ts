@@ -37,7 +37,6 @@ export class ReportHistoryPageComponent implements OnInit {
   private readonly _loggerService = inject(LoggerService);
   private readonly _reportService = inject(ReportService);
 
-  selected: string = 'all';
   counts: { total: number; correct: number; incorrect: number } = {
     total: 0,
     correct: 0,

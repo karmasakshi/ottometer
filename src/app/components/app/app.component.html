@@ -10,13 +10,31 @@
     >
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list>
-        <a mat-list-item routerLink="/">Home</a>
-        <a mat-list-item routerLink="/search">Search</a>
-        <a mat-list-item routerLink="/fare-calculator">Fare Calculator</a>
+        <a mat-list-item routerLink="/">
+          <mat-icon matListItemIcon>home</mat-icon>
+          <span matListItemTitle>Home</span>
+        </a>
+        <a mat-list-item routerLink="/search">
+          <mat-icon matListItemIcon>search</mat-icon>
+          <span matListItemTitle>Search</span>
+        </a>
+        <a mat-list-item routerLink="/fare-calculator">
+          <mat-icon matListItemIcon>calculate</mat-icon>
+          <span matListItemTitle>Fare Calculator</span>
+        </a>
         <mat-divider></mat-divider>
-        <a mat-list-item routerLink="/profile">Profile</a>
-        <a mat-list-item routerLink="/report">Report</a>
-        <a mat-list-item routerLink="/report-history">Report History</a>
+        <a mat-list-item routerLink="/profile">
+          <mat-icon matListItemIcon>person</mat-icon>
+          <span matListItemTitle>Profile</span>
+        </a>
+        <a mat-list-item routerLink="/report">
+          <mat-icon matListItemIcon>report</mat-icon>
+          <span matListItemTitle>Report</span>
+        </a>
+        <a mat-list-item routerLink="/report-history">
+          <mat-icon matListItemIcon>history</mat-icon>
+          <span matListItemTitle>Report History</span>
+        </a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
