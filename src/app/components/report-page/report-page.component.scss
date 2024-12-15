@@ -1,19 +1,27 @@
+/* report-page.component.scss */
 .report-container {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .form-row {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-  .full-width {
-    width: 100%;
-  }
-  @media (max-width: 600px) {
-    .form-row {
-      flex-direction: column;
-      gap: 0;
-    }
-  }
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+}
+
+mat-checkbox {
+  margin-bottom: 16px;
+}
