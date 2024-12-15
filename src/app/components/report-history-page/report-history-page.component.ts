@@ -38,11 +38,6 @@ export class ReportHistoryPageComponent implements OnInit {
   private readonly _loggerService = inject(LoggerService);
   private readonly _reportService = inject(ReportService);
 
-  counts: { total: number; correct: number; incorrect: number } = {
-    total: 0,
-    correct: 0,
-    incorrect: 0,
-  };
   reports: Report[] = [];
   displayedColumns = [
     'date',
@@ -76,18 +71,10 @@ export class ReportHistoryPageComponent implements OnInit {
       .getReports(this.currentPage, this.pageSize, this.selectedFilter)
       .then((response): void => {
         // @ts-ignore
-        this.reports = response.data;
+        this.reports = response.data.results;
         console.log(response);
         // @ts-ignore
-        this.totalReports = response.data[0]?.total_count;
-        this.counts = {
-          // @ts-ignore
-          total: response.data[0]?.total_count ?? 0,
-          // @ts-ignore
-          correct: response.data[0]?.meter_correct_count ?? 0,
-          // @ts-ignore
-          incorrect: response.data[0]?.meter_incorrect_count ?? 0,
-        };
+        this.totalReports = response.data.total_count;
         this.loading = false;
       });
   }
