@@ -1,27 +1,31 @@
-# Jet
+# Ottometer - Report Bad Auto Meters
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+## Live: https://ottometer.vercel.app
+## Bolt reference: https://bolt.new/~/meterlist-tzy2taen
 
-## Development server
+## Features - Public
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Leaderboards
 
-## Code scaffolding
+- Top contributors: Users with most reports, updated daily
+- Top violators: Autos with most reports of incorrect meters, updated daily
+- Top autos: Autos with most reports of correct meters, updated daily
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Search
 
-## Build
+- Search for an auto by plate, view total incorrect-meter and correct-meter reports
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+### Fare Calculator
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Calculate fare based on distance and other factors
 
-## Running end-to-end tests
+## Features - Authenticated
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Report
 
-## Further help
+- Submit a new report
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Report History
+
+- View past reports
