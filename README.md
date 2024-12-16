@@ -29,3 +29,9 @@
 ### Report History
 
 - View past reports
+
+## Stack
+
+- Supabase/PostgreSQL (Back-end): https://supabase.com
+- Angular (Front-end): https://angular.dev
+- Vercel (Hosting): https://vercel.com
